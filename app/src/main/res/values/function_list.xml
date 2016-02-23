@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inspection_query">itlwy.com.o2omall.fragment.Inspection_Query</string>
+    <string name="inspection_details">itlwy.com.o2omall.fragment.Inspection_Details</string>
+    <string name="inspection_main">itlwy.com.o2omall.fragment.Inspection_Main</string>
+    <string name="inspection_query_list">itlwy.com.o2omall.fragment.Inspection_Query_List</string>
+    <string name="HomeFragment">itlwy.com.o2omall.fragment.HomeFragment</string>
+    <string name="MyFragment">itlwy.com.o2omall.fragment.MyFragment</string>
+    <string name="CategoryFragment">itlwy.com.o2omall.fragment.CategoryFragment</string>
+    <string name="ShopCarFragment">itlwy.com.o2omall.fragment.ShopCarFragment</string>
+    <string name="ProductListFragment">itlwy.com.o2omall.fragment.ProductListFragment</string>
+    <string name="ProductFragment">itlwy.com.o2omall.fragment.ProductFragment</string>
+</resources>

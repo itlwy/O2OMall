@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bottomBarColor"
+        android:minHeight="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="标题"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <!--<FrameLayout
+        android:id="@+id/inspection_middle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <LinearLayout
+        android:id="@+id/bottomBarllt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/bottomBarColor"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/main_btn_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="centerInside"
+            android:background="#00000000"
+            android:src="@drawable/transition_btn_home"
+            android:contentDescription="@string/home"/>
+
+        <ImageButton
+            android:id="@+id/main_btn_category"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="centerInside"
+            android:background="#00000000"
+            android:src="@drawable/transition_btn_category"
+            android:contentDescription="@string/category"/>
+
+        <ImageButton
+            android:id="@+id/main_btn_scan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="centerInside"
+            android:background="#00000000"
+            android:src="@drawable/transition_btn_scan"
+            android:contentDescription="@string/scan"/>
+
+        <ImageButton
+            android:id="@+id/main_btn_cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="centerInside"
+            android:background="#00000000"
+            android:src="@drawable/transition_btn_cart"
+            android:contentDescription="@string/cart"/>
+
+        <ImageButton
+            android:id="@+id/main_btn_my"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:scaleType="centerInside"
+            android:background="#00000000"
+            android:src="@drawable/transition_btn_my"
+            android:contentDescription="@string/my"/>
+
+    </LinearLayout>
+
+</LinearLayout>
