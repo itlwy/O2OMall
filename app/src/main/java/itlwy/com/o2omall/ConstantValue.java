@@ -13,7 +13,7 @@ public interface ConstantValue {
     String PRODUCTLISTFRAGMENT = "ProductListFragment";
     String PRODUCTFRAGMENT = "ProductFragment";
 
-    /* fragment功能项11*/
+    /* fragment功能项*/
 
     /*toolbar类型*/
     int HOMETOOLBAR = 0;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/CommonBG"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/comm_title_back"
+        android:layout_width="45dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/arrowbacktor"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical" >
+
+        <ImageButton
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/title_back"
+            android:clickable="false"
+            android:focusable="false" />
+    </RelativeLayout>
+
+    <support.customui.widget.MarqueeTextView
+        android:id="@+id/comm_title_tv"
+        style="@style/CommonBG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="交通执法"
+        android:textSize="20sp" />
+
+</RelativeLayout>

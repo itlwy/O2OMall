@@ -33,4 +33,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile files('libs/AutoScroll-ViewPager.jar')
     compile files('libs/universal-image-loader-1.9.5.jar')
+    compile project(':LSupportLib')
 }

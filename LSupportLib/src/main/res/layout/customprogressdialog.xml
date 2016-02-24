@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center" 
+    android:background="@drawable/gradient_box_edit">
+
+    <RelativeLayout
+        android:id="@+id/message_title"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/jyblue" >
+
+        <TextView
+            android:id="@+id/message_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="我是标题"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true" />
+
+
+    </RelativeLayout>
+	<RelativeLayout
+	    android:layout_below="@+id/message_title"
+	    android:layout_above="@+id/message_btn_group"
+        android:id="@+id/center_rlt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_box"
+        android:padding="13dp"
+         >
+
+    <ImageView
+        android:id="@+id/loadingImageView"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="27dp"
+        android:background="@anim/progress_round" />
+
+    <TextView
+        android:id="@+id/id_tv_loadingmsg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:text="加载中..."
+        android:paddingLeft="30dp"
+        android:textColor="#ee000000"
+        android:layout_toRightOf="@+id/loadingImageView"
+        android:textSize="16sp" />
+  
+       </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/message_btn_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+		android:paddingTop="6dp"
+         >
+
+        <Button
+            android:id="@+id/message_cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:linksClickable="true"
+            android:background="@drawable/linkbtnbged"
+            android:text="取消"
+            android:textSize="20sp"
+            android:textColor="@color/white" 
+            android:layout_weight="1"
+            
+            />
+    </LinearLayout>
+
+</LinearLayout>
