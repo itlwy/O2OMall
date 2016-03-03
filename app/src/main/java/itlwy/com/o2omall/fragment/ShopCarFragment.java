@@ -32,6 +32,8 @@ import itlwy.com.o2omall.view.AutoRecyclerView;
  * Created by Administrator on 2016/2/18.
  */
 public class ShopCarFragment extends BaseFragment<Void, List<Product>> {
+    private ShopCarHolder holder;
+
     @Override
     public List<Product> load() {
 //        return ((BaseApplication)getActivity().getApplication()).getProductShopcar();
@@ -40,12 +42,18 @@ public class ShopCarFragment extends BaseFragment<Void, List<Product>> {
 
     @Override
     public View createSuccessView() {
-        return new ShopCarHolder(getActivity()).getContentView();
+        holder =new ShopCarHolder(getActivity());
+        return holder.getContentView();
     }
 
     @Override
     protected String getFragmentKey() {
         return ConstantValue.SHOPCARFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(List<Product> result) {
+        holder.setData(result);
     }
 
     /**

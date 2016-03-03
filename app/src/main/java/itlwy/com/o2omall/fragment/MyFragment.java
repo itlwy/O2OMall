@@ -18,6 +18,8 @@ import itlwy.com.o2omall.utils.UIManager;
  * Created by Administrator on 2016/2/17.
  */
 public class MyFragment extends BaseFragment<Void, String> {
+    private MyHolder myHolder;
+
     @Override
     public String load() {
         return "";
@@ -25,13 +27,18 @@ public class MyFragment extends BaseFragment<Void, String> {
 
     @Override
     public View createSuccessView() {
-        MyHolder myHolder = new MyHolder(getActivity());
+        myHolder = new MyHolder(getActivity());
         return myHolder.getContentView();
     }
 
     @Override
     protected String getFragmentKey() {
         return ConstantValue.MYFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(String result) {
+        myHolder.setData(result);
     }
 
 

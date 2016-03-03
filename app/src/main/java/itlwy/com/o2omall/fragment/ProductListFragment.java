@@ -29,6 +29,7 @@ import itlwy.com.o2omall.view.AutoRecyclerView;
  */
 public class ProductListFragment extends BaseFragment<CategoryTwo, List<Product>> {
     private List<Product> list_datas;
+    private ProductListHolder holder;
 
     @Override
     public List<Product> load() {
@@ -38,12 +39,18 @@ public class ProductListFragment extends BaseFragment<CategoryTwo, List<Product>
 
     @Override
     public View createSuccessView() {
-        return new ProductListHolder(getActivity()).getContentView();
+        holder = new ProductListHolder(getActivity());
+        return holder.getContentView();
     }
 
     @Override
     protected String getFragmentKey() {
         return ConstantValue.PRODUCTLISTFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(List<Product> result) {
+        holder.setData(result);
     }
 
     /**

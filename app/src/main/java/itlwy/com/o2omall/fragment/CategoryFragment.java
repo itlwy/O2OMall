@@ -29,6 +29,7 @@ import itlwy.com.o2omall.utils.UIManager;
 public class CategoryFragment extends BaseFragment<Void, List<CategoryOne>> {
 
     private List<CategoryOne> categoryOneList;
+    private CategoryHolder holder;
 
     @Override
     public List<CategoryOne> load() {
@@ -37,12 +38,18 @@ public class CategoryFragment extends BaseFragment<Void, List<CategoryOne>> {
 
     @Override
     public View createSuccessView() {
-        return new CategoryHolder(getActivity()).getContentView();
+        holder = new CategoryHolder(getActivity());
+        return holder.getContentView();
     }
 
     @Override
     protected String getFragmentKey() {
         return ConstantValue.CATEGORYFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(List<CategoryOne> result) {
+        holder.setData(result);
     }
 
     private List<CategoryOne> prepareDatas() {

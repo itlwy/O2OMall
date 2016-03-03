@@ -38,5 +38,11 @@
      <style name="Dialog_Fullscreen"> 
        <item name="android:windowFullscreen">true</item> 
        <item name="android:windowNoTitle">true</item>  
-    </style>  
+    </style>
+    <style name="BtnStyle">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_blue</item>
+    </style>
 </resources>

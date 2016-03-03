@@ -37,10 +37,11 @@ import itlwy.com.o2omall.view.CirclePageIndicator;
 public class HomeFragment extends BaseFragment<Void, List<Section>> {
     private List<Section> list;
     private ListView lv;
+    private HomeHolder homeHolder;
 
     @Override
     public View createSuccessView() {
-        HomeHolder homeHolder = new HomeHolder(getActivity());
+        homeHolder = new HomeHolder(getActivity());
         return homeHolder.getContentView();
     }
 
@@ -72,6 +73,11 @@ public class HomeFragment extends BaseFragment<Void, List<Section>> {
     @Override
     protected String getFragmentKey() {
         return ConstantValue.HOMEFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(List<Section> result) {
+        homeHolder.setData(result);
     }
 
 

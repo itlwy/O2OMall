@@ -145,14 +145,15 @@ public abstract class BaseFragment<T,K> extends Fragment {
                                 loadingPage.addView(successView, new FrameLayout.LayoutParams(
                                         FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
                             }
-                            ((BaseHolder)successView.getTag()).setData(result);
-//                            bindViewDatas((BaseHolder)successView.getTag());
+//                            ((BaseHolder)successView.getTag()).setData(result);
+                            bindViewDatas(result);
                         }
                         loadingPage.showPage();
                     }
                 });
         addSubscription(subscription);
     }
+
 
     /**
      * 请求服务器
@@ -174,6 +175,12 @@ public abstract class BaseFragment<T,K> extends Fragment {
      * @return
      */
     protected abstract String getFragmentKey();
+
+    /**
+     * 绑定数据
+     * @param result
+     */
+    protected abstract void bindViewDatas(K result);
 
     /**校验数据 */
     public LoadingPage.LoadResult checkData(K datas) {

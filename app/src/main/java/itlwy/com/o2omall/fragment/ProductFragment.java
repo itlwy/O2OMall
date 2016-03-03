@@ -29,6 +29,8 @@ import itlwy.com.o2omall.view.CirclePageIndicator;
  * Created by Administrator on 2016/2/23.
  */
 public class ProductFragment extends BaseFragment<Product, Product> {
+    private ProductHolder holder;
+
     @Override
     public Product load() {
         Product pro = getArguments().getParcelable(Product.Tag);
@@ -37,12 +39,18 @@ public class ProductFragment extends BaseFragment<Product, Product> {
 
     @Override
     public View createSuccessView() {
-        return new ProductHolder(getActivity()).getContentView();
+        holder = new ProductHolder(getActivity());
+        return holder.getContentView();
     }
 
     @Override
     protected String getFragmentKey() {
         return ConstantValue.PRODUCTFRAGMENT;
+    }
+
+    @Override
+    protected void bindViewDatas(Product result) {
+        holder.setData(result);
     }
 
     public class ProductHolder extends BaseHolder<Product, Object> {

@@ -61,6 +61,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void initActionBar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+//        String point = null;
+//        point.contains("");
 //        actionBar.setDisplayShowTitleEnabled(false);
 //        toolbar.setTitleTextColor(R.color.white);
         //设置actionbar的标题

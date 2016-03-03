@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.utils.CrashHandlerHelper;
 
 /**
  * Created by Administrator on 2015/12/22.
@@ -80,6 +81,7 @@ public class BaseApplication extends Application {
         mainTid = android.os.Process.myTid();
         handler=new Handler();
         initImageLoader();
+        new CrashHandlerHelper(this);//初始化全局异常捕捉类
     }
 
     private void initImageLoader() {

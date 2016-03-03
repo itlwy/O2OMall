@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -215,7 +216,7 @@ public class WidgetUtils {
         final CProgressDialog dialog = CProgressDialog.createAskNoDialog(a,view);
 		dialog.show();
 		message_confirm.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				event.confirm();
@@ -223,13 +224,48 @@ public class WidgetUtils {
 			}
 		});
 		message_cancel.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
 		return dialog;
-    } 
-	
+    }
+	public interface DialogInputCallBack {
+		void confirm(String content);
+
+		void cancel();
+	}
+
+	public static Dialog showInputDialog(Context a, String title, final DialogInputCallBack event) {
+		View view = View.inflate(a, R.layout.common_dialog_input, null);
+		final EditText dialog_input = (EditText) view
+				.findViewById(R.id.dialog_input);
+		TextView dialog_title = (TextView) view
+				.findViewById(R.id.dialog_title);
+		dialog_title.setText(title);
+		final AlertDialog dialog = WidgetUtils.showWebDialog((Activity) a, view,null);
+		view.findViewById(R.id.dialog_confirm).setOnClickListener(
+				new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (event != null)
+							event.confirm(dialog_input.getText().toString());
+						dialog.dismiss();
+					}
+
+				});
+		view.findViewById(R.id.dialog_cancel).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						if (event != null)
+							event.cancel();
+						dialog.dismiss();
+					}
+				});
+		return dialog;
+	}
 }
