@@ -1,5 +1,11 @@
 package support.utils;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class StringTools {
 
 	/**
@@ -78,7 +84,26 @@ public class StringTools {
     * @author Lwy
     * @date 2015-9-25 下午2:41:05
     */
-   public static String getXmlParams(String sfield, String svalue) {
+    public static String getXmlParams(String sfield, String svalue) {
 		return String.format("<%1$s>%2$s</%1$s>", sfield, svalue);
 	}
+    public static InputStream String2InputStream(String str){
+        ByteArrayInputStream stream = new ByteArrayInputStream(str.getBytes());
+        return stream;
+    }
+
+    public static String inputStream2String(InputStream is){
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(is));
+            StringBuffer buffer = new StringBuffer();
+            String line = "";
+            while ((line = in.readLine()) != null){
+                buffer.append(line);
+            }
+            return buffer.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

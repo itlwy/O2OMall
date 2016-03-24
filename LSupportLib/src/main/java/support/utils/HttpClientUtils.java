@@ -1,10 +1,5 @@
 package support.utils;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
@@ -23,14 +18,22 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public class HttpClientUtils {
+	private static final int DOWNLOAD_BUFFER_SIZE = 1024;
 	private HttpClient client;
 
 	// 网络访问的方式？get和post
 
-	private HttpPost post;
-	private HttpGet get;
 	private HttpResponse response;
 	private static Header[] headers;
 	
@@ -61,7 +64,6 @@ public class HttpClientUtils {
 	}
 	public HttpClientUtils() {
 		client = new DefaultHttpClient();
-
 		// wap方式的ip和端口设置
 		if (StringUtils.isNotBlank(PROXY_IP)) {
 			HttpHost host = new HttpHost(PROXY_IP, PROXY_PORT);
@@ -78,7 +80,7 @@ public class HttpClientUtils {
 	 * @param xml
 	 */
 	public InputStream sendXml(String url, String xml,String encoding) {
-		post = new HttpPost(url);
+		HttpPost post = new HttpPost(url);
 		try {
 			StringEntity entity = new StringEntity(xml, encoding);
 			post.setEntity(entity);
@@ -105,7 +107,7 @@ public class HttpClientUtils {
 	 * @return
 	 */
 	public String sendPost(String uri, Map<String, String> params,String encoding) {
-		post = new HttpPost(uri);
+		HttpPost post = new HttpPost(uri);
 		// 设置头信息
 		// post.setHeaders(headers);
 
@@ -144,7 +146,7 @@ public class HttpClientUtils {
 	}
 
 	public String sendGet(String uri,String encoding) {
-		get = new HttpGet(uri);
+		HttpGet get = new HttpGet(uri);
 
 		HttpParams httpParams = new BasicHttpParams();//
 		HttpConnectionParams.setConnectionTimeout(httpParams, 8000);
@@ -164,10 +166,10 @@ public class HttpClientUtils {
 		return null;
 	}
 
-	public InputStream loadImg(String uri) {
-		get = new HttpGet(uri);
+	public InputStream get(String uri){
+		HttpGet get = new HttpGet(uri);
 
-		HttpParams httpParams = new BasicHttpParams();//
+		HttpParams httpParams = new BasicHttpParams();
 		HttpConnectionParams.setConnectionTimeout(httpParams, 8000);
 		HttpConnectionParams.setSoTimeout(httpParams, 8000);
 		get.setParams(httpParams);
@@ -182,6 +184,41 @@ public class HttpClientUtils {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public boolean downloadFile(String uri,String destFilePath){
+		boolean flag = false;
+		InputStream is = get(uri);
+		File file ;
+		BufferedOutputStream os = null;
+		try {
+			if (is != null){
+                file = new File(destFilePath);
+                if (!FileUtils.isFileExist(destFilePath)){
+                    if (!FileUtils.isFileExist(file.getParent())){
+                        file.getParentFile().mkdirs();
+                    }
+                    file.createNewFile();
+                }
+				os = new BufferedOutputStream(new FileOutputStream(file));
+                byte[] buf = new byte[DOWNLOAD_BUFFER_SIZE];
+                int length;
+                while ((length = is.read(buf)) > 0){
+                    os.write(buf,0,length);
+                }
+				os.flush();
+				flag = true;
+            }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
 	}
 	
 }

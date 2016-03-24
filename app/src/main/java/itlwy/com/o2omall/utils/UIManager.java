@@ -51,7 +51,8 @@ public class UIManager {
     }
     public void changeActivity(Activity activity,Class clazz,Bundle bundle){
         Intent intent = new Intent(activity,clazz);
-        intent.putExtras(bundle);
+        if (bundle != null)
+            intent.putExtras(bundle);
         activity.startActivity(intent);
     }
 }

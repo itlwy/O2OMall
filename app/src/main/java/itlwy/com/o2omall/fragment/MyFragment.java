@@ -68,7 +68,7 @@ public class MyFragment extends BaseFragment<Void, String> {
 
         @Override
         public void onClick(View v) {
-//            ViewUtils.showSnack(v, "前往登录/注册页面");
+//            getActivity().startActivity(intent);
             UIManager.getInstance().changeActivity(getActivity(), LoginActivity.class,null);
         }
     }

@@ -163,13 +163,23 @@ public abstract class BaseRCAdapter<T> extends RecyclerView.Adapter<BaseRCHolder
 
     @Override
     public void onBindViewHolder(final BaseRCHolder holder, final int position) {
-        holder.bindDatas(mDatas.get(position));
+        int pos = position;
+        if (getHeadHolder() != null){
+            if (position == 0)
+                return;
+            pos = position -1;
+        }
+        holder.bindDatas(mDatas.get(pos));
         if (itemClickListener != null){
             holder.getContentView().setClickable(true);
             holder.getContentView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.onItemClick(holder.getContentView(), position);
+                    int tempPos = position;
+                    if (getHeadHolder() != null){
+                        tempPos = position - 1;
+                    }
+                    itemClickListener.onItemClick(holder.getContentView(), tempPos);
                 }
             });
         }

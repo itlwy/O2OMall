@@ -6,10 +6,15 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -212,4 +217,80 @@ public class FileUtils {
             }
         }
     }
+    public static boolean string2file(String str, String filePath) {
+        boolean flag = false;
+        BufferedWriter bw = null;
+        try {
+            File file = new File(filePath);
+            if (!file.exists()){
+                if (!file.getParentFile().exists())
+                    file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            bw = new BufferedWriter(fw);
+            bw.write(str);// 把整个json文件保存起来
+            bw.flush();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return flag;
+    }
+    public static String file2string(String filePath) {
+        File file = new File(filePath);
+        BufferedReader br = null;
+        try {
+            FileReader fr=new FileReader(file);
+            br=new BufferedReader(fr);
+            String str=null;
+            StringWriter sw= new StringWriter();
+            while((str=br.readLine())!=null){
+                sw.write(str);
+            }
+            return sw.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            if (br != null)
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+
+    /**
+     * 将is流写入应用data/data/files目录下
+     * @param context
+     * @param fileName
+     * @param is
+     * @return
+     */
+    public static boolean write2app_file(Context context,String fileName, InputStream is){
+        boolean flag = false;
+        try {
+            FileOutputStream file = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            int length ;
+            byte[] buff = new byte[1024];
+            while ((length = is.read(buff)) > 0){
+                file.write(buff,0,length);
+            }
+            file.close();
+            is.close();
+            flag = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
 }

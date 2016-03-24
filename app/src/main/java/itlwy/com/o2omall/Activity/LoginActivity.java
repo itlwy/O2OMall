@@ -88,7 +88,6 @@ public class LoginActivity extends BaseActivity {
     public void login(View v) {
         String userName = loginEtAccount.getText().toString();
         String userPassword = loginEtPassword.getText().toString();
-        ViewUtils.showSnack(v, "登录");
     }
 
     @OnClick(R.id.login_btn_register)

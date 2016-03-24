@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import itlwy.com.o2omall.protocal.BackHandledInterface;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Administrator on 2015/12/22.
@@ -19,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BackHand
     public static BaseActivity activity;
 
     private BaseFragment mBackHandedFragment;
+    private CompositeSubscription mCompositeSubscription;
 
     @Override
     protected void onResume() {
@@ -47,6 +50,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BackHand
         super.onDestroy();
         synchronized (mActivities) {
             mActivities.remove(this);
+        }
+        if (this.mCompositeSubscription != null) {
+            this.mCompositeSubscription.unsubscribe();
         }
     }
 
@@ -78,6 +84,19 @@ public abstract class BaseActivity extends AppCompatActivity implements BackHand
             }
         }
     }
+
+    /**
+     * 增加订阅事件至集合中
+     * @param s
+     */
+    public void addSubscription(Subscription s) {
+        if (this.mCompositeSubscription == null) {
+            this.mCompositeSubscription = new CompositeSubscription();
+        }
+
+        this.mCompositeSubscription.add(s);
+    }
+
     public abstract void init();
     public abstract void initView();
     public abstract void initActionBar();

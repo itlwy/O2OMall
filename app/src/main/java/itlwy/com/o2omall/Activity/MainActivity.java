@@ -1,14 +1,17 @@
 package itlwy.com.o2omall.Activity;
 
 
+import android.content.res.Configuration;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.euler.andfix.patch.PatchManager;
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +33,15 @@ import butterknife.ButterKnife;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseActivity;
+import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseFragment;
+import itlwy.com.o2omall.bean.AppPatch;
 import itlwy.com.o2omall.factory.FragmentFactory;
+import itlwy.com.o2omall.utils.ThreadManager;
 import itlwy.com.o2omall.utils.ViewUtils;
+import support.utils.FileUtils;
+import support.utils.HttpClientUtils;
+import support.utils.StringTools;
 
 /**
  * Created by Administrator on 2015/12/22.
@@ -56,6 +70,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private List<BaseFragment> fragmentList;
     private List<ImageButton> btns;
     private int currentFragment; //当前fragment
+    private HttpClientUtils httpUtils;
+    public static String categoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
 
     @Override
     public void initActionBar() {
@@ -73,6 +89,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //设置actionbar的图片
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_menu);
         toolbar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+            System.out.println("当前屏幕为横屏");
+        }else{
+            System.out.println("当前屏幕为横屏");
+        }
     }
 
     @Override
@@ -137,6 +163,61 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fragmentList.add(FragmentFactory.createFragment(this, ConstantValue.CATEGORYFRAGMENT));
         fragmentList.add(FragmentFactory.createFragment(this, ConstantValue.SHOPCARFRAGMENT));
         fragmentList.add(FragmentFactory.createFragment(this, ConstantValue.MYFRAGMENT));
+
+        checkPatch();
+    }
+
+    /**
+     * check the patchs from server
+     */
+    private void checkPatch() {
+        ThreadManager.getInstance().createLongPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                if (httpUtils == null)
+                    httpUtils = new HttpClientUtils();
+                String s = httpUtils.sendGet("http://192.168.1.196:8080/patch/patch.txt","utf-8");
+                ArrayList<String> list = new ArrayList<String>();
+                try {
+                    Gson gson = new Gson();
+                    AppPatch appPatch = gson.fromJson(s, AppPatch.class);
+                    //取之前存的
+                    File cacheFile = MainActivity.this.getFileStreamPath("appPatch.json");
+                    String cacheStr = null;
+                    if (cacheFile.exists())
+                        cacheStr = FileUtils.file2string(cacheFile.getAbsolutePath());
+                    AppPatch appCache = null;
+                    if (!TextUtils.isEmpty(cacheStr))
+                        appCache = gson.fromJson(cacheStr, AppPatch.class);
+
+                    List<AppPatch.Patch> patchs = appPatch.getPatch();
+                    for (int i = 0; i < patchs.size(); i++) {
+                        AppPatch.Patch patch = patchs.get(i);
+                        String fileName = patch.getName();
+                        if (appCache != null && appCache.isContain(patch)){
+                            continue;
+                        }
+                        String fileUri = patch.getUri();
+                        String filePath = categoryPath+"/O2OMall/"+fileName;
+                        httpUtils.downloadFile(fileUri,filePath);
+                        list.add(filePath);
+                    }
+                    PatchManager manager = ((BaseApplication) getApplication()).getPatchManager();
+                    for (String item:list){
+                        try {
+                            manager.addPatch(item);
+                            FileUtils.deleteFile(item);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (list != null&& list.size() > 0)
+                        FileUtils.write2app_file(MainActivity.this,"appPatch.json", StringTools.String2InputStream(s));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
