@@ -9,5 +9,6 @@
     <dimen name="textTitle">20sp</dimen>
     <dimen name="cardview_margin">8dp</dimen>
     <dimen name="cardview_radius">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

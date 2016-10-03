@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        release {
-            keyAlias 'conwinsoft'
-            keyPassword '654321'
-            storeFile file('D:/lwy/JIAOYUNTONG/conwinsoft')
-            storePassword '654321'
-        }
-    }
+//    signingConfigs {
+//        release {
+//            keyAlias 'conwinsoft'
+//            keyPassword '654321'
+//            storeFile file('D:/lwy/JIAOYUNTONG/conwinsoft')
+//            storePassword '654321'
+//        }
+//    }
     compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "itlwy.com.o2omall"
         minSdkVersion 16
@@ -22,10 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
     }
 }
@@ -44,7 +44,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile files('libs/AutoScroll-ViewPager.jar')
     compile files('libs/universal-image-loader-1.9.5.jar')
-    compile 'com.alipay.euler:andfix:0.3.1@aar'
+//    compile 'com.alipay.euler:andfix:0.3.1@aar'
     compile project(':LSupportLib')
     compile files('libs/gson-2.3.jar')
 }

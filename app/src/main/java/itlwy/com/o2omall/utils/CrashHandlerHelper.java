@@ -69,7 +69,7 @@ public class CrashHandlerHelper implements CrashListener {
         }.start();
         // 重新启动程序
 //        Intent intent = new Intent();
-//        intent.setClass(context,LoginActivity.class);
+//        intent.setClass(context,Login1Activity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        context.startActivity(intent);
 //        android.os.Process.killProcess(android.os.Process.myPid());

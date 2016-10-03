@@ -2,11 +2,9 @@ package itlwy.com.o2omall.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
-import com.alipay.euler.andfix.patch.PatchManager;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -34,12 +32,12 @@ public class BaseApplication extends Application {
     private static Handler handler;
     private List<Product> productShopcar;
     private DisplayImageOptions options;
-    private PatchManager patchManager;
+//    private PatchManager patchManager;
     public static String appversion;
 
-    public PatchManager getPatchManager() {
-        return patchManager;
-    }
+//    public PatchManager getPatchManager() {
+//        return patchManager;
+//    }
 
     public List<Product> getProductShopcar() {
         return productShopcar==null?new ArrayList<Product>():productShopcar;
@@ -91,14 +89,14 @@ public class BaseApplication extends Application {
         initImageLoader();
         new CrashHandlerHelper(this);//初始化全局异常捕捉类
         //初始化andFix
-        try {
-            appversion= getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            patchManager = new PatchManager(this);
-            patchManager.init(appversion);//current version
-            patchManager.loadPatch();
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            appversion= getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+//            patchManager = new PatchManager(this);
+//            patchManager.init(appversion);//current version
+//            patchManager.loadPatch();
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void initImageLoader() {

@@ -12,6 +12,7 @@ public interface ConstantValue {
 
     String PRODUCTLISTFRAGMENT = "ProductListFragment";
     String PRODUCTFRAGMENT = "ProductFragment";
+    String LOGINFRAGMENT = "LoginFragment";
 
     /* fragment功能项*/
 

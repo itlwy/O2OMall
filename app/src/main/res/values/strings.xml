@@ -32,5 +32,6 @@
     <string name="edit">编辑</string>
     <string name="suggest">请先登录再查看购物车</string>
     <string name="text_btn_addIntoCart">加入购物车</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>

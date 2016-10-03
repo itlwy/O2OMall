@@ -3,12 +3,12 @@ package itlwy.com.o2omall.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
-import itlwy.com.o2omall.base.BaseActivity;
-import itlwy.com.o2omall.base.BaseFragment;
+import itlwy.com.o2omall.base.BaseMVPFragment;
 
 
 /**
@@ -26,7 +26,7 @@ public class UIManager {
     /**
      * 切换界面
      */
-    public void changeFragment(BaseActivity a,int resId,BaseFragment target,boolean isAddStack,
+    public void changeFragment(FragmentActivity a, int resId, BaseMVPFragment target, boolean isAddStack,
                                Bundle bundle){
         if (target == null){
 //            throw new IllegalArgumentException();
@@ -47,7 +47,6 @@ public class UIManager {
             transaction.addToBackStack(null);
         }
         transaction.commit();
-//        target.show(null);
     }
     public void changeActivity(Activity activity,Class clazz,Bundle bundle){
         Intent intent = new Intent(activity,clazz);
