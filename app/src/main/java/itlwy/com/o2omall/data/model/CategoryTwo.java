@@ -1,11 +1,12 @@
-package itlwy.com.o2omall.bean;
+package itlwy.com.o2omall.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Administrator on 2016/2/17.
+ * Created by mac on 16/10/4.
  */
+
 public class CategoryTwo implements Parcelable {
     public static final String Tag = "CategoryTwo";
     private int previousId;
@@ -46,12 +47,6 @@ public class CategoryTwo implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "SecondCategoryData [id=" + id + ", name=" + name + ", imgUrl="
-                + imgUrl + "]";
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -75,10 +70,12 @@ public class CategoryTwo implements Parcelable {
     }
 
     public static final Parcelable.Creator<CategoryTwo> CREATOR = new Parcelable.Creator<CategoryTwo>() {
+        @Override
         public CategoryTwo createFromParcel(Parcel source) {
             return new CategoryTwo(source);
         }
 
+        @Override
         public CategoryTwo[] newArray(int size) {
             return new CategoryTwo[size];
         }

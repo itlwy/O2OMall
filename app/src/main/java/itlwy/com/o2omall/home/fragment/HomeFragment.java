@@ -28,7 +28,7 @@ import itlwy.com.o2omall.adapter.GroupRCAdapter;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.bean.Section;
+import itlwy.com.o2omall.data.model.Section;
 import itlwy.com.o2omall.home.contract.HomeContract;
 import itlwy.com.o2omall.utils.DensityUtil;
 import itlwy.com.o2omall.utils.ViewUtils;

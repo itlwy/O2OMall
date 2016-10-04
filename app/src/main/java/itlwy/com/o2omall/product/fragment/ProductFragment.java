@@ -21,12 +21,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.base.BaseMVPFragment;
+import itlwy.com.o2omall.data.model.Product;
 import itlwy.com.o2omall.product.contract.ProductContract;
 import itlwy.com.o2omall.view.CirclePageIndicator;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -68,7 +68,12 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
 
     @Override
     protected LoadingPage.ReLoadListener getReloadListener() {
-        return null;
+        return new LoadingPage.ReLoadListener() {
+            @Override
+            public void reLoad() {
+                // TODO: 重新加载处
+            }
+        };
     }
 
     public void bindViewDatas(Product result) {

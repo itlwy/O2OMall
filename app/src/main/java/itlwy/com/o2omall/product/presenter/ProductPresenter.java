@@ -1,7 +1,7 @@
 package itlwy.com.o2omall.product.presenter;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.data.model.Product;
 import itlwy.com.o2omall.product.contract.ProductContract;
 
 /**

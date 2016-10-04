@@ -14,16 +14,16 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import itlwy.com.o2omall.product.ProductActivity;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.CategoryOneAdapter;
 import itlwy.com.o2omall.adapter.CategoryTwoAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.bean.CategoryOne;
-import itlwy.com.o2omall.bean.CategoryTwo;
+import itlwy.com.o2omall.base.BaseMVPFragment;
+import itlwy.com.o2omall.data.model.CategoryOne;
+import itlwy.com.o2omall.data.model.CategoryTwo;
 import itlwy.com.o2omall.home.contract.CategoryContract;
+import itlwy.com.o2omall.product.ProductActivity;
 import itlwy.com.o2omall.utils.UIManager;
 import itlwy.com.o2omall.view.LoadingPage;
 

@@ -23,13 +23,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.GlobalParams;
-import itlwy.com.o2omall.login.LoginActivity;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ShopCarAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.data.model.Product;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
+import itlwy.com.o2omall.login.LoginActivity;
 import itlwy.com.o2omall.view.AutoRecyclerView;
 import itlwy.com.o2omall.view.LoadingPage;
 

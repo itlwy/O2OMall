@@ -4,8 +4,8 @@ import java.util.List;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;
-import itlwy.com.o2omall.bean.CategoryTwo;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.data.model.CategoryTwo;
+import itlwy.com.o2omall.data.model.Product;
 
 /**
  * Created by mac on 16/10/3.

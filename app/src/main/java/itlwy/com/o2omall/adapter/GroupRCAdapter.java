@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.bean.Section;
+import itlwy.com.o2omall.data.model.Section;
 import itlwy.com.o2omall.utils.DensityUtil;
 
 /**

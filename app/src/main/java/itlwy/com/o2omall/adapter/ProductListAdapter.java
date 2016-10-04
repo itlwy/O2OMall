@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.data.model.Product;
 
 /**
  * Created by Administrator on 2016/2/23.

@@ -6,7 +6,7 @@ import android.view.Menu;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseMVPActivity;
-import itlwy.com.o2omall.bean.CategoryTwo;
+import itlwy.com.o2omall.data.model.CategoryTwo;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.fragment.ProductListFragment;
 import itlwy.com.o2omall.product.presenter.ProductListPresenter;

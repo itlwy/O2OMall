@@ -13,7 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.bean.CategoryOne;
+import itlwy.com.o2omall.data.model.CategoryOne;
 
 /**
  * Created by Administrator on 2016/2/17.

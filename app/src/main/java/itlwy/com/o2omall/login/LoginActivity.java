@@ -14,20 +14,15 @@ public class LoginActivity extends BaseMVPActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-//        LoginFragment loginFragment =
-//                (LoginFragment) getSupportFragmentManager().findFragmentById(getFragmentContain());
-//        // Create the presenter
-//        if (loginFragment == null) {
-//            // Create the fragment
-//            loginFragment = LoginFragment.newInstance();
-//            ActivityUtils.addFragmentToActivity(
-//                    getSupportFragmentManager(), loginFragment, getFragmentContain());
-//        }
-//        mLoginPresenter = new LoginPresenter(loginFragment);
-
-        LoginFragment loginFragment = (LoginFragment) FragmentFactory.
-                createFragment(this, ConstantValue.LOGINFRAGMENT);
-        LoginPresenter.newInstance(loginFragment);
+        LoginFragment loginFragment =
+                (LoginFragment) getSupportFragmentManager().findFragmentById(getFragmentContain());
+        if (loginFragment == null) {
+            // Create the fragment
+            loginFragment = (LoginFragment) FragmentFactory.
+                    createFragment(this, ConstantValue.LOGINFRAGMENT);
+        }
+        // Create the presenter
+        mLoginPresenter = LoginPresenter.newInstance(loginFragment);
         UIManager.getInstance().changeFragment(this, getFragmentContain(), loginFragment, false, null);
 
     }

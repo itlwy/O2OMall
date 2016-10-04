@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.bean.Product;
+import itlwy.com.o2omall.data.model.Product;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 
 /**

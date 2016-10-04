@@ -4,9 +4,9 @@ android {
 //    signingConfigs {
 //        release {
 //            keyAlias 'conwinsoft'
-//            keyPassword '654321'
+//            keyPassword ''
 //            storeFile file('D:/lwy/JIAOYUNTONG/conwinsoft')
-//            storePassword '654321'
+//            storePassword ''
 //        }
 //    }
     compileSdkVersion 22
@@ -20,11 +20,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.release
         }
         debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.release
         }
     }
