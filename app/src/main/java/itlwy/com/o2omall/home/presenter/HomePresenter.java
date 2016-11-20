@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.Section;
+import itlwy.com.o2omall.data.model.SectionModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
 
 /**
@@ -24,14 +24,14 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
         load();
     }
 
-    private List<Section> downloadDatas() {
-        List<Section> list = new ArrayList<Section>();
+    private List<SectionModel> downloadDatas() {
+        List<SectionModel> list = new ArrayList<SectionModel>();
         for (int i = 0; i < 5; i++) {
-            Section sec = new Section();
-            List<Section.Item> items = new ArrayList<Section.Item>();
+            SectionModel sec = new SectionModel();
+            List<SectionModel.Item> items = new ArrayList<SectionModel.Item>();
             sec.setTitle(String.format("组%d", i));
             for (int k = 0; k < 5; k++) {
-                Section.Item item = sec.new Item();
+                SectionModel.Item item = sec.new Item();
                 item.setDesc(String.format("描述:%d", k));
                 item.setPic("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
                 item.setPrice(200);
@@ -54,7 +54,7 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
     }
 
     @Override
-    public List<Section> getMoreDatas() {
+    public List<SectionModel> getMoreDatas() {
         return downloadDatas();
     }
 }

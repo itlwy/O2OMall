@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.CategoryOne;
-import itlwy.com.o2omall.data.model.CategoryTwo;
+import itlwy.com.o2omall.data.model.CategoryOneModel;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
 import itlwy.com.o2omall.home.contract.CategoryContract;
 
 /**
@@ -35,24 +35,24 @@ public class CategoryPresenter extends BasePresenter implements CategoryContract
         return new CategoryPresenter(view);
     }
 
-    private List<CategoryOne> prepareDatas() {
-        List<CategoryOne> categoryOneList = new ArrayList<CategoryOne>();
+    private List<CategoryOneModel> prepareDatas() {
+        List<CategoryOneModel> categoryOneModelList = new ArrayList<CategoryOneModel>();
             for (int i = 1; i < 5; i++) {
-                List<CategoryTwo> categoryTwoList = new ArrayList<CategoryTwo>();
-                CategoryOne dataOne = new CategoryOne();
+                List<CategoryTwoModel> categoryTwoModelList = new ArrayList<CategoryTwoModel>();
+                CategoryOneModel dataOne = new CategoryOneModel();
                 dataOne.setId(i);
                 dataOne.setName("分类" + i);
                 for (int k = 1; k < 6; k++) {
-                    CategoryTwo dataTwo = new CategoryTwo();
+                    CategoryTwoModel dataTwo = new CategoryTwoModel();
                     dataTwo.setName("商品" + k);
                     dataTwo.setId(k);
                     dataTwo.setImgUrl("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
                     dataTwo.setPreviousId(i);
-                    categoryTwoList.add(dataTwo);
+                    categoryTwoModelList.add(dataTwo);
                 }
-                dataOne.setTwoList(categoryTwoList);
-                categoryOneList.add(dataOne);
+                dataOne.setTwoList(categoryTwoModelList);
+                categoryOneModelList.add(dataOne);
             }
-            return categoryOneList;
+            return categoryOneModelList;
     }
 }

@@ -13,16 +13,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.CategoryOne;
+import itlwy.com.o2omall.data.model.CategoryOneModel;
 
 /**
  * Created by Administrator on 2016/2/17.
  */
-public class CategoryOneAdapter extends BaseRCAdapter<CategoryOne> {
+public class CategoryOneAdapter extends BaseRCAdapter<CategoryOneModel> {
 
     private CategoryOneHolder holderSelected;
 
-    public CategoryOneAdapter(Context context, List<CategoryOne> datas) {
+    public CategoryOneAdapter(Context context, List<CategoryOneModel> datas) {
         super(context,datas);
     }
 
@@ -45,14 +45,14 @@ public class CategoryOneAdapter extends BaseRCAdapter<CategoryOne> {
 
 
 
-    public class CategoryOneHolder extends BaseRCHolder<CategoryOne> implements View.OnClickListener{
+    public class CategoryOneHolder extends BaseRCHolder<CategoryOneModel> implements View.OnClickListener{
 
         @Bind(R.id.item_category_left_tv)
         TextView itemCategoryLeftTv;
         @Bind(R.id.catrgory_show_llt)
         LinearLayout catrgoryShowLlt;
         private TextView contentView;
-        private CategoryOne categoryOne;
+        private CategoryOneModel mCategoryOneModel;
         private int position;
 
         public CategoryOneHolder(View itemView) {
@@ -61,14 +61,14 @@ public class CategoryOneAdapter extends BaseRCAdapter<CategoryOne> {
         }
 
         @Override
-        public void bindDatas(CategoryOne data) {
-            categoryOne = data;
+        public void bindDatas(CategoryOneModel data) {
+            mCategoryOneModel = data;
             position = getLayoutPosition();
             if (position == 0){  //默认选中第一个
                 catrgoryShowLlt.setSelected(true);
                 holderSelected = this;
             }
-            itemCategoryLeftTv.setText(categoryOne.getName());
+            itemCategoryLeftTv.setText(mCategoryOneModel.getName());
             catrgoryShowLlt.setOnClickListener(this);
         }
 

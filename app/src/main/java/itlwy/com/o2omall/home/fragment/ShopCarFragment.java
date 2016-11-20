@@ -27,7 +27,7 @@ import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ShopCarAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 import itlwy.com.o2omall.login.LoginActivity;
 import itlwy.com.o2omall.view.AutoRecyclerView;
@@ -75,7 +75,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
     }
 
     @Override
-    public void bindViewDatas(List<Product> result) {
+    public void bindViewDatas(List<ProductModel> result) {
         holder.setData(result);
     }
 
@@ -85,7 +85,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
         this.presenter = presenter;
     }
 
-    public class ShopCarHolder extends BaseHolder<List<Product>, Void> {
+    public class ShopCarHolder extends BaseHolder<List<ProductModel>, Void> {
 
         @Bind(R.id.cart_btn_login)
         Button cartBtnLogin;
@@ -106,7 +106,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
         @Bind(R.id.cart_list_layout)
         LinearLayout cartListLayout;
         private ShopCarAdapter adapter;
-        private List<Product> products;
+        private List<ProductModel> mProductModels;
 
         public ShopCarHolder(Context ctx) {
             super(ctx);
@@ -156,7 +156,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
         }
 
         @Override
-        public void refreshView(final List<Product> products) {
+        public void refreshView(final List<ProductModel> productModels) {
             if (GlobalParams.isLogin) {
                 // 已登录
                 // 隐藏提示登录的布局
@@ -175,9 +175,9 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
                 cartTvEmpty.setVisibility(View.VISIBLE);
                 return;
             }
-            this.products = products;
+            this.mProductModels = productModels;
             if (adapter == null) {
-                adapter = new ShopCarAdapter(getContext(), products);
+                adapter = new ShopCarAdapter(getContext(), productModels);
                 LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 cartLv.setAdapter(adapter);
                 cartLv.setLayoutManager(manager);
@@ -224,7 +224,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
          * 刷新购物车列表数据
          */
         private void refreshItemView() {
-            if (products.size() == 0) {
+            if (mProductModels.size() == 0) {
                 // 购物车为空
                 // 隐藏购物车列表布局
                 cartListLayout.setVisibility(View.GONE);

@@ -20,8 +20,8 @@ import itlwy.com.o2omall.adapter.CategoryOneAdapter;
 import itlwy.com.o2omall.adapter.CategoryTwoAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.CategoryOne;
-import itlwy.com.o2omall.data.model.CategoryTwo;
+import itlwy.com.o2omall.data.model.CategoryOneModel;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
 import itlwy.com.o2omall.home.contract.CategoryContract;
 import itlwy.com.o2omall.product.ProductActivity;
 import itlwy.com.o2omall.utils.UIManager;
@@ -30,9 +30,9 @@ import itlwy.com.o2omall.view.LoadingPage;
 /**
  * Created by Administrator on 2016/2/17.
  */
-public class CategoryFragment extends BaseMVPFragment implements CategoryContract.ICategoryView { //BaseFragment<Void, List<CategoryOne>>
+public class CategoryFragment extends BaseMVPFragment implements CategoryContract.ICategoryView { //BaseFragment<Void, List<CategoryOneModel>>
 
-    private List<CategoryOne> categoryOneList;
+    private List<CategoryOneModel> mCategoryOneModelList;
     private CategoryHolder holder;
     private CategoryContract.ICategoryPresenter presenter;
 
@@ -78,7 +78,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
     }
 
     @Override
-    public void bindViewDatas(List<CategoryOne> result) {
+    public void bindViewDatas(List<CategoryOneModel> result) {
         holder.setData(result);
     }
 
@@ -89,7 +89,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
     }
 
 
-    public class CategoryHolder extends BaseHolder<List<CategoryOne>, Void> {
+    public class CategoryHolder extends BaseHolder<List<CategoryOneModel>, Void> {
 
         @Bind(R.id.category_one)
         RecyclerView categoryOne;
@@ -110,13 +110,13 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
         }
 
         @Override
-        public void refreshView(List<CategoryOne> list) {
-            categoryOneList = list;
+        public void refreshView(List<CategoryOneModel> list) {
+            mCategoryOneModelList = list;
             if (categoryOneAdapter == null) {
-                categoryOneAdapter = new CategoryOneAdapter(getContext(), categoryOneList);
+                categoryOneAdapter = new CategoryOneAdapter(getContext(), mCategoryOneModelList);
             }
             if (categoryTwoAdapter == null) {
-                categoryTwoAdapter = new CategoryTwoAdapter(getContext(), categoryOneList.get(0).getTwoList());
+                categoryTwoAdapter = new CategoryTwoAdapter(getContext(), mCategoryOneModelList.get(0).getTwoList());
             }
             categoryOne.setAdapter(categoryOneAdapter);
             categoryTwo.setAdapter(categoryTwoAdapter);
@@ -130,7 +130,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
             categoryOneAdapter.setOnItemClickListener(new CategoryOneAdapter.OnItemClick() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    List<CategoryTwo> twoList = categoryOneList.get(position).getTwoList();
+                    List<CategoryTwoModel> twoList = mCategoryOneModelList.get(position).getTwoList();
                     categoryTwoAdapter.setmDatas(twoList);
                 }
             });
@@ -138,9 +138,9 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
                 @Override
                 public void onItemClick(View view, int position) {
 //                    ViewUtils.showSnack(view, "点击了" + categoryTwoAdapter.getmDatas().get(position).getName());
-                    CategoryTwo categoryTwoData = categoryTwoAdapter.getmDatas().get(position);
+                    CategoryTwoModel categoryTwoModelData = categoryTwoAdapter.getmDatas().get(position);
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable(CategoryTwo.Tag, categoryTwoData);
+                    bundle.putParcelable(CategoryTwoModel.Tag, categoryTwoModelData);
                     UIManager.getInstance().changeActivity(getActivity(), ProductActivity.class, bundle);
                 }
             });

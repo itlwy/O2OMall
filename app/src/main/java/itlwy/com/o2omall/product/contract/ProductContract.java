@@ -2,7 +2,7 @@ package itlwy.com.o2omall.product.contract;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 
 /**
  * Created by mac on 16/10/3.
@@ -10,10 +10,10 @@ import itlwy.com.o2omall.data.model.Product;
 
 public class ProductContract {
     public interface IProductPresenter extends IBasePresenter{
-        void subscribe(Product product);
+        void subscribe(ProductModel productModel);
     }
 
     public interface IProductView extends IBaseView<IProductPresenter>{
-        void bindViewDatas(Product result);
+        void bindViewDatas(ProductModel result);
     }
 }

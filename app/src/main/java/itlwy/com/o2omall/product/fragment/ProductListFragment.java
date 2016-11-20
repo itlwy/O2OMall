@@ -19,8 +19,8 @@ import itlwy.com.o2omall.adapter.BaseRCAdapter;
 import itlwy.com.o2omall.adapter.ProductListAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.CategoryTwo;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.ProductActivity;
 import itlwy.com.o2omall.product.contract.ProductListContract;
@@ -33,15 +33,15 @@ import itlwy.com.o2omall.view.LoadingPage;
  * Created by Administrator on 2016/2/23.
  */
 public class ProductListFragment extends BaseMVPFragment implements ProductListContract.IProductListView {
-    private List<Product> list_datas;
+    private List<ProductModel> list_datas;
     private ProductListHolder holder;
     private ProductListContract.IProductListPresenter presenter;
-    private CategoryTwo categoryTwo;
+    private CategoryTwoModel mCategoryTwoModel;
 
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe(categoryTwo);
+        presenter.subscribe(mCategoryTwoModel);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
 
     @Override
     protected void inits() {
-        categoryTwo = (CategoryTwo) getArguments().get(CategoryTwo.Tag);
+        mCategoryTwoModel = (CategoryTwoModel) getArguments().get(CategoryTwoModel.Tag);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
         return null;
     }
 
-    public void bindViewDatas(List<Product> result) {
+    public void bindViewDatas(List<ProductModel> result) {
         holder.setData(result);
     }
 
@@ -81,7 +81,7 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
         this.presenter = presenter;
     }
 
-    public class ProductListHolder extends BaseHolder<List<Product>, Object> {
+    public class ProductListHolder extends BaseHolder<List<ProductModel>, Object> {
 
         @Bind(R.id.btn_pd2_total)
         Button btnPd2Total;
@@ -107,19 +107,19 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
         }
 
         @Override
-        public void refreshView(List<Product> products) {
-            list_datas = products;
+        public void refreshView(List<ProductModel> productModels) {
+            list_datas = productModels;
             LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-            adapter = new ProductListAdapter(getContext(), products);
+            adapter = new ProductListAdapter(getContext(), productModels);
             productListRecycleview.setAdapter(adapter);
             productListRecycleview.setLayoutManager(manager);
             adapter.setOnItemClickListener(new BaseRCAdapter.OnItemClick() {
                 @Override
                 public void onItemClick(View view, int position) {
 //                    ViewUtils.showSnack(getActivity().getCurrentFocus(),"跳转");
-                    Product product = list_datas.get(position);
+                    ProductModel productModel = list_datas.get(position);
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable(Product.Tag, product);
+                    bundle.putParcelable(ProductModel.Tag, productModel);
                     ProductActivity ownActivity = (ProductActivity) getActivity();
                     ProductFragment productFragment = (ProductFragment) FragmentFactory.
                             createFragment(getContext(), ConstantValue.PRODUCTFRAGMENT);

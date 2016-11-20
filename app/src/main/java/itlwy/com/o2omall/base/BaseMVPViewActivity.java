@@ -8,9 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.utils.ViewUtils;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -19,13 +18,10 @@ import itlwy.com.o2omall.view.LoadingPage;
  * Created by mac on 16/10/3.
  */
 
-public abstract class BaseMVPActivity1 extends AppCompatActivity {
+public abstract class BaseMVPViewActivity extends AppCompatActivity {
 
-    @Bind(R.id.comm_title_tv)
     TextView commTitleTv;
-    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.base_content)
     FrameLayout baseContent;
     private ActionBar actionBar;
     private LoadingPage loadingPage;
@@ -35,7 +31,9 @@ public abstract class BaseMVPActivity1 extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_layout);
-        ButterKnife.bind(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        baseContent = (FrameLayout) findViewById(R.id.base_content);
+        commTitleTv = (TextView) findViewById(R.id.comm_title_tv);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
 //        toolbar.setTitleTextColor(Color.WHITE);
@@ -67,6 +65,10 @@ public abstract class BaseMVPActivity1 extends AppCompatActivity {
 
     protected abstract View createSuccessView();
 
+
+    public void showToast(String messaga) {
+        Toast.makeText(this, messaga, Toast.LENGTH_LONG).show();
+    }
 
     public void setTitle(String title) {
 //        actionBar.setTitle(title);

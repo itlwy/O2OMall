@@ -1,7 +1,7 @@
 package itlwy.com.o2omall.product.presenter;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.product.contract.ProductContract;
 
 /**
@@ -26,9 +26,9 @@ public class ProductPresenter extends BasePresenter implements ProductContract.I
     }
 
     @Override
-    public void subscribe(Product product) {
+    public void subscribe(ProductModel productModel) {
         view.showLoadingView();
-        view.bindViewDatas(product);
+        view.bindViewDatas(productModel);
         view.showSuccessView();
     }
 }

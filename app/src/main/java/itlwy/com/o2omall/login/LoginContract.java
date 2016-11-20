@@ -9,7 +9,7 @@ import itlwy.com.o2omall.base.api.IBaseView;
 
 public class LoginContract {
     public interface ILoginPresenter extends IBasePresenter {
-
+        void login(String userName,String password);
     }
 
     public interface ILoginView<ILoginPresenter> extends IBaseView<ILoginPresenter> {

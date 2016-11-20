@@ -45,7 +45,6 @@ public class AutoRecyclerView extends RecyclerView{
      * @param pauseOnFling
      */
     public void setOnPauseListenerParams(ImageLoader imageLoader, boolean pauseOnScroll, boolean pauseOnFling) {
-
         setOnScrollListener(new AutoLoadScrollListener(imageLoader, pauseOnScroll, pauseOnFling));
 
     }

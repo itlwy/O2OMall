@@ -4,7 +4,7 @@ import java.util.List;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;
-import itlwy.com.o2omall.data.model.CategoryOne;
+import itlwy.com.o2omall.data.model.CategoryOneModel;
 
 /**
  * Created by mac on 16/10/3.
@@ -16,6 +16,6 @@ public class CategoryContract {
     }
 
     public interface ICategoryView extends IBaseView<ICategoryPresenter> {
-        void bindViewDatas(List<CategoryOne> result);
+        void bindViewDatas(List<CategoryOneModel> result);
     }
 }

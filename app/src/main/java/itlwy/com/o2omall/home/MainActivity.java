@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void init() {
-        fragmentList = new ArrayList<BaseMVPFragment>();
+        fragmentList = new ArrayList<>();
         HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT);
         HomePresenter.newInstance(homeFragment);
         fragmentList.add(homeFragment);

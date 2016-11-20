@@ -28,7 +28,7 @@ import itlwy.com.o2omall.adapter.GroupRCAdapter;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.Section;
+import itlwy.com.o2omall.data.model.SectionModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
 import itlwy.com.o2omall.utils.DensityUtil;
 import itlwy.com.o2omall.utils.ViewUtils;
@@ -40,7 +40,7 @@ import itlwy.com.o2omall.view.LoadingPage;
  * Created by Administrator on 2015/12/22.
  */
 public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeView {
-    private List<Section> list;
+    private List<SectionModel> list;
     private ListView lv;
     private HomeHolder homeHolder;
     private HomeContract.IHomePresenter presenter;
@@ -86,7 +86,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     }
 
     @Override
-    public void bindViewDatas(List<Section> result) {
+    public void bindViewDatas(List<SectionModel> result) {
         homeHolder.setData(result);
     }
 
@@ -100,7 +100,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     /**
      * 商品列表
      */
-    public class HomeHolder extends BaseHolder<List<Section>, Void> implements GroupRCAdapter.OnItemClick {
+    public class HomeHolder extends BaseHolder<List<SectionModel>, Void> implements GroupRCAdapter.OnItemClick {
 
         @Bind(R.id.home_recycleView)
         AutoRecyclerView homeRecycleView;
@@ -137,7 +137,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
         }
 
         @Override
-        public void refreshView(List<Section> datas) {
+        public void refreshView(List<SectionModel> datas) {
             if (adapter == null)
                 adapter = new GroupRCAdapter(getActivity(), datas);
             else

@@ -26,7 +26,7 @@ import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.product.contract.ProductContract;
 import itlwy.com.o2omall.view.CirclePageIndicator;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -37,12 +37,12 @@ import itlwy.com.o2omall.view.LoadingPage;
 public class ProductFragment extends BaseMVPFragment implements ProductContract.IProductView {
     private ProductHolder holder;
     private ProductContract.IProductPresenter presenter;
-    private Product product;
+    private ProductModel mProductModel;
 
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe(product);
+        presenter.subscribe(mProductModel);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
 
     @Override
     protected void inits() {
-        product = getArguments().getParcelable(Product.Tag);
+        mProductModel = getArguments().getParcelable(ProductModel.Tag);
     }
     @Override
     protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         };
     }
 
-    public void bindViewDatas(Product result) {
+    public void bindViewDatas(ProductModel result) {
         holder.setData(result);
     }
 
@@ -85,7 +85,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         this.presenter = presenter;
     }
 
-    public class ProductHolder extends BaseHolder<Product, Object> {
+    public class ProductHolder extends BaseHolder<ProductModel, Object> {
         @Bind(R.id.product_viewPager)
         AutoScrollViewPager productViewPager;
         @Bind(R.id.product_indicator)
@@ -118,7 +118,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         }
 
         @Override
-        public void refreshView(Product product) {
+        public void refreshView(ProductModel productModel) {
             getViewImage();
             pagerAdapter = new PagerAdapter() {
 

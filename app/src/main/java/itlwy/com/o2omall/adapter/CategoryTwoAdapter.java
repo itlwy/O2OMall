@@ -20,14 +20,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.CategoryTwo;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
 
 /**
  * Created by Administrator on 2016/2/17.
  */
-public class CategoryTwoAdapter extends BaseRCAdapter<CategoryTwo> {
+public class CategoryTwoAdapter extends BaseRCAdapter<CategoryTwoModel> {
 
-    public CategoryTwoAdapter(Context context, List<CategoryTwo> datas) {
+    public CategoryTwoAdapter(Context context, List<CategoryTwoModel> datas) {
         super(context, datas);
     }
 
@@ -52,7 +52,7 @@ public class CategoryTwoAdapter extends BaseRCAdapter<CategoryTwo> {
     }
 
 
-    public class CategoryTwoHolder extends BaseRCHolder<CategoryTwo> {
+    public class CategoryTwoHolder extends BaseRCHolder<CategoryTwoModel> {
 
         @Bind(R.id.product_url)
         ImageView productUrl;
@@ -60,7 +60,7 @@ public class CategoryTwoAdapter extends BaseRCAdapter<CategoryTwo> {
         TextView productName;
         @Bind(R.id.category_details_llt)
         LinearLayout categoryDetailsLlt;
-        private CategoryTwo categoryTwo;
+        private CategoryTwoModel mCategoryTwoModel;
         private int position;
 
         public CategoryTwoHolder(View itemView) {
@@ -69,11 +69,11 @@ public class CategoryTwoAdapter extends BaseRCAdapter<CategoryTwo> {
         }
 
         @Override
-        public void bindDatas(CategoryTwo data) {
-            this.categoryTwo = data;
+        public void bindDatas(CategoryTwoModel data) {
+            this.mCategoryTwoModel = data;
             this.position = getLayoutPosition();
-            ImageLoader.getInstance().displayImage(categoryTwo.getImgUrl(), productUrl, getOptions());
-            productName.setText(categoryTwo.getName());
+            ImageLoader.getInstance().displayImage(mCategoryTwoModel.getImgUrl(), productUrl, getOptions());
+            productName.setText(mCategoryTwoModel.getName());
         }
 
     }

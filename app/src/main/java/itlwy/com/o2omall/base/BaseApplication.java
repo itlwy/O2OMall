@@ -15,13 +15,16 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.utils.CrashHandlerHelper;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Administrator on 2015/12/22.
@@ -30,25 +33,25 @@ public class BaseApplication extends Application {
     private static BaseApplication application;
     private static int mainTid;
     private static Handler handler;
-    private List<Product> productShopcar;
+    private List<ProductModel> mProductModelShopcar;
     private DisplayImageOptions options;
-//    private PatchManager patchManager;
+    //    private PatchManager patchManager;
     public static String appversion;
 
 //    public PatchManager getPatchManager() {
 //        return patchManager;
 //    }
 
-    public List<Product> getProductShopcar() {
-        return productShopcar==null?new ArrayList<Product>():productShopcar;
+    public List<ProductModel> getProductModelShopcar() {
+        return mProductModelShopcar == null ? new ArrayList<ProductModel>() : mProductModelShopcar;
     }
 
-    public void setProductShopcar(List<Product> productShopcar) {
-        this.productShopcar = productShopcar;
+    public void setProductModelShopcar(List<ProductModel> productModelShopcar) {
+        this.mProductModelShopcar = productModelShopcar;
     }
 
     public DisplayImageOptions getOptions() {
-        if (options == null){
+        if (options == null) {
             options = new DisplayImageOptions.Builder()
                     // // 设置图片在下载期间显示的图片
                     // .showImageOnLoading(R.drawable.small_image_holder_listpage)
@@ -57,22 +60,22 @@ public class BaseApplication extends Application {
                     // // 设置图片加载/解码过程中错误时候显示的图片
                     // .showImageOnFail(R.drawable.small_image_holder_listpage)
                     .cacheInMemory(true)
-                            // 设置下载的图片是否缓存在内存中
+                    // 设置下载的图片是否缓存在内存中
                     .cacheOnDisc(true)
-                            // 设置下载的图片是否缓存在SD卡中
+                    // 设置下载的图片是否缓存在SD卡中
                     .considerExifParams(true)
                     .imageScaleType(ImageScaleType.EXACTLY)// 设置图片以如何的编码方式显示
                     .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型
-                            // .decodingOptions(android.graphics.BitmapFactory.Options
-                            // decodingOptions)//设置图片的解码配置
+                    // .decodingOptions(android.graphics.BitmapFactory.Options
+                    // decodingOptions)//设置图片的解码配置
                     .considerExifParams(true)
-                            // 设置图片下载前的延迟
-                            // .delayBeforeLoading(int delayInMillis)//int
-                            // delayInMillis为你设置的延迟时间
-                            // 设置图片加入缓存前，对bitmap进行设置
-                            // 。preProcessor(BitmapProcessor preProcessor)
+                    // 设置图片下载前的延迟
+                    // .delayBeforeLoading(int delayInMillis)//int
+                    // delayInMillis为你设置的延迟时间
+                    // 设置图片加入缓存前，对bitmap进行设置
+                    // 。preProcessor(BitmapProcessor preProcessor)
                     .resetViewBeforeLoading(true)// 设置图片在下载前是否重置，复位
-                            // .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
+                    // .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                     .displayer(new FadeInBitmapDisplayer(100))// 淡入
                     .build();
         }
@@ -83,11 +86,19 @@ public class BaseApplication extends Application {
 //  在主线程运行的
     public void onCreate() {
         super.onCreate();
-        application=this;
+        application = this;
         mainTid = android.os.Process.myTid();
-        handler=new Handler();
+        handler = new Handler();
         initImageLoader();
         new CrashHandlerHelper(this);//初始化全局异常捕捉类
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addInterceptor(new LoggerInterceptor("TAG"))
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
         //初始化andFix
 //        try {
 //            appversion= getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -98,6 +109,7 @@ public class BaseApplication extends Application {
 //            e.printStackTrace();
 //        }
     }
+
 
     private void initImageLoader() {
         File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(),
@@ -110,10 +122,10 @@ public class BaseApplication extends Application {
                 .memoryCache(new WeakMemoryCache())
                 .denyCacheImageMultipleSizesInMemory()
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
-                        // 将保存的时候的URI名称用MD5 加密
+                // 将保存的时候的URI名称用MD5 加密
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
                 .discCache(new UnlimitedDiskCache(cacheDir))// 自定义缓存路径
-                        // .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
+                // .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
 //                .writeDebugLogs() // Remove for release app
                 .build();
         // Initialize ImageLoader with configuration.
@@ -125,9 +137,11 @@ public class BaseApplication extends Application {
     public static Context getApplication() {
         return application;
     }
+
     public static int getMainTid() {
         return mainTid;
     }
+
     public static Handler getHandler() {
         return handler;
     }

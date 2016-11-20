@@ -16,14 +16,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 
 /**
  * Created by Administrator on 2016/2/23.
  */
-public class ProductListAdapter extends BaseRCAdapter<Product> {
+public class ProductListAdapter extends BaseRCAdapter<ProductModel> {
 
-    public ProductListAdapter(Context context, List<Product> datas) {
+    public ProductListAdapter(Context context, List<ProductModel> datas) {
         super(context, datas);
     }
 
@@ -41,7 +41,7 @@ public class ProductListAdapter extends BaseRCAdapter<Product> {
         return null;
     }
 
-    public class ProductListItemHolder extends BaseRCHolder<Product> {
+    public class ProductListItemHolder extends BaseRCHolder<ProductModel> {
         @Bind(R.id.iv_pd_second_layer)
         ImageView ivPdSecondLayer;
         @Bind(R.id.tv_item_pd_info)
@@ -55,10 +55,10 @@ public class ProductListAdapter extends BaseRCAdapter<Product> {
         }
 
         @Override
-        public void bindDatas(Product product) {
-            tvItemPdInfo.setText(product.getInfo());
-            tvItemPdPrice.setText("$"+product.getPrice());
-            ImageLoader.getInstance().displayImage(product.getImgUrl(),ivPdSecondLayer,getOptions());
+        public void bindDatas(ProductModel productModel) {
+            tvItemPdInfo.setText(productModel.getInfo());
+            tvItemPdPrice.setText("$"+ productModel.getPrice());
+            ImageLoader.getInstance().displayImage(productModel.getImgUrl(),ivPdSecondLayer,getOptions());
         }
     }
 }

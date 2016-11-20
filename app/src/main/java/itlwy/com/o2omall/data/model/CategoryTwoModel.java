@@ -7,8 +7,8 @@ import android.os.Parcelable;
  * Created by mac on 16/10/4.
  */
 
-public class CategoryTwo implements Parcelable {
-    public static final String Tag = "CategoryTwo";
+public class CategoryTwoModel implements Parcelable {
+    public static final String Tag = "CategoryTwoModel";
     private int previousId;
     private int id;
     private String name;
@@ -59,25 +59,25 @@ public class CategoryTwo implements Parcelable {
         dest.writeString(this.imgUrl);
     }
 
-    public CategoryTwo() {
+    public CategoryTwoModel() {
     }
 
-    protected CategoryTwo(Parcel in) {
+    protected CategoryTwoModel(Parcel in) {
         this.previousId = in.readInt();
         this.id = in.readInt();
         this.name = in.readString();
         this.imgUrl = in.readString();
     }
 
-    public static final Parcelable.Creator<CategoryTwo> CREATOR = new Parcelable.Creator<CategoryTwo>() {
+    public static final Parcelable.Creator<CategoryTwoModel> CREATOR = new Parcelable.Creator<CategoryTwoModel>() {
         @Override
-        public CategoryTwo createFromParcel(Parcel source) {
-            return new CategoryTwo(source);
+        public CategoryTwoModel createFromParcel(Parcel source) {
+            return new CategoryTwoModel(source);
         }
 
         @Override
-        public CategoryTwo[] newArray(int size) {
-            return new CategoryTwo[size];
+        public CategoryTwoModel[] newArray(int size) {
+            return new CategoryTwoModel[size];
         }
     };
 }

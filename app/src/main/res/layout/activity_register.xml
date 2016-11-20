@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:padding="@dimen/text_padding"
+            android:text="用户名 : "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+
+        <EditText
+            android:id="@+id/username_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="请输入用户名"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:padding="@dimen/text_padding"
+            android:text="密码 : "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:padding="@dimen/text_padding"
+            android:text="昵称 : "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+
+        <EditText
+            android:id="@+id/nickname_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="请输入昵称"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:padding="@dimen/text_padding"
+            android:text="邮箱 : "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+
+        <EditText
+            android:id="@+id/mail_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="请输入昵称"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:padding="@dimen/text_padding"
+            android:text="电话 : "
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+
+        <EditText
+            android:id="@+id/phone_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:hint="请输入电话"
+            android:padding="@dimen/text_padding"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/content_text_size"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
+        android:text="注册"/>
+</LinearLayout>

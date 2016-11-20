@@ -22,12 +22,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 
 /**
  * Created by Administrator on 2016/2/18.
  */
-public class ShopCarAdapter extends BaseRCAdapter<Product> {
+public class ShopCarAdapter extends BaseRCAdapter<ProductModel> {
 
     private OnPriceChangedListener onPriceChangedListener;
     private OnCheckChangedListener onCheckChangedListener;
@@ -60,7 +60,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
     }
 
 
-    public ShopCarAdapter(Context context, List<Product> mDatas) {
+    public ShopCarAdapter(Context context, List<ProductModel> mDatas) {
         super(context, mDatas);
     }
 
@@ -91,7 +91,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
     }
 
 
-    public class ShopCarItemHolder extends BaseRCHolder<Product> {
+    public class ShopCarItemHolder extends BaseRCHolder<ProductModel> {
 
         @Bind(R.id.item_cart_cb)
         CheckBox itemCartCb;
@@ -108,7 +108,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
         @Bind(R.id.item_cart_btn_add)
         Button itemCartBtnAdd;
         private int position;
-        private Product product;
+        private ProductModel mProductModel;
 
         public ShopCarItemHolder(View itemView) {
             super(itemView);
@@ -116,20 +116,20 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
         }
 
         @Override
-        public void bindDatas(Product pro) {
+        public void bindDatas(ProductModel pro) {
             this.position = getLayoutPosition();
-            product = pro;
+            mProductModel = pro;
             ImageLoader.getInstance().displayImage(pro.getImgUrl(), itemCartIv, getOptions());
-            itemCartTvInfo.setText(product.getInfo());
+            itemCartTvInfo.setText(mProductModel.getInfo());
             itemCartTvPrice.setText("$" + pro.getPrice());
-            itemCartCb.setChecked(product.isCheck());
-            itemCartEtNum.setText(product.getNum() + "");
+            itemCartCb.setChecked(mProductModel.isCheck());
+            itemCartEtNum.setText(mProductModel.getNum() + "");
             itemCartCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView,
                                              boolean isChecked) {
-                    product.setIsCheck(isChecked);
+                    mProductModel.setIsCheck(isChecked);
                     if (onCheckChangedListener != null) {
                         SparseBooleanArray isCheckedArr = new SparseBooleanArray();
                         for (int i = 0; i < getmDatas().size(); i++) {
@@ -156,7 +156,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
                     int num = Integer.parseInt(itemCartEtNum.getText().toString());
                     itemCartEtNum.setText((--num) + "");
                     int n = ShopCarItemHolder.this.getLayoutPosition();
-                    product.setNum(num);
+                    mProductModel.setNum(num);
                     if (num <= 0) {
                         getmDatas().remove(n);
                         notifyItemRemoved(n);
@@ -169,7 +169,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
                 public void onClick(View v) {
                     int num = Integer.parseInt(itemCartEtNum.getText().toString());
                     itemCartEtNum.setText((++num) + "");
-                    product.setNum(num);
+                    mProductModel.setNum(num);
                 }
             });
             itemCartEtNum.addTextChangedListener(new TextWatcher() {
@@ -180,7 +180,7 @@ public class ShopCarAdapter extends BaseRCAdapter<Product> {
                     int num = Integer.parseInt(s.toString());
                     if (num == 0) {
                     } else {
-                        product.setNum(num);
+                        mProductModel.setNum(num);
                     }
                     if (onPriceChangedListener != null) {
                         onPriceChangedListener.onPriceChanged(calculatePrice());

@@ -1,7 +1,5 @@
 package support.utils.cache;
 
-import java.io.File;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +7,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.v4.util.LruCache;
 import android.util.Log;
+
+import java.io.File;
 
 /**
  * 
@@ -87,6 +87,7 @@ public class ImageCache {
 	 */
 	public void setParams(int RAMSize,int DiskSize){
 		MAXSIZE = RAMSize == 0?MAXSIZE:RAMSize;
+		lrucache.resize(RAMSize);
 		DIS_CACHE_SIZE = DiskSize == 0?DIS_CACHE_SIZE:DiskSize;
 	}
 	/**

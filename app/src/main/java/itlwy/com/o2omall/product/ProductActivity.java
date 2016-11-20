@@ -6,7 +6,7 @@ import android.view.Menu;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseMVPActivity;
-import itlwy.com.o2omall.data.model.CategoryTwo;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.fragment.ProductListFragment;
 import itlwy.com.o2omall.product.presenter.ProductListPresenter;
@@ -25,9 +25,9 @@ public class ProductActivity extends BaseMVPActivity {
 
 
     public void initView() {
-        CategoryTwo categoryTwo = getIntent().getParcelableExtra(CategoryTwo.Tag);
+        CategoryTwoModel categoryTwoModel = getIntent().getParcelableExtra(CategoryTwoModel.Tag);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(CategoryTwo.Tag, categoryTwo);
+        bundle.putParcelable(CategoryTwoModel.Tag, categoryTwoModel);
         ProductListFragment productListFragment = (ProductListFragment) FragmentFactory.
                 createFragment(this, ConstantValue.PRODUCTLISTFRAGMENT);
         ProductListPresenter.newInstance(productListFragment);

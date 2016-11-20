@@ -4,8 +4,8 @@ import java.util.List;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;
-import itlwy.com.o2omall.data.model.CategoryTwo;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.model.ProductModel;
 
 /**
  * Created by mac on 16/10/3.
@@ -13,10 +13,10 @@ import itlwy.com.o2omall.data.model.Product;
 
 public class ProductListContract {
     public interface IProductListPresenter extends IBasePresenter {
-        void subscribe(CategoryTwo categoryTwo);
+        void subscribe(CategoryTwoModel categoryTwoModel);
     }
 
     public interface IProductListView extends IBaseView<IProductListPresenter> {
-        void bindViewDatas(List<Product> result);
+        void bindViewDatas(List<ProductModel> result);
     }
 }

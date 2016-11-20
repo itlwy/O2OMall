@@ -6,8 +6,15 @@ package itlwy.com.o2omall.base.api;
 
 public interface IBaseView<T> {
     void showLoadingView();
+
     void showEmptyView();
+
     void showErrorView();
+
     void showSuccessView();
+
+    void showToast(String messaga);
+
+
     void setPresenter(T presenter);
 }

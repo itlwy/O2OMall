@@ -5,18 +5,18 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/2/17.
  */
-public class CategoryOne {
+public class CategoryOneModel {
     private int id;
 
     private String name;
 
-    private List<CategoryTwo> twoList;
+    private List<CategoryTwoModel> twoList;
 
-    public List<CategoryTwo> getTwoList() {
+    public List<CategoryTwoModel> getTwoList() {
         return twoList;
     }
 
-    public void setTwoList(List<CategoryTwo> twoList) {
+    public void setTwoList(List<CategoryTwoModel> twoList) {
         this.twoList = twoList;
     }
 

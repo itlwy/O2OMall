@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.CategoryTwo;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.product.contract.ProductListContract;
 
 /**
@@ -41,10 +41,10 @@ public class ProductListPresenter extends BasePresenter implements ProductListCo
     /**
      * 得到listview数据
      */
-    private List<Product> getListData() {
-        List<Product> list_datas = new ArrayList<Product>();
+    private List<ProductModel> getListData() {
+        List<ProductModel> list_datas = new ArrayList<ProductModel>();
         for (int i = 0; i < 10; i++) {
-            Product data = new Product();
+            ProductModel data = new ProductModel();
             data.setId(i);
             data.setImgUrl(getUrls());
             data.setInfo("樱桃（Cherry） G80-3060HLCUS-2 红轴黑橙二色键帽 60周年限量版机械键盘");
@@ -55,7 +55,7 @@ public class ProductListPresenter extends BasePresenter implements ProductListCo
     }
 
     @Override
-    public void subscribe(CategoryTwo categoryTwo) {
+    public void subscribe(CategoryTwoModel categoryTwoModel) {
         view.showLoadingView();
         view.bindViewDatas(getListData());
         view.showSuccessView();

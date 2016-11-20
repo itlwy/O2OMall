@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.utils.ViewUtils;
@@ -82,6 +83,10 @@ public abstract class BaseMVPFragment extends Fragment {
     public void showSuccessView() {
         loadingPage.setState(LoadingPage.STATE_SUCCESS);
         loadingPage.showPage();
+    }
+
+    public void showToast(String messaga) {
+        Toast.makeText(getActivity(), messaga, Toast.LENGTH_LONG).show();
     }
 
     protected abstract void inits();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.Product;
+import itlwy.com.o2omall.data.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 
 /**
@@ -33,19 +33,19 @@ public class ShopCarPresenter extends BasePresenter implements ShopCarContract.I
     /**
      * 从服务器获取购物车商品数据
      */
-    private List<Product> getCartProducts() {
+    private List<ProductModel> getCartProducts() {
         /**
          * 刷新数量和选中标记集合
          */
-        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<ProductModel> productModels = new ArrayList<ProductModel>();
         for (int i = 0; i < 5; i++) {
-            Product data = new Product();
+            ProductModel data = new ProductModel();
             data.setId(i);
             data.setImgUrl("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
             data.setInfo("上岛咖啡上岛咖啡上岛咖啡上岛咖啡上岛咖啡上岛咖啡");
             data.setPrice(120);
-            products.add(data);
+            productModels.add(data);
         }
-        return products;
+        return productModels;
     }
 }

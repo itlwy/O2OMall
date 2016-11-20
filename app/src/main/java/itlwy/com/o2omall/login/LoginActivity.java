@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.base.BaseMVPActivity;
+import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.utils.UIManager;
 
@@ -21,8 +22,9 @@ public class LoginActivity extends BaseMVPActivity {
             loginFragment = (LoginFragment) FragmentFactory.
                     createFragment(this, ConstantValue.LOGINFRAGMENT);
         }
+        UserRepository userRepository = new UserRepository();
         // Create the presenter
-        mLoginPresenter = LoginPresenter.newInstance(loginFragment);
+        mLoginPresenter = LoginPresenter.newInstance(loginFragment,userRepository);
         UIManager.getInstance().changeFragment(this, getFragmentContain(), loginFragment, false, null);
 
     }

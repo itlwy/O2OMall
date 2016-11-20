@@ -7,32 +7,34 @@ import android.os.Parcelable;
  * Created by mac on 16/10/4.
  */
 
-public class Product implements Parcelable {
-    public static final String Tag = "Product";
-    /**
-     * 商品id
-     */
+public class ProductModel implements Parcelable {
+    public static final String Tag = "ProductModel";
     private int id;
-
     private int categoryOneId;
-
     private int categoryTwoId;
-    /**
-     * 商品图片url
-     */
     private String imgUrl;
-    /**
-     * 信息
-     */
     private String info;
-    /**
-     * 价格
-     */
     private float price;
-
+    private String classify;
+    private String sizes;
     private int num = 1;
-
     private boolean isCheck;
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
+    }
+
+    public String getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(String sizes) {
+        this.sizes = sizes;
+    }
 
     public int getNum() {
         return num;
@@ -115,10 +117,10 @@ public class Product implements Parcelable {
         dest.writeByte(this.isCheck ? (byte) 1 : (byte) 0);
     }
 
-    public Product() {
+    public ProductModel() {
     }
 
-    protected Product(Parcel in) {
+    protected ProductModel(Parcel in) {
         this.id = in.readInt();
         this.categoryOneId = in.readInt();
         this.categoryTwoId = in.readInt();
@@ -129,15 +131,15 @@ public class Product implements Parcelable {
         this.isCheck = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+    public static final Parcelable.Creator<ProductModel> CREATOR = new Parcelable.Creator<ProductModel>() {
         @Override
-        public Product createFromParcel(Parcel source) {
-            return new Product(source);
+        public ProductModel createFromParcel(Parcel source) {
+            return new ProductModel(source);
         }
 
         @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
+        public ProductModel[] newArray(int size) {
+            return new ProductModel[size];
         }
     };
 }

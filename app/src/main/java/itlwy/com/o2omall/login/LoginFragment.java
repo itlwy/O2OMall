@@ -1,5 +1,7 @@
 package itlwy.com.o2omall.login;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,9 +13,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.ConstantValue;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.utils.ViewUtils;
+import itlwy.com.o2omall.base.BaseMVPFragment;
+import itlwy.com.o2omall.register.RegisterActivity;
 import itlwy.com.o2omall.view.LoadingPage;
 
 /**
@@ -22,6 +24,7 @@ import itlwy.com.o2omall.view.LoadingPage;
 
 public class LoginFragment extends BaseMVPFragment implements LoginContract.ILoginView<LoginContract.ILoginPresenter> {
 
+    private static final int REGISTER = 11;
     @Bind(R.id.login_et_account)
     EditText loginEtAccount;
     @Bind(R.id.login_et_password)
@@ -88,10 +91,20 @@ public class LoginFragment extends BaseMVPFragment implements LoginContract.ILog
             case R.id.login_btn_login:
                 String userName = loginEtAccount.getText().toString();
                 String userPassword = loginEtPassword.getText().toString();
+                presenter.login(userName, userPassword);
                 break;
             case R.id.login_btn_register:
-                ViewUtils.showSnack(view, "注册");
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivityForResult(intent,REGISTER);
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (REGISTER == requestCode && resultCode == Activity.RESULT_OK) {
+            getActivity().finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
