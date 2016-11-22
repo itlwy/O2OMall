@@ -4,7 +4,7 @@ import java.util.List;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;
-import itlwy.com.o2omall.data.model.SectionModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 
 /**
  * Created by mac on 16/10/3.
@@ -12,11 +12,12 @@ import itlwy.com.o2omall.data.model.SectionModel;
 
 public class HomeContract {
     public interface IHomePresenter extends IBasePresenter {
-        List<SectionModel> getMoreDatas();
+        void getMoreDatas();
     }
 
     public interface IHomeView extends IBaseView<IHomePresenter> {
-        void bindViewDatas(List<SectionModel> result);
+        void bindViewDatas(List<ProductModel> result);
 
+        void setLoadMoreFinish(boolean flag, List<ProductModel> moreDatas, int statusCode);
     }
 }

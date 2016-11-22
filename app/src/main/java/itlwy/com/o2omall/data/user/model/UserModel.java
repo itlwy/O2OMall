@@ -12,7 +12,16 @@ public class UserModel {
     private String email;
     private String phone;
     private String vipLevel;
+    private String logo;
     private String validatedTime;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public Integer getUserID() {
         return userID;

@@ -21,14 +21,15 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.GroupRCAdapter;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
+import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.base.BaseRCHolder;
 import itlwy.com.o2omall.data.model.SectionModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
 import itlwy.com.o2omall.utils.DensityUtil;
 import itlwy.com.o2omall.utils.ViewUtils;
@@ -86,8 +87,14 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     }
 
     @Override
-    public void bindViewDatas(List<SectionModel> result) {
+    public void bindViewDatas(List<ProductModel> result) {
         homeHolder.setData(result);
+    }
+
+    @Override
+    public void setLoadMoreFinish(boolean flag, List<ProductModel> moreDatas, int statusCode) {
+        homeHolder.getAdapter().setLoadMoreFinish(flag, moreDatas, statusCode);
+        homeHolder.getHomeRecycleView().setIsLoading(false);
     }
 
 
@@ -100,12 +107,20 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     /**
      * 商品列表
      */
-    public class HomeHolder extends BaseHolder<List<SectionModel>, Void> implements GroupRCAdapter.OnItemClick {
+    public class HomeHolder extends BaseHolder<List<ProductModel>, Void> implements GroupRCAdapter.OnItemClick {
 
         @Bind(R.id.home_recycleView)
         AutoRecyclerView homeRecycleView;
         private GroupRCAdapter adapter;
         private HeadViewHolder headHolder;
+
+        public AutoRecyclerView getHomeRecycleView() {
+            return homeRecycleView;
+        }
+
+        public GroupRCAdapter getAdapter() {
+            return adapter;
+        }
 
         public HomeHolder(Context ctx) {
             super(ctx);
@@ -128,8 +143,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
                 @Override
                 public void loadMore() {
 //                    int startPos = adapter.getItemCount()-1;
-                    adapter.setLoadMoreFinish(true, presenter.getMoreDatas(), GroupRCAdapter.STATUS_SUCCESS);
-                    homeRecycleView.setIsLoading(false);
+                    presenter.getMoreDatas();
 //                    homeRecycleView.scrollToPosition(startPos);
                 }
             });
@@ -137,12 +151,12 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
         }
 
         @Override
-        public void refreshView(List<SectionModel> datas) {
-            if (adapter == null)
+        public void refreshView(List<ProductModel> datas) {
+            if (adapter == null) {
                 adapter = new GroupRCAdapter(getActivity(), datas);
-            else
+                adapter.setHeadHolder(headHolder);
+            } else
                 adapter.setmDatas(datas);
-            adapter.setHeadHolder(headHolder);
             adapter.setIsLoadMore(true);
             homeRecycleView.setAdapter(adapter);
             final GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);

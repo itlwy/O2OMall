@@ -20,22 +20,22 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.SectionModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.utils.DensityUtil;
 
 /**
  * Created by Administrator on 2016/1/5.
  */
-public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
+public class GroupRCAdapter extends BaseRCAdapter<ProductModel> {
 
     private static final int TYPE_TITLE = 0;   //item类型：标题
 
 
     private Map<Integer, String> groupMap;   //标题组  key为position
-    private Map<Integer, SectionModel.Item> itemMap;  //子项组 key为position
+    private Map<Integer, ProductModel> itemMap;  //子项组 key为position
 
 
-    public void setmDatas(List<SectionModel> mDatas) {
+    public void setmDatas(List<ProductModel> mDatas) {
         preparedDatas(mDatas);
         super.setmDatas(mDatas);
     }
@@ -51,13 +51,13 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
     }
 
 
-    public GroupRCAdapter(Context context, List<SectionModel> datas) {
+    public GroupRCAdapter(Context context, List<ProductModel> datas) {
         super(context, datas);
-        preparedDatas(datas);
+//        preparedDatas(datas);
     }
 
-    private void preparedDatas(List<SectionModel> datas) {
-        List<SectionModel> tempDatas;
+    private void preparedDatas(List<ProductModel> datas) {
+        List<ProductModel> tempDatas;
         if (datas == null) {
             tempDatas = getmDatas();
         } else
@@ -67,20 +67,29 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
             groupMap = new HashMap<Integer, String>();
 
         if (itemMap == null)
-            itemMap = new HashMap<Integer, SectionModel.Item>();
+            itemMap = new HashMap<Integer, ProductModel>();
 
         groupMap.clear();
         itemMap.clear();
-
         int recycleIndex = getHeadHolder() == null ? 0 : 1;
-        for (SectionModel sec : tempDatas) {
-            groupMap.put(recycleIndex, sec.getTitle());
-            recycleIndex++;
-            for (SectionModel.Item item : sec.getItems()) {
-                itemMap.put(recycleIndex, item);
+        for (ProductModel item : tempDatas) {
+            String categoryID = item.getCategory2Id() + "";
+            if (!groupMap.containsValue(categoryID)) {
+                groupMap.put(recycleIndex, categoryID);
                 recycleIndex++;
             }
+            itemMap.put(recycleIndex, item);
+            recycleIndex++;
         }
+
+//        for (SectionModel sec : tempDatas) {
+//            groupMap.put(recycleIndex, sec.getTitle());
+//            recycleIndex++;
+//            for (SectionModel.Item item : sec.getItems()) {
+//                itemMap.put(recycleIndex, item);
+//                recycleIndex++;
+//            }
+//        }
     }
 
 
@@ -119,7 +128,7 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
         } else if (isFooterPosition(position)) {
 
         } else {
-            SectionModel.Item item = itemMap.get(position);
+            ProductModel item = itemMap.get(position);
             ((ItemHolder) holder).bindDatas(item);
             if (getItemClickListener() != null) {
                 ((ItemHolder) holder).getContentView().setClickable(true);
@@ -156,7 +165,7 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
 
 
     @Override
-    public void setLoadMoreFinish(boolean flag, List<SectionModel> moreDatas, int statusCode) {
+    public void setLoadMoreFinish(boolean flag, List<ProductModel> moreDatas, int statusCode) {
         if (isLoadMore()) {
             switch (statusCode) {
                 case STATUS_ERROR: {
@@ -181,7 +190,7 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
     /**
      * 项
      */
-    public class ItemHolder extends BaseRCHolder<SectionModel.Item> {
+    public class ItemHolder extends BaseRCHolder<ProductModel> {
 
         @Bind(R.id.item_home_iv)
         ImageView itemHomeIv;
@@ -202,9 +211,12 @@ public class GroupRCAdapter extends BaseRCAdapter<SectionModel> {
             return contentView;
         }
 
-        public void bindDatas(SectionModel.Item item) {
-            ImageLoader.getInstance().displayImage(item.getPic(), itemHomeIv, getOptions());
-            itemHomeTvInfo.setText(item.getDesc());
+        public void bindDatas(ProductModel item) {
+            List<ProductModel.ProductAtt> atts = item.getProductAtts();
+            if (atts != null && atts.size() > 0) {
+                ImageLoader.getInstance().displayImage(atts.get(0).getAttUrl(), itemHomeIv, getOptions());
+            }
+            itemHomeTvInfo.setText(item.getName());
             itemHomeTvPrice.setText("$" + item.getPrice());
         }
     }

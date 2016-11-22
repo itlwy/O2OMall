@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_bg"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/gray_bg"
+              android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/before_login_rlt"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@drawable/personal_info_bg">
+        android:background="@drawable/personal_info_bg"
+        >
 
         <ImageButton
             android:id="@+id/my_ib_login"
@@ -19,16 +21,91 @@
             android:background="#00000000"
             android:contentDescription="@string/login"
             android:scaleType="fitXY"
-            android:src="@drawable/selector_personal_avatar_unlogin" />
+            android:src="@drawable/selector_personal_avatar_unlogin"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/after_login_rlt"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/personal_info_bg"
+        >
+
+        <ImageView
+            android:id="@+id/my_logo_ib"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_image_loading"/>
 
         <TextView
-            android:id="@+id/my_tv_username"
+            android:id="@+id/my_username_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/my_ib_login"
-            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/my_logo_ib"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textSize="17sp" />
+            android:layout_toRightOf="@+id/my_logo_ib"
+            android:text="姓名:张三"
+            android:textSize="@dimen/content_text_size"/>
+
+        <TextView
+            android:id="@+id/my_nickname_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_username_tv"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/my_logo_ib"
+            android:text="昵称:张三的昵称"
+            android:textSize="@dimen/content_text_size"/>
+
+        <TextView
+            android:id="@+id/my_mail_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_nickname_tv"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/my_logo_ib"
+            android:text="邮箱:216122@qq.com"
+            android:textSize="@dimen/content_text_size"/>
+
+        <TextView
+            android:id="@+id/my_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/my_logo_ib"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:text="手机:13782912312"
+            android:textSize="@dimen/content_text_size"/>
+
+        <TextView
+            android:id="@+id/my_vip_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/my_phone_tv"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:text="vip:0"
+            android:textSize="@dimen/content_text_size"/>
+
+        <TextView
+            android:id="@+id/my_address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/my_vip_tv"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_button"
+            android:padding="@dimen/text_padding"
+            android:text="管理地址"
+            android:textColor="@color/blue"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -45,7 +122,7 @@
             android:drawableLeft="@drawable/personal_icon_collection"
             android:drawablePadding="10dp"
             android:text="@string/myCollection"
-            android:textSize="17sp" />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +134,7 @@
             android:drawableRight="@drawable/personal_arrow_right"
             android:text="@string/myAllCollection"
             android:textColor="@color/gray"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -74,7 +151,7 @@
             android:drawableLeft="@drawable/personal_icon_order"
             android:drawablePadding="10dp"
             android:text="@string/myOrder"
-            android:textSize="17sp" />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +163,7 @@
             android:drawableRight="@drawable/personal_arrow_right"
             android:text="@string/myAllOrder"
             android:textColor="@color/gray"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
     </RelativeLayout>
 
 </LinearLayout>

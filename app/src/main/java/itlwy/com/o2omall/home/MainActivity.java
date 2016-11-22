@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
+import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.home.fragment.CategoryFragment;
 import itlwy.com.o2omall.home.fragment.HomeFragment;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void init() {
         fragmentList = new ArrayList<>();
         HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT);
-        HomePresenter.newInstance(homeFragment);
+        HomePresenter.newInstance(homeFragment,new ProductRepository());
         fragmentList.add(homeFragment);
         CategoryFragment categoryFragment = (CategoryFragment) createFragment(this, ConstantValue.CATEGORYFRAGMENT);
         CategoryPresenter.newInstance(categoryFragment);
