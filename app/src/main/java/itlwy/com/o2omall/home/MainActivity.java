@@ -79,12 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void init() {
+        ProductRepository productRepository = new ProductRepository();
         fragmentList = new ArrayList<>();
         HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT);
-        HomePresenter.newInstance(homeFragment,new ProductRepository());
+        HomePresenter.newInstance(homeFragment,productRepository);
         fragmentList.add(homeFragment);
         CategoryFragment categoryFragment = (CategoryFragment) createFragment(this, ConstantValue.CATEGORYFRAGMENT);
-        CategoryPresenter.newInstance(categoryFragment);
+        CategoryPresenter.newInstance(categoryFragment,productRepository);
         fragmentList.add(categoryFragment);
         ShopCarFragment shopCarFragment = (ShopCarFragment) FragmentFactory.createFragment(this, ConstantValue.SHOPCARFRAGMENT);
         ShopCarPresenter.newInstance(shopCarFragment);
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actionBar.setHomeButtonEnabled(true);
         //设置actionbar的图片
         actionBar.setHomeAsUpIndicator(R.mipmap.ic_menu);
-        toolbar.setVisibility(View.VISIBLE);
+//        toolbar.setVisibility(View.VISIBLE);
         ButterKnife.bind(this);
         init();
         initView();

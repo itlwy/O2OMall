@@ -8,6 +8,7 @@ import itlwy.com.o2omall.adapter.GroupRCAdapter;
 import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.product.ProductRepository;
+import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
 import rx.Subscriber;
@@ -31,31 +32,31 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
     @Override
     public void subscribe() {
         load();
+        loadAdverts();
     }
 
-//    private List<SectionModel> downloadDatas() {
-//        List<SectionModel> list = new ArrayList<SectionModel>();
-//        for (int i = 0; i < 5; i++) {
-//            SectionModel sec = new SectionModel();
-//            List<SectionModel.Item> items = new ArrayList<SectionModel.Item>();
-//            sec.setTitle(String.format("组%d", i));
-//            for (int k = 0; k < 5; k++) {
-//                SectionModel.Item item = sec.new Item();
-//                item.setDesc(String.format("描述:%d", k));
-//                item.setPic("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
-//                item.setPrice(200);
-//                items.add(item);
-//            }
-//            sec.setItems(items);
-//            list.add(sec);
-//        }
-//        return list;
-//    }
+    private void loadAdverts() {
+        Subscriber<List<AdvertModel>> subscriber = new ProgressSubscriber<List<AdvertModel>>(((Fragment) view).getActivity()) {
+
+            @Override
+            public void onNext(List<AdvertModel> advertModels) {
+                view.bindHeaderDatas(advertModels);
+            }
+        };
+        repository.getAdvertInfo(subscriber);
+        addSubscriber(subscriber);
+    }
 
     private void load() {
         pageNum = 1;
         view.showLoadingView();
         Subscriber<List<ProductModel>> subscriber = new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                view.showErrorView();
+            }
+
             @Override
             public void onNext(List<ProductModel> productModels) {
                 view.showSuccessView();
@@ -74,6 +75,13 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
     @Override
     public void getMoreDatas() {
         Subscriber<List<ProductModel>> subscriber = new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                view.showErrorView();
+                view.setLoadMoreFinish(true, null, GroupRCAdapter.STATUS_NOMORE);
+            }
+
             @Override
             public void onNext(List<ProductModel> productModels) {
                 view.showSuccessView();

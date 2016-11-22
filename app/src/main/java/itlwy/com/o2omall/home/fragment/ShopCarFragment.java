@@ -22,12 +22,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.ConstantValue;
-import itlwy.com.o2omall.GlobalParams;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ShopCarAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.ClientKernal;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 import itlwy.com.o2omall.login.LoginActivity;
 import itlwy.com.o2omall.view.AutoRecyclerView;
@@ -119,11 +119,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
             cartBtnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // 跳转登录界面
-//                    startActivity(new Intent(getActivity(), Login1Activity.class));
                     startActivity(new Intent(getActivity(), LoginActivity.class));
-                    // /////////./模拟登录///////////
-                    GlobalParams.isLogin = true;
                 }
             });
             cartBtnBuy.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +128,6 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
                     // 结算按钮
                     if (cartBtnBuy.getText().toString()
                             .equals(getResources().getString(R.string.buy))) {
-
                         // 删除按钮
                     } else {
 
@@ -157,7 +152,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
 
         @Override
         public void refreshView(final List<ProductModel> productModels) {
-            if (GlobalParams.isLogin) {
+            if (ClientKernal.getInstance().getUserModel() != null) {
                 // 已登录
                 // 隐藏提示登录的布局
                 cartSuggestLayout.setVisibility(View.GONE);

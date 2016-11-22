@@ -31,6 +31,7 @@ public abstract class BaseRCAdapter<T> extends RecyclerView.Adapter<BaseRCHolder
     public static final int STATUS_ERROR = 4;    //加载更多状态
     public static final int STATUS_SUCCESS = 5;
     public static final int STATUS_FAILS = 6;
+    public static final int STATUS_NOMORE = 7;    //暂无更多
     private int statusCode;
 
     private BaseRCHolder headHolder;    //头部view的holder

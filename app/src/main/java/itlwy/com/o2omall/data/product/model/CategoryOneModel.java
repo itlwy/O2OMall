@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.data.model;
+package itlwy.com.o2omall.data.product.model;
 
 import java.util.List;
 

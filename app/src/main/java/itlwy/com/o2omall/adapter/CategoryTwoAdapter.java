@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.product.model.CategoryTwoModel;
 
 /**
  * Created by Administrator on 2016/2/17.

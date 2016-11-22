@@ -1,11 +1,13 @@
 package itlwy.com.o2omall.home.presenter;
 
-import java.util.ArrayList;
+import android.support.v4.app.Fragment;
+
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.CategoryOneModel;
-import itlwy.com.o2omall.data.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.ProgressSubscriber;
+import itlwy.com.o2omall.data.product.ProductRepository;
+import itlwy.com.o2omall.data.product.model.CategoryOneModel;
 import itlwy.com.o2omall.home.contract.CategoryContract;
 
 /**
@@ -14,45 +16,42 @@ import itlwy.com.o2omall.home.contract.CategoryContract;
 
 public class CategoryPresenter extends BasePresenter implements CategoryContract.ICategoryPresenter {
 
+    private ProductRepository repository;
     private CategoryContract.ICategoryView view;
 
-    public CategoryPresenter(CategoryContract.ICategoryView view) {
+    public CategoryPresenter(CategoryContract.ICategoryView view, ProductRepository productRepository) {
         this.view = view;
+        this.repository = productRepository;
         this.view.setPresenter(this);
     }
+
     @Override
     public void subscribe() {
         load();
     }
 
     private void load() {
-        view.showLoadingView();
-        view.bindViewDatas(prepareDatas());
-        view.showSuccessView();
+        ProgressSubscriber<List<CategoryOneModel>> subscriber =
+                new ProgressSubscriber<List<CategoryOneModel>>(((Fragment) view).getActivity()) {
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        view.showErrorView();
+                    }
+
+                    @Override
+                    public void onNext(List<CategoryOneModel> categoryOneModels) {
+                        view.bindViewDatas(categoryOneModels);
+                        view.showSuccessView();
+                    }
+                };
+
+        repository.getCategoryInfo(subscriber);
+        addSubscriber(subscriber);
     }
 
-    public static CategoryPresenter newInstance(CategoryContract.ICategoryView view){
-        return new CategoryPresenter(view);
+    public static CategoryPresenter newInstance(CategoryContract.ICategoryView view, ProductRepository productRepository) {
+        return new CategoryPresenter(view, productRepository);
     }
 
-    private List<CategoryOneModel> prepareDatas() {
-        List<CategoryOneModel> categoryOneModelList = new ArrayList<CategoryOneModel>();
-            for (int i = 1; i < 5; i++) {
-                List<CategoryTwoModel> categoryTwoModelList = new ArrayList<CategoryTwoModel>();
-                CategoryOneModel dataOne = new CategoryOneModel();
-                dataOne.setId(i);
-                dataOne.setName("分类" + i);
-                for (int k = 1; k < 6; k++) {
-                    CategoryTwoModel dataTwo = new CategoryTwoModel();
-                    dataTwo.setName("商品" + k);
-                    dataTwo.setId(k);
-                    dataTwo.setImgUrl("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
-                    dataTwo.setPreviousId(i);
-                    categoryTwoModelList.add(dataTwo);
-                }
-                dataOne.setTwoList(categoryTwoModelList);
-                categoryOneModelList.add(dataOne);
-            }
-            return categoryOneModelList;
-    }
 }

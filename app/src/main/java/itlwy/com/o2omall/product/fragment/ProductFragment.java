@@ -1,6 +1,7 @@
 package itlwy.com.o2omall.product.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,7 +27,8 @@ import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
+import itlwy.com.o2omall.home.ShopCarActivity;
 import itlwy.com.o2omall.product.contract.ProductContract;
 import itlwy.com.o2omall.view.CirclePageIndicator;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -55,6 +57,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
     protected void inits() {
         mProductModel = getArguments().getParcelable(ProductModel.Tag);
     }
+
     @Override
     protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         holder = new ProductHolder(getActivity());
@@ -76,8 +79,8 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         };
     }
 
-    public void bindViewDatas(ProductModel result) {
-        holder.setData(result);
+    public void bindViewDatas(List<ProductModel.ProductAtt> results) {
+        holder.setData(results);
     }
 
     @Override
@@ -85,7 +88,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         this.presenter = presenter;
     }
 
-    public class ProductHolder extends BaseHolder<ProductModel, Object> {
+    public class ProductHolder extends BaseHolder<List<ProductModel.ProductAtt>, Object> {
         @Bind(R.id.product_viewPager)
         AutoScrollViewPager productViewPager;
         @Bind(R.id.product_indicator)
@@ -97,9 +100,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         @Bind(R.id.pd_btn_cart)
         ImageButton pdBtnCart;
         private boolean collected;
-        private PagerAdapter pagerAdapter;
-        private List<View> viewContainer;
-        private List<String> urls;
+        private ProductPagerAdapter pagerAdapter;
 
         /**
          * 广告自动循环切换的时间间隔
@@ -114,47 +115,36 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
         public View initView() {
             View view = View.inflate(getContext(), R.layout.fragment_product_details, null);
             ButterKnife.bind(this, view);
+
             return view;
         }
 
         @Override
-        public void refreshView(ProductModel productModel) {
-            getViewImage();
-            pagerAdapter = new PagerAdapter() {
+        public void refreshView(List<ProductModel.ProductAtt> productAtts) {
+            if (pagerAdapter == null) {
+                pagerAdapter = new ProductPagerAdapter();
 
-                @Override
-                public boolean isViewFromObject(View arg0, Object arg1) {
-                    return arg0 == arg1;
-                }
-
-                @Override
-                public int getCount() {
-                    return viewContainer.size();
-                }
-
-                @Override
-                public void destroyItem(View container, int position, Object object) {
-                    ((AutoScrollViewPager) container).removeView(viewContainer
-                            .get(position));
-                }
-
-                @Override
-                public Object instantiateItem(View container, int position) {
-                    ((AutoScrollViewPager) container).addView(viewContainer
-                            .get(position));
-                    return viewContainer.get(position);
-                }
-
-            };
-
-            productViewPager.setAdapter(pagerAdapter);
-            productIndicator.setViewPager(productViewPager);
-            productViewPager.setInterval(AUTO_SCROLL_INTERVAL);
-            productViewPager.startAutoScroll();
+                productViewPager.setAdapter(pagerAdapter);
+                productIndicator.setViewPager(productViewPager);
+                productViewPager.setInterval(AUTO_SCROLL_INTERVAL);
+                productViewPager.startAutoScroll();
+            }
+            if (pagerAdapter.getViewContainer() == null) {
+                pagerAdapter.setViewContainer(new ArrayList<View>());
+            }
+            pagerAdapter.getViewContainer().clear();
+            for (ProductModel.ProductAtt item : productAtts) {
+                ImageView iv = new ImageView(getActivity());
+                ImageLoader.getInstance().displayImage(item.getAttUrl(), iv,
+                        ((BaseApplication) getActivity().getApplication()).getOptions());
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                pagerAdapter.getViewContainer().add(iv);
+            }
+            pagerAdapter.notifyDataSetChanged();
         }
 
-        @OnClick({R.id.pd_btn_collect,R.id.pd_btn_addIntoCart,R.id.pd_btn_cart})
-        public void btnClicked(View view){
+        @OnClick({R.id.pd_btn_collect, R.id.pd_btn_addIntoCart, R.id.pd_btn_cart})
+        public void btnClicked(View view) {
             switch (view.getId()) {
                 case R.id.pd_btn_collect:
                     if (!collected) {
@@ -168,50 +158,77 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
                     }
 
                     break;
-
+                case R.id.pd_btn_addIntoCart:
+                    presenter.add2ShopCar();
+                    break;
+                case R.id.pd_btn_cart:
+                    Intent intent = new Intent(getActivity(), ShopCarActivity.class);
+                    startActivity(intent);
+                    break;
                 default:
 //                    ProductDetailsThirdLayerActivity.this.finish();
                     break;
             }
         }
 
-        /**
-         * 获取广告图片列表
-         */
-        private void getViewImage() {
-            if (viewContainer == null) {
-                viewContainer = new ArrayList<View>();
+        public class ProductPagerAdapter extends PagerAdapter {
+            private List<View> viewContainer;
+//            private List<ProductModel.ProductAtt> productAtts;
+
+            public List<View> getViewContainer() {
+                return viewContainer;
             }
-            if (urls == null) {
-                urls = new ArrayList<String>();
+
+            public void setViewContainer(List<View> viewContainer) {
+                this.viewContainer = viewContainer;
             }
-            urls = getImageUrls();
-            viewContainer.clear();
-            for (String url : urls) {
-                ImageView iv = new ImageView(getActivity());
-                ImageLoader.getInstance().displayImage(url, iv,
-                        ((BaseApplication) getActivity().getApplication()).getOptions());
-                iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                viewContainer.add(iv);
+
+
+            @Override
+            public boolean isViewFromObject(View arg0, Object arg1) {
+                return arg0 == arg1;
             }
+
+            @Override
+            public int getCount() {
+                if (viewContainer == null)
+                    return 0;
+                return viewContainer.size();
+            }
+
+            @Override
+            public void destroyItem(View container, int position, Object object) {
+                ((AutoScrollViewPager) container).removeView(viewContainer
+                        .get(position));
+            }
+
+            @Override
+            public Object instantiateItem(View container, int position) {
+                ((AutoScrollViewPager) container).addView(viewContainer
+                        .get(position));
+                return viewContainer.get(position);
+            }
+
         }
-        /**
-         * 获取广告位的图片资源url数组
-         * 每次从服务器获得url数组先做永久性存储，获取时先从本地显示之前的缓存，等获取成功之后再调用notifyDataSetChanged()
-         *
-         * @return url数组
-         */
-        private ArrayList<String> getImageUrls() {
-            ArrayList<String> list = new ArrayList<String>();
-            // //////////////////////////////////////
-            // ////////////////假数据/////////////////
-            list.add("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
-            list.add("http://c.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b503564d2638635e5dde7116e63.jpg");
-            list.add("http://g.hiphotos.baidu.com/image/pic/item/cf1b9d16fdfaaf517578b38e8f5494eef01f7a63.jpg");
-            list.add("http://f.hiphotos.baidu.com/image/pic/item/77094b36acaf2eddce917bd88e1001e93901939a.jpg");
-            list.add("http://g.hiphotos.baidu.com/image/pic/item/f703738da97739124dd7b750fb198618367ae20a.jpg");
-            // //////////////////////////////////////
-            return list;
-        }
+
+
+//        /**
+//         * 获取广告位的图片资源url数组
+//         * 每次从服务器获得url数组先做永久性存储，获取时先从本地显示之前的缓存，等获取成功之后再调用notifyDataSetChanged()
+//         *
+//         * @return url数组
+//         */
+//        private ArrayList<String> getImageUrls() {
+//            ArrayList<String> list = new ArrayList<String>();
+//            // //////////////////////////////////////
+//            // ////////////////假数据/////////////////
+//            list.add("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
+//            list.add("http://c.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b503564d2638635e5dde7116e63.jpg");
+//            list.add("http://g.hiphotos.baidu.com/image/pic/item/cf1b9d16fdfaaf517578b38e8f5494eef01f7a63.jpg");
+//            list.add("http://f.hiphotos.baidu.com/image/pic/item/77094b36acaf2eddce917bd88e1001e93901939a.jpg");
+//            list.add("http://g.hiphotos.baidu.com/image/pic/item/f703738da97739124dd7b750fb198618367ae20a.jpg");
+//            // //////////////////////////////////////
+//            return list;
+//        }
     }
 }

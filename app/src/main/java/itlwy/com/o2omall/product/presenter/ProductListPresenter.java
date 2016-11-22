@@ -1,11 +1,14 @@
 package itlwy.com.o2omall.product.presenter;
 
-import java.util.ArrayList;
+import android.support.v4.app.Fragment;
+
 import java.util.List;
 
 import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.model.CategoryTwoModel;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.ProgressSubscriber;
+import itlwy.com.o2omall.data.product.ProductRepository;
+import itlwy.com.o2omall.data.product.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.product.contract.ProductListContract;
 
 /**
@@ -13,16 +16,17 @@ import itlwy.com.o2omall.product.contract.ProductListContract;
  */
 
 public class ProductListPresenter extends BasePresenter implements ProductListContract.IProductListPresenter {
+    private ProductRepository repository;
     private ProductListContract.IProductListView view;
 
-    public ProductListPresenter(ProductListContract.IProductListView view) {
+    public ProductListPresenter(ProductListContract.IProductListView view, ProductRepository repository) {
         this.view = view;
+        this.repository = repository;
         this.view.setPresenter(this);
     }
 
-    public static ProductListPresenter newInstance(ProductListContract.IProductListView view) {
-
-        return new ProductListPresenter(view);
+    public static ProductListPresenter newInstance(ProductListContract.IProductListView view, ProductRepository repository) {
+        return new ProductListPresenter(view, repository);
     }
 
     @Override
@@ -30,34 +34,24 @@ public class ProductListPresenter extends BasePresenter implements ProductListCo
 
     }
 
-    /**
-     * 得到url
-     */
-    private String getUrls() {
-        String urlString = "http://i2.sinaimg.cn/IT/h/2009-12-05/1259942752_UQ03Yv.jpg";
-        return urlString;
-    }
-
-    /**
-     * 得到listview数据
-     */
-    private List<ProductModel> getListData() {
-        List<ProductModel> list_datas = new ArrayList<ProductModel>();
-        for (int i = 0; i < 10; i++) {
-            ProductModel data = new ProductModel();
-            data.setId(i);
-            data.setImgUrl(getUrls());
-            data.setInfo("樱桃（Cherry） G80-3060HLCUS-2 红轴黑橙二色键帽 60周年限量版机械键盘");
-            data.setPrice(1953);
-            list_datas.add(data);
-        }
-        return list_datas;
-    }
-
     @Override
     public void subscribe(CategoryTwoModel categoryTwoModel) {
-        view.showLoadingView();
-        view.bindViewDatas(getListData());
-        view.showSuccessView();
+        ProgressSubscriber<List<ProductModel>> subscriber =
+                new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        view.showErrorView();
+                    }
+
+                    @Override
+                    public void onNext(List<ProductModel> productModels) {
+                        view.bindViewDatas(productModels);
+                        view.showSuccessView();
+                    }
+                };
+
+        repository.getProductList(subscriber, categoryTwoModel.getId());
+        addSubscriber(subscriber);
     }
 }

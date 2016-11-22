@@ -17,9 +17,10 @@ import itlwy.com.o2omall.base.BaseMVPFragment;
 public class UIManager {
     private static UIManager instance = new UIManager();
 
-    public static UIManager getInstance(){
+    public static UIManager getInstance() {
         return instance;
     }
+
     private UIManager() {
     }
 
@@ -27,13 +28,13 @@ public class UIManager {
      * 切换界面
      */
     public void changeFragment(FragmentActivity a, int resId, BaseMVPFragment target, boolean isAddStack,
-                               Bundle bundle){
-        if (target == null){
+                               Bundle bundle) {
+        if (target == null) {
 //            throw new IllegalArgumentException();
             Toast.makeText(a, "工厂创建的fragment为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(bundle != null){
+        if (bundle != null) {
             target.setArguments(bundle);
         }
         FragmentManager manager = a.getSupportFragmentManager();
@@ -43,13 +44,14 @@ public class UIManager {
         transaction.replace(resId, target);
 
         // 返回键操作
-        if(isAddStack){
+        if (isAddStack) {
             transaction.addToBackStack(null);
         }
         transaction.commit();
     }
-    public void changeActivity(Activity activity,Class clazz,Bundle bundle){
-        Intent intent = new Intent(activity,clazz);
+
+    public void changeActivity(Activity activity, Class clazz, Bundle bundle) {
+        Intent intent = new Intent(activity, clazz);
         if (bundle != null)
             intent.putExtras(bundle);
         activity.startActivity(intent);

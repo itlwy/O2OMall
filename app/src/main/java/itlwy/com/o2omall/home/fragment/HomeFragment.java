@@ -29,6 +29,7 @@ import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.base.BaseRCHolder;
 import itlwy.com.o2omall.data.model.SectionModel;
+import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
 import itlwy.com.o2omall.utils.DensityUtil;
@@ -89,6 +90,11 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     @Override
     public void bindViewDatas(List<ProductModel> result) {
         homeHolder.setData(result);
+    }
+
+    @Override
+    public void bindHeaderDatas(List<AdvertModel> adverts) {
+        homeHolder.headHolder.bindDatas(adverts);
     }
 
     @Override
@@ -185,14 +191,13 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
         /**
          * 广告头
          */
-        public class HeadViewHolder extends BaseRCHolder {
+        public class HeadViewHolder extends BaseRCHolder<List<AdvertModel>> {
 
             @Bind(R.id.home_viewPager)
             AutoScrollViewPager homeViewPager;
             @Bind(R.id.home_indicator)
             CirclePageIndicator homeIndicator;
-            private ArrayList<View> viewContainer;
-            private PagerAdapter pagerAdapter;
+            private AdvertPagerAdapter pagerAdapter;
 
             /**
              * 广告自动循环切换的时间间隔
@@ -207,38 +212,15 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
             }
 
             @Override
-            public void bindDatas(Object data) {
-
+            public void bindDatas(List<AdvertModel> datas) {
+                if (pagerAdapter.getViewContainer() == null) {
+                    pagerAdapter.setViewContainer(new ArrayList<View>());
+                }
+                pagerAdapter.setAdvertModels(datas);
             }
 
             private void initHead() {
-                getViewImage();
-                pagerAdapter = new PagerAdapter() {
-
-                    @Override
-                    public void destroyItem(ViewGroup container, int position,
-                                            Object object) {
-                        ((AutoScrollViewPager) container).removeView(viewContainer
-                                .get(position));
-                    }
-
-                    @Override
-                    public Object instantiateItem(ViewGroup container, int position) {
-                        ((AutoScrollViewPager) container).addView(viewContainer
-                                .get(position));
-                        return viewContainer.get(position);
-                    }
-
-                    @Override
-                    public boolean isViewFromObject(View arg0, Object arg1) {
-                        return arg0 == arg1;
-                    }
-
-                    @Override
-                    public int getCount() {
-                        return viewContainer.size();
-                    }
-                };
+                pagerAdapter = new AdvertPagerAdapter();
 
                 homeViewPager.setAdapter(pagerAdapter);
                 homeIndicator.setViewPager(homeViewPager);
@@ -246,42 +228,68 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
                 homeViewPager.startAutoScroll();
             }
 
-            private void getViewImage() {
-                if (viewContainer == null) {
-                    viewContainer = new ArrayList<View>();
+
+            public class AdvertPagerAdapter extends PagerAdapter {
+                private ArrayList<View> viewContainer;
+                private List<AdvertModel> mAdvertModels;
+
+                public List<AdvertModel> getAdvertModels() {
+                    return mAdvertModels;
                 }
-                if (urls == null) {
-                    urls = new ArrayList<String>();
+
+                public void setAdvertModels(List<AdvertModel> advertModels) {
+                    mAdvertModels = advertModels;
+                    viewContainer.clear();
+                    for (AdvertModel item : advertModels) {
+                        ImageView iv = new ImageView(getActivity());
+                        ImageLoader.getInstance().displayImage(item.getImageUrl(), iv,
+                                ((BaseApplication) getActivity().getApplication()).getOptions());
+                        iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                        viewContainer.add(iv);
+                    }
+                    notifyDataSetChanged();
                 }
-                urls = getImageUrls();
-                viewContainer.clear();
-                for (String url : urls) {
-                    ImageView iv = new ImageView(getActivity());
-                    ImageLoader.getInstance().displayImage(url, iv,
-                            ((BaseApplication) getActivity().getApplication()).getOptions());
-                    iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                    viewContainer.add(iv);
+
+                public ArrayList<View> getViewContainer() {
+                    return viewContainer;
+                }
+
+                public void setViewContainer(ArrayList<View> viewContainer) {
+                    this.viewContainer = viewContainer;
+                }
+
+                public AdvertPagerAdapter() {
+
+                }
+
+                @Override
+                public void destroyItem(ViewGroup container, int position,
+                                        Object object) {
+                    ((AutoScrollViewPager) container).removeView(viewContainer
+                            .get(position));
+                }
+
+                @Override
+                public Object instantiateItem(ViewGroup container, int position) {
+                    ((AutoScrollViewPager) container).addView(viewContainer
+                            .get(position));
+                    return viewContainer.get(position);
+                }
+
+                @Override
+                public boolean isViewFromObject(View arg0, Object arg1) {
+                    return arg0 == arg1;
+                }
+
+                @Override
+                public int getCount() {
+                    if (viewContainer != null) {
+                        return viewContainer.size();
+                    } else
+                        return 0;
                 }
             }
 
-            /**
-             * 获取广告位的图片资源url数组
-             * 每次从服务器获得url数组先做永久性存储，获取时先从本地显示之前的缓存，等获取成功之后再调用notifyDataSetChanged()
-             *
-             * @return url数组
-             */
-            private ArrayList<String> getImageUrls() {
-                ArrayList<String> list = new ArrayList<String>();
-                // //////////////////////////////////////
-                // ////////////////假数据/////////////////
-                list.add("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
-                list.add("http://c.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b503564d2638635e5dde7116e63.jpg");
-                list.add("http://g.hiphotos.baidu.com/image/pic/item/cf1b9d16fdfaaf517578b38e8f5494eef01f7a63.jpg");
-                list.add("http://f.hiphotos.baidu.com/image/pic/item/77094b36acaf2eddce917bd88e1001e93901939a.jpg");
-                list.add("http://g.hiphotos.baidu.com/image/pic/item/f703738da97739124dd7b750fb198618367ae20a.jpg");
-                // //////////////////////////////////////
-                return list;
-            }
         }
 
     }

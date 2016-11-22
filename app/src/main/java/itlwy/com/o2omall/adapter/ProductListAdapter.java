@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 
 /**
  * Created by Administrator on 2016/2/23.
@@ -56,9 +56,9 @@ public class ProductListAdapter extends BaseRCAdapter<ProductModel> {
 
         @Override
         public void bindDatas(ProductModel productModel) {
-            tvItemPdInfo.setText(productModel.getInfo());
+            tvItemPdInfo.setText(productModel.getName());
             tvItemPdPrice.setText("$"+ productModel.getPrice());
-            ImageLoader.getInstance().displayImage(productModel.getImgUrl(),ivPdSecondLayer,getOptions());
+            ImageLoader.getInstance().displayImage(productModel.getMainImageUrl(),ivPdSecondLayer,getOptions());
         }
     }
 }

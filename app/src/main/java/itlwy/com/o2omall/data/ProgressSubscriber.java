@@ -41,7 +41,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "Completed", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Completed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

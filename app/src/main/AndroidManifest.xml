@@ -27,10 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".productModel.ProductActivity"-->
-            <!--android:theme="@style/Base.Theme.DesignDemo"/>-->
+        <activity
+            android:name=".product.ProductActivity"
+            android:theme="@style/Base.Theme.DesignDemo"/>
         <activity android:name=".register.RegisterActivity"/>
+        <activity android:name=".home.ShopCarActivity"/>
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/Base.Theme.DesignDemo"/>

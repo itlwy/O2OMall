@@ -183,6 +183,10 @@ public class GroupRCAdapter extends BaseRCAdapter<ProductModel> {
                     getLoadMoreHolder().footerTV.setText("加载失败...");
                     break;
                 }
+                case STATUS_NOMORE:{
+                    getLoadMoreHolder().footerTV.setText("暂无更多...");
+                    break;
+                }
             }
         }
     }
@@ -212,10 +216,10 @@ public class GroupRCAdapter extends BaseRCAdapter<ProductModel> {
         }
 
         public void bindDatas(ProductModel item) {
-            List<ProductModel.ProductAtt> atts = item.getProductAtts();
-            if (atts != null && atts.size() > 0) {
-                ImageLoader.getInstance().displayImage(atts.get(0).getAttUrl(), itemHomeIv, getOptions());
-            }
+//            List<ProductModel.ProductAtt> atts = item.getProductAtts();
+//            if (atts != null && atts.size() > 0) {
+                ImageLoader.getInstance().displayImage(item.getMainImageUrl(), itemHomeIv, getOptions());
+//            }
             itemHomeTvInfo.setText(item.getName());
             itemHomeTvPrice.setText("$" + item.getPrice());
         }

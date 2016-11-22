@@ -9,11 +9,11 @@ public interface ConstantValue {
     String MYFRAGMENT = "MyFragment";
     String CATEGORYFRAGMENT = "CategoryFragment";
     String SHOPCARFRAGMENT = "ShopCarFragment";
+    String SHOPCARFRAGMENTALONE = "ShopCarFragmentAlone";
 
     String PRODUCTLISTFRAGMENT = "ProductListFragment";
     String PRODUCTFRAGMENT = "ProductFragment";
     String LOGINFRAGMENT = "LoginFragment";
-
     /* fragment功能项*/
 
     /*toolbar类型*/
@@ -22,6 +22,7 @@ public interface ConstantValue {
 
 
     String BASE_URL = "http://192.168.0.189:8088/api/";
+
 //    String BASE_URL = "http://192.168.1.101:8088/api/";
 
 }

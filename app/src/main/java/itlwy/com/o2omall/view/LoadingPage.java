@@ -112,7 +112,9 @@ public class LoadingPage extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                reLoadListener.reLoad();
+                if (reLoadListener != null) {
+                    reLoadListener.reLoad();
+                }
             }
         });
         return view;

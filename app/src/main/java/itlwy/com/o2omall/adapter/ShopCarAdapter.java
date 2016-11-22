@@ -22,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseRCHolder;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 
 /**
  * Created by Administrator on 2016/2/18.
@@ -119,8 +119,8 @@ public class ShopCarAdapter extends BaseRCAdapter<ProductModel> {
         public void bindDatas(ProductModel pro) {
             this.position = getLayoutPosition();
             mProductModel = pro;
-            ImageLoader.getInstance().displayImage(pro.getImgUrl(), itemCartIv, getOptions());
-            itemCartTvInfo.setText(mProductModel.getInfo());
+            ImageLoader.getInstance().displayImage(pro.getMainImageUrl(), itemCartIv, getOptions());
+            itemCartTvInfo.setText(mProductModel.getName());
             itemCartTvPrice.setText("$" + pro.getPrice());
             itemCartCb.setChecked(mProductModel.isCheck());
             itemCartEtNum.setText(mProductModel.getNum() + "");

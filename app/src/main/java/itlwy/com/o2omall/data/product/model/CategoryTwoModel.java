@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.data.model;
+package itlwy.com.o2omall.data.product.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.utils.CrashHandlerHelper;
 import okhttp3.OkHttpClient;
 
@@ -33,7 +33,7 @@ public class BaseApplication extends Application {
     private static BaseApplication application;
     private static int mainTid;
     private static Handler handler;
-    private List<ProductModel> mProductModelShopcar;
+    private static List<ProductModel> sProductModelShopcar;
     private DisplayImageOptions options;
     //    private PatchManager patchManager;
     public static String appversion;
@@ -42,12 +42,12 @@ public class BaseApplication extends Application {
 //        return patchManager;
 //    }
 
-    public List<ProductModel> getProductModelShopcar() {
-        return mProductModelShopcar == null ? new ArrayList<ProductModel>() : mProductModelShopcar;
+    public static List<ProductModel> getProductModelShopcar() {
+        return sProductModelShopcar == null ? new ArrayList<ProductModel>() : sProductModelShopcar;
     }
 
-    public void setProductModelShopcar(List<ProductModel> productModelShopcar) {
-        this.mProductModelShopcar = productModelShopcar;
+    public static void setProductModelShopcar(List<ProductModel> productModelShopcar) {
+        sProductModelShopcar = productModelShopcar;
     }
 
     public DisplayImageOptions getOptions() {

@@ -20,9 +20,18 @@ public class ProductModel implements Parcelable {
     private float price;
     private String classify;
     private String size;
+    private String mainImageUrl;
     private List<ProductAtt> productAtts;
-    private int num = 1;
+    private int num = 0;
     private boolean isCheck;
+
+    public String getMainImageUrl() {
+        return mainImageUrl;
+    }
+
+    public void setMainImageUrl(String mainImageUrl) {
+        this.mainImageUrl = mainImageUrl;
+    }
 
     public int getHotLevel() {
         return hotLevel;
@@ -150,6 +159,7 @@ public class ProductModel implements Parcelable {
         dest.writeFloat(this.price);
         dest.writeString(this.classify);
         dest.writeString(this.size);
+        dest.writeString(this.mainImageUrl);
         dest.writeList(this.productAtts);
         dest.writeInt(this.num);
         dest.writeByte(this.isCheck ? (byte) 1 : (byte) 0);
@@ -167,13 +177,14 @@ public class ProductModel implements Parcelable {
         this.price = in.readFloat();
         this.classify = in.readString();
         this.size = in.readString();
+        this.mainImageUrl = in.readString();
         this.productAtts = new ArrayList<ProductAtt>();
         in.readList(this.productAtts, ProductAtt.class.getClassLoader());
         this.num = in.readInt();
         this.isCheck = in.readByte() != 0;
     }
 
-    public static final Creator<ProductModel> CREATOR = new Creator<ProductModel>() {
+    public static final Parcelable.Creator<ProductModel> CREATOR = new Parcelable.Creator<ProductModel>() {
         @Override
         public ProductModel createFromParcel(Parcel source) {
             return new ProductModel(source);

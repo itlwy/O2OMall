@@ -19,8 +19,9 @@ import itlwy.com.o2omall.adapter.BaseRCAdapter;
 import itlwy.com.o2omall.adapter.ProductListAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.data.model.CategoryTwoModel;
-import itlwy.com.o2omall.data.model.ProductModel;
+import itlwy.com.o2omall.data.product.ProductRepository;
+import itlwy.com.o2omall.data.product.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.ProductActivity;
 import itlwy.com.o2omall.product.contract.ProductListContract;
@@ -123,7 +124,7 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
                     ProductActivity ownActivity = (ProductActivity) getActivity();
                     ProductFragment productFragment = (ProductFragment) FragmentFactory.
                             createFragment(getContext(), ConstantValue.PRODUCTFRAGMENT);
-                    ProductPresenter.newInstance(productFragment);
+                    ProductPresenter.newInstance(productFragment,new ProductRepository());
                     UIManager.getInstance().changeFragment(ownActivity, ownActivity.getFragmentContain(),
                             productFragment, true, bundle);
                 }
