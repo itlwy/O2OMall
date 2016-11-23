@@ -27,6 +27,7 @@ import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.data.product.ProductRepository;
+import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.home.fragment.CategoryFragment;
 import itlwy.com.o2omall.home.fragment.HomeFragment;
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ShopCarPresenter.newInstance(shopCarFragment);
         fragmentList.add(shopCarFragment);
         MyFragment myFragment = (MyFragment) createFragment(this, ConstantValue.MYFRAGMENT);
-        MyPresenter.newInstance(myFragment);
+        MyPresenter.newInstance(myFragment,new UserRepository());
         fragmentList.add(myFragment);
 
     }

@@ -10,9 +10,11 @@ import itlwy.com.o2omall.base.api.IBaseView;
 public class MyContract {
     public interface IMyPresenter extends IBasePresenter {
 
+        void uploadMyLogo(String imageName);
     }
 
     public interface IMyView extends IBaseView<IMyPresenter> {
         void bindViewDatas(String result);
+        void refreshMyLogo(String imageUrl);
     }
 }

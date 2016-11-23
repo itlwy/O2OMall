@@ -14,9 +14,15 @@ import rx.Observable;
 public interface UserApi {
     @POST("user/login")
     @FormUrlEncoded
-    Observable<HttpResultModel<UserModel>> login(@Field("username") String userName, @Field("password") String password);
+    Observable<HttpResultModel<UserModel>> login(@Field("username") String userName,
+                                                 @Field("password") String password);
 
     @POST("user/register")
     @FormUrlEncoded
     Observable<HttpResultModel<UserModel>> register(@Field("params") String params);
+
+//    @POST("user/upload_my_logo")
+//    @FormUrlEncoded
+//    Observable<HttpResultModel<String>> uploadMyLogo(@Field("imageName") String imageName,
+//                                                     @Field("imageSuffix") String imageSuffix);
 }

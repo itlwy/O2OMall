@@ -38,6 +38,76 @@ public class PicUtils {
 			System.gc(); // 提醒系统及时回收
 		}
 	}
+
+	public static Bitmap getBitmapFromFile(File dst, int width, int height) {
+		if (null != dst && dst.exists()) {
+			BitmapFactory.Options opts = null;
+			int needWidth = width;
+			int needHeight = height;
+			if (width > 0 && height > 0) {
+				opts = new BitmapFactory.Options();
+				opts.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(dst.getPath(), opts);
+
+				double realWidth = opts.outWidth;
+				double realHeight = opts.outHeight;
+
+				if (realWidth > realHeight) {
+					needWidth = width;
+					needHeight = height;
+				} else {
+					needWidth = height;
+					needHeight = width;
+				}
+				int sampleSize = 1;
+
+				if (realWidth > needWidth || realHeight > needHeight) {
+					sampleSize = (int) Math.floor(Math.min(realWidth / needWidth, realHeight / needHeight));
+				}
+				int roundedSize;
+				if (sampleSize <= 8) {
+					roundedSize = 1;
+					while (roundedSize < sampleSize) {
+						roundedSize <<= 1;
+					}
+					if (roundedSize != sampleSize) {
+						roundedSize >>= 1;
+					}
+				} else {
+					roundedSize = (sampleSize + 7) / 8 * 8;
+				}
+
+				opts.inSampleSize = roundedSize;
+				opts.inJustDecodeBounds = false;
+				opts.inInputShareable = true;
+				opts.inPurgeable = true;
+			}
+			try {
+				Bitmap bitmap = BitmapFactory.decodeFile(dst.getPath(), opts);
+				int loadWidth = bitmap.getWidth();
+				int loadHeight = bitmap.getHeight();
+				// 计算缩放率，新尺寸除原始尺寸
+				float scaleWidth = ((float) needWidth) / loadWidth;
+				float scaleHeight = ((float) needHeight) / loadHeight;
+				Matrix matrix = new Matrix();
+				// 缩放图片动作
+				float minscale = Math.min(scaleWidth, scaleHeight);
+				matrix.postScale(minscale, minscale);
+				// 创建新的图片
+				Bitmap resizedBitmap = null;
+				resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, loadWidth, loadHeight, matrix, true);
+				if (resizedBitmap != bitmap) {
+					bitmap.recycle();
+				}
+				return resizedBitmap;
+			} catch (OutOfMemoryError e) {
+				LogUtil.d("PublicTools", e.toString());
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * 以指定像素读取指定路径下的图片转换成bitmap
 	 * @param absolutePath

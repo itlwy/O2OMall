@@ -22,7 +22,6 @@ public interface ConstantValue {
 
 
     String BASE_URL = "http://192.168.0.189:8088/api/";
-
 //    String BASE_URL = "http://192.168.1.101:8088/api/";
 
 }
