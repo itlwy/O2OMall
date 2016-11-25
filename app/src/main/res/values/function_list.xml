@@ -7,5 +7,8 @@
     <string name="ShopCarFragmentAlone">itlwy.com.o2omall.home.fragment.ShopCarFragment</string>
     <string name="ProductListFragment">itlwy.com.o2omall.product.fragment.ProductListFragment</string>
     <string name="ProductFragment">itlwy.com.o2omall.product.fragment.ProductFragment</string>
-    <string name="LoginFragment">itlwy.com.o2omall.login.LoginFragment</string>
+    <string name="LoginFragment">itlwy.com.o2omall.user.login.LoginFragment</string>
+    <string name="AddressManagerFragment">itlwy.com.o2omall.user.address.AddressManagerFragment</string>
+    <string name="AddressAddFragment">itlwy.com.o2omall.user.address.AddressAddFragment</string>
+    <string name="AddressEditFragment">itlwy.com.o2omall.user.address.AddressEditFragment</string>
 </resources>

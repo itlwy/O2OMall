@@ -21,7 +21,7 @@ public class ShopCarActivity extends BaseMVPActivity {
         if (lShopCarFragment == null) {
             // Create the fragment
             lShopCarFragment = (ShopCarFragment) FragmentFactory.
-                    createFragment(this, ConstantValue.SHOPCARFRAGMENTALONE);
+                    createFragment(this, ConstantValue.SHOPCARFRAGMENTALONE,true);
         }
         // Create the presenter
         mShopCarPresenter = ShopCarPresenter.newInstance(lShopCarFragment);

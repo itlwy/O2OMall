@@ -40,7 +40,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe();
+        presenter.subscribe(null);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
         return new LoadingPage.ReLoadListener() {
             @Override
             public void reLoad() {
-                presenter.subscribe();
+                presenter.subscribe(null);
             }
         };
     }

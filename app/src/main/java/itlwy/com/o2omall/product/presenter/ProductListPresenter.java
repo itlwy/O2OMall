@@ -30,7 +30,7 @@ public class ProductListPresenter extends BasePresenter implements ProductListCo
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
 
     }
 

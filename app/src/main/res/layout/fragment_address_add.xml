@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/llt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/padding_text"
+            android:text="收货人: "
+            android:textSize="@dimen/size_content_text"/>
+
+        <EditText
+            android:id="@+id/add_receiver_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:hint="请输入收货人"
+            android:textSize="@dimen/size_content_text"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llt1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/padding_text"
+            android:text="手机号码: "
+            android:textSize="@dimen/size_content_text"/>
+
+        <EditText
+            android:id="@+id/add_phone_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:hint="请输入手机号码"
+            android:inputType="number"
+            android:textSize="@dimen/size_content_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llt2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/padding_text"
+            android:text="所在地区: "
+            android:textSize="@dimen/size_content_text"/>
+
+        <EditText
+            android:id="@+id/add_reg_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:hint="请输入所在地区"
+            android:textSize="@dimen/size_content_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llt4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llt3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:padding="@dimen/padding_text"
+            android:text="详细地址: "
+            android:textSize="@dimen/size_content_text"/>
+
+        <EditText
+            android:id="@+id/add_address_details_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:hint="请输入详细地址"
+            android:textSize="@dimen/size_content_text"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="保存"
+        android:textColor="@color/black"/>
+</RelativeLayout>

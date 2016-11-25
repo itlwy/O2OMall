@@ -11,8 +11,7 @@ import itlwy.com.o2omall.data.product.model.ProductModel;
  */
 
 public class ProductContract {
-    public interface IProductPresenter extends IBasePresenter{
-        void subscribe(ProductModel productModel);
+    public interface IProductPresenter extends IBasePresenter<ProductModel>{
         void add2ShopCar();
     }
 

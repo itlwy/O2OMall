@@ -10,8 +10,10 @@
     <!--<item name="colorPrimaryDark">@color/gray_bg</item>  &lt;!&ndash;状态栏颜色#ff38ee&ndash;&gt;-->
     <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#ff38ee</item>     <!--tab标签颜色-->
-
-        <item name="android:textColorPrimary">#000000</item>
+        <!-- colorPrimaryDark 定义状态栏的背景色 -->
+        <item name="colorPrimaryDark">#ff38ee</item>
+        <!-- textColor 定义标题文字的颜色 -->
+        <item name="android:textColorPrimary">@color/black</item>
         <item name="colorAccent">#ff38ee</item>    <!--tab下划线颜色-->
         <item name="android:windowBackground">@color/white</item>    <!--主窗口背景色-->
     </style>
@@ -21,7 +23,7 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="Base.Theme.DesignDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Base.Theme.DesignDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="Base.Theme.DesignDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Base.Theme.DesignDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

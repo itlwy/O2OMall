@@ -18,7 +18,7 @@ public class LoadingPage extends FrameLayout {
     public static final int STATE_ERROR = 2;
     public static final int STATE_EMPTY = 3;
     public static final int STATE_SUCCESS = 4;
-    public int state = STATE_UNKOWN;
+    public int state = STATE_ERROR;
 
     private View loadingView;// 加载中的界面
     private View errorView;// 错误界面

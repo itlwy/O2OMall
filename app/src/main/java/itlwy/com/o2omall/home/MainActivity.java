@@ -82,16 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void init() {
         ProductRepository productRepository = new ProductRepository();
         fragmentList = new ArrayList<>();
-        HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT);
+        HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT,true);
         HomePresenter.newInstance(homeFragment,productRepository);
         fragmentList.add(homeFragment);
-        CategoryFragment categoryFragment = (CategoryFragment) createFragment(this, ConstantValue.CATEGORYFRAGMENT);
+        CategoryFragment categoryFragment = (CategoryFragment) createFragment(this, ConstantValue.CATEGORYFRAGMENT,true);
         CategoryPresenter.newInstance(categoryFragment,productRepository);
         fragmentList.add(categoryFragment);
-        ShopCarFragment shopCarFragment = (ShopCarFragment) FragmentFactory.createFragment(this, ConstantValue.SHOPCARFRAGMENT);
+        ShopCarFragment shopCarFragment = (ShopCarFragment) FragmentFactory.createFragment(this, ConstantValue.SHOPCARFRAGMENT,true);
         ShopCarPresenter.newInstance(shopCarFragment);
         fragmentList.add(shopCarFragment);
-        MyFragment myFragment = (MyFragment) createFragment(this, ConstantValue.MYFRAGMENT);
+        MyFragment myFragment = (MyFragment) createFragment(this, ConstantValue.MYFRAGMENT,true);
         MyPresenter.newInstance(myFragment,new UserRepository());
         fragmentList.add(myFragment);
 

@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.login;
+package itlwy.com.o2omall.user.login;
 
 import itlwy.com.o2omall.base.api.IBasePresenter;
 import itlwy.com.o2omall.base.api.IBaseView;

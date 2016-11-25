@@ -34,7 +34,8 @@ import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.user.model.UserModel;
 import itlwy.com.o2omall.home.contract.MyContract;
-import itlwy.com.o2omall.login.LoginActivity;
+import itlwy.com.o2omall.user.address.AddressActivity;
+import itlwy.com.o2omall.user.login.LoginActivity;
 import itlwy.com.o2omall.utils.ActivityUtils;
 import itlwy.com.o2omall.utils.UIManager;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -52,7 +53,7 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe();
+        presenter.subscribe(null);
     }
 
     @Override
@@ -204,7 +205,7 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
             return options;
         }
 
-        @OnClick({R.id.my_ib_login, R.id.my_logo_ib})
+        @OnClick({R.id.my_ib_login, R.id.my_logo_ib,R.id.my_address_tv})
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.my_ib_login:
@@ -214,7 +215,8 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
                     ActivityUtils.takePicture(MyFragment.this, PHOTO, mLogoImageName);
                     break;
                 case R.id.my_address_tv:
-
+                    Intent intent = new Intent(getActivity(), AddressActivity.class);
+                    startActivity(intent);
                     break;
             }
         }

@@ -30,7 +30,7 @@ public class ProductActivity extends BaseMVPActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(CategoryTwoModel.Tag, categoryTwoModel);
         ProductListFragment productListFragment = (ProductListFragment) FragmentFactory.
-                createFragment(this, ConstantValue.PRODUCTLISTFRAGMENT);
+                createFragment(this, ConstantValue.PRODUCTLISTFRAGMENT,true);
         ProductRepository repository = new ProductRepository();
         ProductListPresenter.newInstance(productListFragment,repository);
         UIManager.getInstance().changeFragment(this, getFragmentContain(), productListFragment, false, bundle);

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/gray">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/manager_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="@dimen/padding_text"
+            android:textSize="@dimen/size_content_text"
+            tools:text="张三"/>
+
+        <TextView
+            android:id="@+id/manager_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/manager_name_tv"
+            android:padding="@dimen/padding_text"
+            android:textSize="@dimen/size_content_text"
+            tools:text="1372312312"/>
+
+        <TextView
+            android:id="@+id/manager_address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/manager_name_tv"
+            android:padding="@dimen/padding_text"
+            android:textSize="@dimen/size_content_text"
+            tools:text="广东省深圳市艺园路115号"/>
+
+        <View
+            android:id="@+id/manager_line_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/manager_address_tv"
+            android:background="@color/gray_bg"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+
+        <CheckBox
+            android:id="@+id/manager_default_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manager_line_view"
+            android:layout_marginTop="8dp"
+            android:text="默认地址"/>
+
+        <itlwy.com.o2omall.view.TextDrawable
+            android:id="@+id/manager_delete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/manager_line_view"
+            android:layout_marginRight="20dp"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_text"
+            android:text="删除"
+            android:textSize="@dimen/size_content_text"
+            app:leftDrawable="@drawable/default_image_loading"
+            app:leftDrawableHeight="@dimen/size_logo"
+            app:leftDrawableWidth="@dimen/size_logo"
+            />
+
+        <itlwy.com.o2omall.view.TextDrawable
+            android:id="@+id/manager_edit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/manager_delete_tv"
+            android:layout_alignBottom="@+id/manager_delete_tv"
+            android:layout_toLeftOf="@+id/manager_delete_tv"
+            android:layout_toStartOf="@+id/manager_delete_tv"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_text"
+            android:text="编辑"
+            android:textSize="@dimen/size_content_text"
+            app:leftDrawable="@drawable/default_image_loading"
+            app:leftDrawableHeight="@dimen/size_logo"
+            app:leftDrawableWidth="@dimen/size_logo"/>
+    </RelativeLayout>
+</RelativeLayout>

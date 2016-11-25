@@ -21,7 +21,7 @@ public class RegisterPresenter extends BasePresenter implements RegisterContract
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
         view.showSuccessView();
     }
 

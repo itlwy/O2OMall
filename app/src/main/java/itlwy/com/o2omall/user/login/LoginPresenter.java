@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.login;
+package itlwy.com.o2omall.user.login;
 
 import android.support.v4.app.Fragment;
 
@@ -28,7 +28,7 @@ public class LoginPresenter extends BasePresenter implements LoginContract.ILogi
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
         mView.showSuccessView();
     }
 

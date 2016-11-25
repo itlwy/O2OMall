@@ -51,7 +51,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe();
+        presenter.subscribe(null);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
         return new LoadingPage.ReLoadListener() {
             @Override
             public void reLoad() {
-                presenter.subscribe();
+                presenter.subscribe(null);
             }
         };
     }

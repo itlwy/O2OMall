@@ -30,7 +30,7 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
         load();
         loadAdverts();
     }

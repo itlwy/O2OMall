@@ -85,9 +85,14 @@ public abstract class BaseMVPFragment extends Fragment {
         loadingPage.showPage();
     }
 
+    public void killMyself() {
+        this.getFragmentManager().popBackStack();
+    }
+
     public void showToast(String messaga) {
         Toast.makeText(getActivity(), messaga, Toast.LENGTH_LONG).show();
     }
+
 
     protected abstract void inits();
 

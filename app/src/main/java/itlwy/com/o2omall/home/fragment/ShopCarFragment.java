@@ -29,7 +29,7 @@ import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
-import itlwy.com.o2omall.login.LoginActivity;
+import itlwy.com.o2omall.user.login.LoginActivity;
 import itlwy.com.o2omall.view.AutoRecyclerView;
 import itlwy.com.o2omall.view.LoadingPage;
 
@@ -43,7 +43,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe();
+        presenter.subscribe(null);
     }
 
     @Override

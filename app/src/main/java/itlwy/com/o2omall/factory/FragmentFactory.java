@@ -15,9 +15,11 @@ import itlwy.com.o2omall.utils.CPResourceUtil;
 public class FragmentFactory {
     private static Map<String, BaseMVPFragment> mFragments = new HashMap<String, BaseMVPFragment>();
 
-    public static BaseMVPFragment createFragment(Context ctx, String function) {
+    public static BaseMVPFragment createFragment(Context ctx, String function, boolean isCache) {
         BaseMVPFragment fragment = null;
-        fragment = mFragments.get(function);  //在集合中取出来Fragment
+//        if (isCache) {
+//            fragment = mFragments.get(function);  //在集合中取出来Fragment
+//        }
         if (fragment == null) {  //如果再集合中没有取出来 需要重新创建
             int strId = CPResourceUtil.getStringId(ctx, function);
             if (strId > 0) {
@@ -26,13 +28,14 @@ public class FragmentFactory {
                     Class clazz = Class.forName(function_action);
                     Constructor constructor = clazz.getConstructor();
                     fragment = (BaseMVPFragment) constructor.newInstance();
-                    if (fragment != null) {
-                        mFragments.put(function, fragment);// 把创建好的Fragment存放到集合中缓存起来
-                    }
+//                    if (fragment != null && isCache) {
+//                        mFragments.put(function, fragment);// 把创建好的Fragment存放到集合中缓存起来
+//                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            } else
+                throw new RuntimeException("没有在funclist增加相应的fragment声明");
         }
         return fragment;
     }

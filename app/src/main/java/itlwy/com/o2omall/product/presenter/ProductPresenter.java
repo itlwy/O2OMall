@@ -11,7 +11,7 @@ import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.product.model.ProductModel;
-import itlwy.com.o2omall.login.LoginActivity;
+import itlwy.com.o2omall.user.login.LoginActivity;
 import itlwy.com.o2omall.product.contract.ProductContract;
 
 /**
@@ -29,10 +29,6 @@ public class ProductPresenter extends BasePresenter implements ProductContract.I
         this.view.setPresenter(this);
     }
 
-    @Override
-    public void subscribe() {
-
-    }
 
     public static ProductPresenter newInstance(ProductContract.IProductView view, ProductRepository repository) {
         return new ProductPresenter(view, repository);

@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.login;
+package itlwy.com.o2omall.user.login;
 
 import android.os.Bundle;
 
@@ -20,7 +20,7 @@ public class LoginActivity extends BaseMVPActivity {
         if (loginFragment == null) {
             // Create the fragment
             loginFragment = (LoginFragment) FragmentFactory.
-                    createFragment(this, ConstantValue.LOGINFRAGMENT);
+                    createFragment(this, ConstantValue.LOGINFRAGMENT,true);
         }
         UserRepository userRepository = new UserRepository();
         // Create the presenter

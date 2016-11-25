@@ -26,7 +26,7 @@ public class CategoryPresenter extends BasePresenter implements CategoryContract
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
         load();
     }
 

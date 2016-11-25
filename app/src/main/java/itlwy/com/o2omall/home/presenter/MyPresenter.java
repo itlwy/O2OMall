@@ -28,7 +28,7 @@ public class MyPresenter extends BasePresenter implements MyContract.IMyPresente
     }
 
     @Override
-    public void subscribe() {
+    public void subscribe(Object param) {
         view.bindViewDatas("");
         view.showSuccessView();
     }

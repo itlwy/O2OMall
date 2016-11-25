@@ -123,7 +123,7 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
                     bundle.putParcelable(ProductModel.Tag, productModel);
                     ProductActivity ownActivity = (ProductActivity) getActivity();
                     ProductFragment productFragment = (ProductFragment) FragmentFactory.
-                            createFragment(getContext(), ConstantValue.PRODUCTFRAGMENT);
+                            createFragment(getContext(), ConstantValue.PRODUCTFRAGMENT,true);
                     ProductPresenter.newInstance(productFragment,new ProductRepository());
                     UIManager.getInstance().changeFragment(ownActivity, ownActivity.getFragmentContain(),
                             productFragment, true, bundle);

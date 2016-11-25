@@ -49,7 +49,7 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/my_logo_ib"
             android:text="姓名:张三"
-            android:textSize="@dimen/content_text_size"/>
+            android:textSize="@dimen/size_content_text"/>
 
         <TextView
             android:id="@+id/my_nickname_tv"
@@ -59,7 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/my_logo_ib"
             android:text="昵称:张三的昵称"
-            android:textSize="@dimen/content_text_size"/>
+            android:textSize="@dimen/size_content_text"/>
 
         <TextView
             android:id="@+id/my_mail_tv"
@@ -69,7 +69,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/my_logo_ib"
             android:text="邮箱:216122@qq.com"
-            android:textSize="@dimen/content_text_size"/>
+            android:textSize="@dimen/size_content_text"/>
 
         <TextView
             android:id="@+id/my_phone_tv"
@@ -81,7 +81,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
             android:text="手机:13782912312"
-            android:textSize="@dimen/content_text_size"/>
+            android:textSize="@dimen/size_content_text"/>
 
         <TextView
             android:id="@+id/my_vip_tv"
@@ -92,7 +92,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="30dp"
             android:text="vip:0"
-            android:textSize="@dimen/content_text_size"/>
+            android:textSize="@dimen/size_content_text"/>
 
         <TextView
             android:id="@+id/my_address_tv"
@@ -102,7 +102,8 @@
             android:layout_below="@+id/my_vip_tv"
             android:layout_marginRight="30dp"
             android:background="@drawable/shape_button"
-            android:padding="@dimen/text_padding"
+            android:clickable="true"
+            android:padding="@dimen/padding_text"
             android:text="管理地址"
             android:textColor="@color/blue"/>
     </RelativeLayout>

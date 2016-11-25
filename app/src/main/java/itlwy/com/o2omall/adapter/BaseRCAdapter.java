@@ -83,22 +83,22 @@ public abstract class BaseRCAdapter<T> extends RecyclerView.Adapter<BaseRCHolder
                     // // 设置图片加载/解码过程中错误时候显示的图片
                     // .showImageOnFail(R.drawable.small_image_holder_listpage)
                     .cacheInMemory(true)
-                            // 设置下载的图片是否缓存在内存中
+                    // 设置下载的图片是否缓存在内存中
                     .cacheOnDisc(true)
-                            // 设置下载的图片是否缓存在SD卡中
+                    // 设置下载的图片是否缓存在SD卡中
                     .considerExifParams(true)
                     .imageScaleType(ImageScaleType.EXACTLY)// 设置图片以如何的编码方式显示
                     .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型
-                            // .decodingOptions(android.graphics.BitmapFactory.Options
-                            // decodingOptions)//设置图片的解码配置
+                    // .decodingOptions(android.graphics.BitmapFactory.Options
+                    // decodingOptions)//设置图片的解码配置
                     .considerExifParams(true)
-                            // 设置图片下载前的延迟
-                            // .delayBeforeLoading(int delayInMillis)//int
-                            // delayInMillis为你设置的延迟时间
-                            // 设置图片加入缓存前，对bitmap进行设置
-                            // 。preProcessor(BitmapProcessor preProcessor)
+                    // 设置图片下载前的延迟
+                    // .delayBeforeLoading(int delayInMillis)//int
+                    // delayInMillis为你设置的延迟时间
+                    // 设置图片加入缓存前，对bitmap进行设置
+                    // 。preProcessor(BitmapProcessor preProcessor)
                     .resetViewBeforeLoading(true)// 设置图片在下载前是否重置，复位
-                            // .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
+                    // .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                     .displayer(new FadeInBitmapDisplayer(100))// 淡入
                     .build();
         }
@@ -149,35 +149,35 @@ public abstract class BaseRCAdapter<T> extends RecyclerView.Adapter<BaseRCHolder
     /**
      * item的viewholder
      *
-     * @return
      * @param parent
+     * @return
      */
     protected abstract BaseRCHolder getItemViewHolder(ViewGroup parent);
 
     /**
      * 头的viewholder
      *
-     * @return
      * @param parent
+     * @return
      */
     protected abstract BaseRCHolder getHeadViewHolder(ViewGroup parent);
 
     @Override
     public void onBindViewHolder(final BaseRCHolder holder, final int position) {
         int pos = position;
-        if (getHeadHolder() != null){
+        if (getHeadHolder() != null) {
             if (position == 0)
                 return;
-            pos = position -1;
+            pos = position - 1;
         }
         holder.bindDatas(mDatas.get(pos));
-        if (itemClickListener != null){
+        if (itemClickListener != null) {
             holder.getContentView().setClickable(true);
             holder.getContentView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int tempPos = position;
-                    if (getHeadHolder() != null){
+                    if (getHeadHolder() != null) {
                         tempPos = position - 1;
                     }
                     itemClickListener.onItemClick(holder.getContentView(), tempPos);
@@ -188,6 +188,9 @@ public abstract class BaseRCAdapter<T> extends RecyclerView.Adapter<BaseRCHolder
 
     @Override
     public int getItemCount() {
+        if (mDatas == null) {
+            return 0;
+        }
         int count = mDatas.size();
         if (isLoadMore) {
             count++;

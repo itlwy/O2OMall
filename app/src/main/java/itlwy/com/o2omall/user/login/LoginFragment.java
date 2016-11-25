@@ -1,4 +1,4 @@
-package itlwy.com.o2omall.login;
+package itlwy.com.o2omall.user.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -63,7 +63,7 @@ public class LoginFragment extends BaseMVPFragment implements LoginContract.ILog
     @Override
     public void onStart() {
         super.onStart();
-        presenter.subscribe();
+        presenter.subscribe(null);
     }
 
 

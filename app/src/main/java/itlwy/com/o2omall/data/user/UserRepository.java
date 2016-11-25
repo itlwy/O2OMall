@@ -1,10 +1,12 @@
 package itlwy.com.o2omall.data.user;
 
+import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import itlwy.com.o2omall.ConstantValue;
@@ -12,6 +14,7 @@ import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.CommonRepository;
 import itlwy.com.o2omall.data.HttpResultFunc;
+import itlwy.com.o2omall.data.user.model.AddressModel;
 import itlwy.com.o2omall.data.user.model.UserModel;
 import okhttp3.Response;
 import rx.Observable;
@@ -21,7 +24,7 @@ import rx.Subscriber;
  * Created by mac on 16/11/19.
  */
 
-public class UserRepository {
+public class UserRepository implements UserDataSource {
 
     private UserApi mUserApi;
 
@@ -70,4 +73,30 @@ public class UserRepository {
         });
 
     }
+
+    public void getOwnAddressList(Subscriber<List<AddressModel>> subscriber, int userID) {
+        CommonRepository.processResult(mUserApi.getOwnAddressList(userID), new HttpResultFunc<List<AddressModel>>(),
+                subscriber);
+    }
+
+
+    @Override
+    public void addAddress(Subscriber<String> subscriber, AddressModel addressModel) {
+        Gson gson = new Gson();
+        CommonRepository.processResult(mUserApi.addAddress(gson.toJson(addressModel)), new HttpResultFunc<String>(),
+                subscriber);
+    }
+
+    @Override
+    public void updateAddress(Subscriber<String> subscriber, AddressModel addressModel) {
+        Gson gson = new Gson();
+        CommonRepository.processResult(mUserApi.updateAddress(gson.toJson(addressModel)),
+                new HttpResultFunc<String>(), subscriber);
+    }
+
+    @Override
+    public void deleteAddress(Subscriber<String> subscriber, int addressID) {
+        CommonRepository.processResult(mUserApi.deleteAddress(addressID), new HttpResultFunc<String>(), subscriber);
+    }
+
 }

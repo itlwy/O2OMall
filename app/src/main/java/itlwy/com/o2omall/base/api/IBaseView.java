@@ -15,6 +15,7 @@ public interface IBaseView<T> {
 
     void showToast(String messaga);
 
+    void killMyself();
 
     void setPresenter(T presenter);
 }

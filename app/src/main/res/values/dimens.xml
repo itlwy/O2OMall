@@ -5,14 +5,16 @@
     <dimen name="leftmargin">10dp</dimen>
     <dimen name="rightmargin">10dp</dimen>
 
-    <dimen name="bar_text_size">20sp</dimen>
-    <dimen name="title_text_size">18sp</dimen>
-    <dimen name="content_text_size">16sp</dimen>
+    <dimen name="size_bar_text">20sp</dimen>
+    <dimen name="size_title_text">18sp</dimen>
+    <dimen name="size_content_text">16sp</dimen>
 
     <dimen name="topMargin">10dp</dimen>
     <dimen name="cardview_margin">8dp</dimen>
     <dimen name="cardview_radius">6dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_padding">8dp</dimen>
+    <dimen name="padding_text">8dp</dimen>
+    <dimen name="height_button">43dp</dimen>
+    <dimen name="size_logo">30dp</dimen>
 
 </resources>

@@ -95,5 +95,9 @@ public abstract class BaseMVPViewActivity extends AppCompatActivity {
         loadingPage.showPage();
     }
 
+    public void killMyself() {
+        onBackPressed();
+    }
+
     protected abstract void initContent(Bundle savedInstanceState);
 }
