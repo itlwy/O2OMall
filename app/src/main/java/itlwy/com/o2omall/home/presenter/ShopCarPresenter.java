@@ -27,22 +27,4 @@ public class ShopCarPresenter extends BasePresenter implements ShopCarContract.I
         return new ShopCarPresenter(view);
     }
 
-//    /**
-//     * 从服务器获取购物车商品数据
-//     */
-//    private List<ProductModel> getCartProducts() {
-//        /**
-//         * 刷新数量和选中标记集合
-//         */
-//        ArrayList<ProductModel> productModels = new ArrayList<ProductModel>();
-//        for (int i = 0; i < 5; i++) {
-//            ProductModel data = new ProductModel();
-//            data.setId(i);
-//            data.setImgUrl("http://b.hiphotos.baidu.com/image/pic/item/14ce36d3d539b6006bae3d86ea50352ac65cb79a.jpg");
-//            data.setInfo("上岛咖啡上岛咖啡上岛咖啡上岛咖啡上岛咖啡上岛咖啡");
-//            data.setPrice(120);
-//            productModels.add(data);
-//        }
-//        return productModels;
-//    }
 }

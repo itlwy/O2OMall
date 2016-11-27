@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.utils.ViewUtils;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -49,10 +50,16 @@ public abstract class BaseMVPFragment extends Fragment {
             loadingPage.setReLoadListener(getReloadListener());
         } else {
             ViewUtils.removeParent(loadingPage);// 移除frameLayout之前的爹
+            ButterKnife.bind(this, successView);
         }
         return loadingPage;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 
     @Override
     public void onDestroy() {

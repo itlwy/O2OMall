@@ -33,6 +33,7 @@
         <activity android:name=".register.RegisterActivity"/>
         <activity android:name=".home.ShopCarActivity"/>
         <activity android:name=".user.address.AddressActivity"/>
+        <activity android:name=".product.OrderActivity"/>
         <activity
             android:name=".user.login.LoginActivity"
             android:theme="@style/Base.Theme.DesignDemo"/>

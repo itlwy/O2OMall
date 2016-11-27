@@ -95,8 +95,16 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
+    public Observable<String> updateDefaultAddress(AddressModel addressModel) {
+        Gson gson = new Gson();
+        return mUserApi.updateAddress(gson.toJson(addressModel))
+                .map(new HttpResultFunc<String>());
+    }
+
+    @Override
     public void deleteAddress(Subscriber<String> subscriber, int addressID) {
         CommonRepository.processResult(mUserApi.deleteAddress(addressID), new HttpResultFunc<String>(), subscriber);
     }
+
 
 }

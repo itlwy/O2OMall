@@ -7,13 +7,19 @@ package itlwy.com.o2omall.data;
 public class HttpException extends RuntimeException {
 
     public static final int NO_DATA = 2;
+    private int resultCode;
 
-    public HttpException(int resultCode) {
-        this(getApiExceptionMessage(resultCode));
+    public int getResultCode() {
+        return resultCode;
     }
 
-    public HttpException(String detailMessage) {
+    public HttpException(int resultCode) {
+        this(getApiExceptionMessage(resultCode), resultCode);
+    }
+
+    public HttpException(String detailMessage, int resultCode) {
         super(detailMessage);
+        this.resultCode = resultCode;
     }
 
     /**

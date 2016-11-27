@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="payways">
+        <item>货到付款</item>
+        <item>支付宝</item>
+        <item>微信</item>
+        <item>银行卡</item>
+    </string-array>
+    <string-array name="sendways">
+        <item>上门自提</item>
+        <item>送货上门</item>
+    </string-array>
+</resources>

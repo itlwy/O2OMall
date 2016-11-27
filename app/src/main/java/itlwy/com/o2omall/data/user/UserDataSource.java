@@ -25,6 +25,8 @@ public interface UserDataSource {
 
     void updateAddress(Subscriber<String> subscriber, AddressModel addressModel);
 
+    Observable<String> updateDefaultAddress(AddressModel addressModel);
+
     void deleteAddress(Subscriber<String> subscriber, int userID);
 
 }

@@ -34,4 +34,7 @@
     <string name="text_btn_addIntoCart">加入购物车</string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

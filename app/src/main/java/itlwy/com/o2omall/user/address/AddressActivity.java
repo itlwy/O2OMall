@@ -11,7 +11,7 @@ import itlwy.com.o2omall.utils.UIManager;
 public class AddressActivity extends BaseMVPActivity {
 
 
-    private AddressManagerManagerPresenter mAddressManagerPresenter;
+    private AddressManagerPresenter mAddressManagerPresenter;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class AddressActivity extends BaseMVPActivity {
         }
         UserRepository repository = new UserRepository();
         // Create the presenter
-        mAddressManagerPresenter = AddressManagerManagerPresenter.newInstance(lAddressManagerFragment,repository);
+        mAddressManagerPresenter = AddressManagerPresenter.newInstance(lAddressManagerFragment,repository);
         UIManager.getInstance().changeFragment(this, getFragmentContain(), lAddressManagerFragment, false, null);
         setTitle("地址管理");
     }

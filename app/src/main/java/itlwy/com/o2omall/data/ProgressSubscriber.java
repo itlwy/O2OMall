@@ -3,6 +3,7 @@ package itlwy.com.o2omall.data;
 import android.content.Context;
 import android.widget.Toast;
 
+import itlwy.com.o2omall.base.api.IBaseView;
 import rx.Subscriber;
 
 /**
@@ -11,22 +12,29 @@ import rx.Subscriber;
 
 public abstract class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCancelListener {
 
+    private IBaseView view;
     private ProgressDialogHandler mProgressDialogHandler;
 
     private Context context;
+
+    public ProgressSubscriber(Context context, IBaseView view) {
+        this.context = context;
+        this.view = view;
+        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+    }
 
     public ProgressSubscriber(Context context) {
         this.context = context;
         mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
     }
 
-    private void showProgressDialog() {
+    public void showProgressDialog() {
         if (mProgressDialogHandler != null) {
             mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
         }
     }
 
-    private void dismissProgressDialog() {
+    public void dismissProgressDialog() {
         if (mProgressDialogHandler != null) {
             mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_PROGRESS_DIALOG).sendToTarget();
             mProgressDialogHandler = null;
@@ -41,13 +49,26 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-//        Toast.makeText(context, "Completed", Toast.LENGTH_SHORT).show();
+        if (view != null) {
+            view.showSuccessView();
+        }
     }
 
     @Override
     public void onError(Throwable e) {
+        if (view != null) {
+            if (e instanceof HttpException) {
+                if (((HttpException) e).getResultCode() == HttpException.NO_DATA) {
+                    view.showEmptyView();
+                }
+            } else {
+                view.showErrorView();
+                Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
         dismissProgressDialog();
-        Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -9,7 +9,8 @@ import itlwy.com.o2omall.data.user.model.AddressModel;
 public class AddressContract {
     public interface IAddressManagerPresenter extends IBasePresenter {
         void deleteAddress(int addressID);
-        void updateAddress(AddressModel addressModel);
+
+        void updateDefaultAddress(AddressModel cancelModel, AddressModel addressModel);
     }
 
     public interface IAddressManagerView extends IBaseView<IAddressManagerPresenter> {
@@ -26,12 +27,13 @@ public class AddressContract {
         void saveAddress(AddressModel addressModel);
     }
 
-    public interface IAddressEditPresenter extends IBasePresenter<AddressModel>{
+    public interface IAddressEditPresenter extends IBasePresenter<AddressModel> {
         void subscribe(AddressModel addressModel);
+
         void updateAddress(AddressModel addressModel);
     }
 
-    public interface IAddressEditView extends IBaseView<IAddressEditPresenter>{
+    public interface IAddressEditView extends IBaseView<IAddressEditPresenter> {
         void bindViewDatas(AddressModel results);
 
     }

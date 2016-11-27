@@ -15,11 +15,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
+import itlwy.com.o2omall.adapter.BaseRCAdapter;
 import itlwy.com.o2omall.base.BaseMVPActivity;
 import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 import itlwy.com.o2omall.factory.FragmentFactory;
+import itlwy.com.o2omall.product.OrderActivity;
 import itlwy.com.o2omall.utils.UIManager;
 import itlwy.com.o2omall.view.LoadingPage;
 
@@ -29,6 +31,7 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
     RecyclerView mManagerRcv;
     private AddressContract.IAddressManagerPresenter presenter;
     private AddressManagerAdapter mManagerRcvAdapter;
+    private String flag;  // 标示是从哪个界面跳转过来的，目前有订单提交页面 和地址管理页面
 
     @Override
     public void onStart() {
@@ -44,7 +47,10 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
 
     @Override
     protected void inits() {
-
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            flag = bundle.getString("flag");
+        }
     }
 
     @Override
@@ -55,6 +61,17 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mManagerRcv.setLayoutManager(manager);
         mManagerRcv.setAdapter(mManagerRcvAdapter);
+        if (ConstantValue.ORDERFRAGMENT.equals(flag)) {
+            mManagerRcvAdapter.setOnItemClickListener(new BaseRCAdapter.OnItemClick() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    AddressModel item = mManagerRcvAdapter.getmDatas().get(position);
+                    ((OrderActivity)getActivity()).setFromAddressBack(true);
+                    ((OrderActivity)getActivity()).setSelectedAddress(item);
+                    getFragmentManager().popBackStack();
+                }
+            });
+        }
         return view;
     }
 

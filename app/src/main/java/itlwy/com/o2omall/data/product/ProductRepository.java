@@ -1,16 +1,19 @@
 package itlwy.com.o2omall.data.product;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.CommonRepository;
 import itlwy.com.o2omall.data.HttpException;
 import itlwy.com.o2omall.data.HttpResultFunc;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.CategoryOneModel;
 import itlwy.com.o2omall.data.product.model.CategoryTwoModel;
+import itlwy.com.o2omall.data.product.model.OrdersModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -74,7 +77,7 @@ public class ProductRepository {
 
                         }
                         if (categoryOneModels.size() == 0) {
-                            throw new HttpException("获取数据为空");
+                            throw new HttpException("获取数据为空",HttpException.NO_DATA);
                         } else
                             return categoryOneModels;
                     }
@@ -155,5 +158,11 @@ public class ProductRepository {
     public void getProductAtts(Subscriber<List<ProductModel.ProductAtt>> subscriber, int productID) {
         CommonRepository.processResult(mProductAPI.getProductAtts(productID), new HttpResultFunc<List<ProductModel.ProductAtt>>(),
                 subscriber);
+    }
+
+    public void submitOrder(Subscriber<String> subscriber, OrdersModel orderModel) {
+        Gson gson = new Gson();
+        CommonRepository.processResult(mProductAPI.submitOrder(ClientKernal.getInstance().getUserModel()
+                .getToken(), gson.toJson(orderModel)), new HttpResultFunc<String>(), subscriber);
     }
 }

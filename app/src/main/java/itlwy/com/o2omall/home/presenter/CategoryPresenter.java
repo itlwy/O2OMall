@@ -32,12 +32,7 @@ public class CategoryPresenter extends BasePresenter implements CategoryContract
 
     private void load() {
         ProgressSubscriber<List<CategoryOneModel>> subscriber =
-                new ProgressSubscriber<List<CategoryOneModel>>(((Fragment) view).getActivity()) {
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        view.showErrorView();
-                    }
+                new ProgressSubscriber<List<CategoryOneModel>>(((Fragment) view).getActivity(),view) {
 
                     @Override
                     public void onNext(List<CategoryOneModel> categoryOneModels) {

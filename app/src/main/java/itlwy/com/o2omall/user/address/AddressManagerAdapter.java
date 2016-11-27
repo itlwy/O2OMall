@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,6 +22,7 @@ import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.utils.UIManager;
+import itlwy.com.o2omall.view.TextDrawable;
 
 /**
  * Created by mac on 16/11/24.
@@ -55,19 +54,13 @@ public class AddressManagerAdapter extends BaseRCAdapter<AddressModel> {
         TextView mManagerPhoneTv;
         @Bind(R.id.manager_address_tv)
         TextView mManagerAddressTv;
-        @Bind(R.id.manager_default_cb)
-        CheckBox mManagerDefaultCb;
+        @Bind(R.id.manager_default_tv)
+        TextDrawable mManager_default_tv;
         private AddressModel addressModel;
 
         public AddressManager_ItemHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mManagerDefaultCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                }
-            });
         }
 
         @Override
@@ -76,10 +69,14 @@ public class AddressManagerAdapter extends BaseRCAdapter<AddressModel> {
             mManagerNameTv.setText(data.getReceiver());
             mManagerPhoneTv.setText(data.getPhone());
             mManagerAddressTv.setText(data.getDetailsAddress());
-
+            if (data.getIsDefault() == 1) {
+                mManager_default_tv.setDrawableLeft(R.drawable.check);
+            } else {
+                mManager_default_tv.setDrawableLeft(R.drawable.abc_btn_check_to_on_mtrl_000);
+            }
         }
 
-        @OnClick({R.id.manager_delete_tv, R.id.manager_edit_tv})
+        @OnClick({R.id.manager_delete_tv, R.id.manager_edit_tv, R.id.manager_default_tv})
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.manager_delete_tv:
@@ -92,6 +89,21 @@ public class AddressManagerAdapter extends BaseRCAdapter<AddressModel> {
                     AddressEditPresenter.newInstance((AddressContract.IAddressEditView) fragment, new UserRepository());
                     UIManager.getInstance().changeFragment((FragmentActivity) getContext(), ((BaseMVPActivity) getContext()).getFragmentContain()
                             , fragment, true, bundle);
+                    break;
+                case R.id.manager_default_tv:
+                    if (addressModel.getIsDefault() == 1) {
+                        return;
+                    }
+                    AddressModel cancelModel = null;
+                    for (AddressModel item : getmDatas()) {
+                        if (item.getIsDefault() == 1) {
+                            item.setIsDefault(0);
+                            cancelModel = item;
+                            break;
+                        }
+                    }
+                    addressModel.setIsDefault(1);
+                    mPresenter.updateDefaultAddress(cancelModel,addressModel);
                     break;
             }
         }

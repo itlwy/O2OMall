@@ -24,11 +24,13 @@ import butterknife.ButterKnife;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ShopCarAdapter;
+import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
 import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
+import itlwy.com.o2omall.product.OrderActivity;
 import itlwy.com.o2omall.user.login.LoginActivity;
 import itlwy.com.o2omall.view.AutoRecyclerView;
 import itlwy.com.o2omall.view.LoadingPage;
@@ -50,6 +52,9 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
     public void onStop() {
         super.onStop();
         presenter.unsubscribe();
+        if (holder.adapter != null) {
+            BaseApplication.setProductModelShopcar(holder.adapter.getmDatas());
+        }
     }
 
 
@@ -128,8 +133,10 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
                     // 结算按钮
                     if (cartBtnBuy.getText().toString()
                             .equals(getResources().getString(R.string.buy))) {
-                        // 删除按钮
+                        Intent intent = new Intent(getActivity(), OrderActivity.class);
+                        startActivity(intent);
                     } else {
+                        // 删除按钮
 
                     }
                 }

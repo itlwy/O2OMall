@@ -1,11 +1,14 @@
-package itlwy.com.o2omall.data.model;
+package itlwy.com.o2omall.data.product.model;
+
+import java.util.List;
 
 /**
  * Created by mac on 16/10/6.
  */
 
-public class OrdersModel  {
-    private String addressObjectID;
+public class OrdersModel {
+    private String ordersID;
+    private int addressID;
     private String payWay;
     private int state;
     private String distributionWay;
@@ -13,16 +16,42 @@ public class OrdersModel  {
     private double distributionPrice;
     private double totalPrice;
     private double actualPrice;
-    private String userObjectID;
+    private int userID;
     private String userName;
+    private List<ProductModel> products;
 
-    public String getAddressObjectID() {
-        return addressObjectID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setAddressObjectID(String addressObjectID) {
-        this.addressObjectID = addressObjectID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
+
+    public int getAddressID() {
+        return addressID;
+    }
+
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
+    }
+
+    public List<ProductModel> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductModel> products) {
+        this.products = products;
+    }
+
+    public String getOrdersID() {
+        return ordersID;
+    }
+
+    public void setOrdersID(String ordersID) {
+        this.ordersID = ordersID;
+    }
+
 
     public String getPayWay() {
         return payWay;
@@ -78,14 +107,6 @@ public class OrdersModel  {
 
     public void setActualPrice(double actualPrice) {
         this.actualPrice = actualPrice;
-    }
-
-    public String getUserObjectID() {
-        return userObjectID;
-    }
-
-    public void setUserObjectID(String userObjectID) {
-        this.userObjectID = userObjectID;
     }
 
     public String getUserName() {

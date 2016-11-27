@@ -7,7 +7,10 @@ import java.util.List;
 import itlwy.com.o2omall.data.HttpResultModel;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -60,4 +63,8 @@ public interface ProductAPI {
      */
     @GET("product/product_atts")
     Observable<HttpResultModel<List<ProductModel.ProductAtt>>> getProductAtts(@Query("productID") int productID);
+
+    @POST("product/submit_orders")
+    @FormUrlEncoded
+    Observable<HttpResultModel<String>> submitOrder(@Field("token") String token, @Field("param") String param);
 }

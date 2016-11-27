@@ -14,6 +14,15 @@ public class AddressModel implements Parcelable {
     private String receiver;
     private int userID;
     private int addressID;
+    private int isDefault;
+
+    public int getIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(int isDefault) {
+        this.isDefault = isDefault;
+    }
 
     public String getDetailsAddress() {
         return detailsAddress;
@@ -76,6 +85,7 @@ public class AddressModel implements Parcelable {
         dest.writeString(this.receiver);
         dest.writeInt(this.userID);
         dest.writeInt(this.addressID);
+        dest.writeInt(this.isDefault);
     }
 
     public AddressModel() {
@@ -88,6 +98,7 @@ public class AddressModel implements Parcelable {
         this.receiver = in.readString();
         this.userID = in.readInt();
         this.addressID = in.readInt();
+        this.isDefault = in.readInt();
     }
 
     public static final Parcelable.Creator<AddressModel> CREATOR = new Parcelable.Creator<AddressModel>() {

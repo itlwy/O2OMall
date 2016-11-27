@@ -2,12 +2,14 @@ package itlwy.com.o2omall.product.presenter;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import java.util.List;
 
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.data.ClientKernal;
+import itlwy.com.o2omall.data.HttpException;
 import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.product.model.ProductModel;
@@ -38,17 +40,25 @@ public class ProductPresenter extends BasePresenter implements ProductContract.I
     public void subscribe(ProductModel productModel) {
         mProductModel = productModel;
         ProgressSubscriber<List<ProductModel.ProductAtt>> subscriber =
-                new ProgressSubscriber<List<ProductModel.ProductAtt>>(((Fragment) view).getActivity()) {
+                new ProgressSubscriber<List<ProductModel.ProductAtt>>(((Fragment) view).getActivity(), view) {
                     @Override
                     public void onError(Throwable e) {
-                        super.onError(e);
-                        view.showErrorView();
+                        if (e instanceof HttpException) {
+                            if (((HttpException) e).getResultCode() == HttpException.NO_DATA) {
+                                view.showToast("此商品无对应图片列表");
+                                view.showSuccessView();
+                            }
+                        } else {
+                            Toast.makeText(((Fragment) view).getActivity()
+                                    , "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            view.showErrorView();
+                        }
+                        dismissProgressDialog();
                     }
 
                     @Override
                     public void onNext(List<ProductModel.ProductAtt> productAtts) {
                         view.bindViewDatas(productAtts);
-                        view.showSuccessView();
                     }
                 };
 

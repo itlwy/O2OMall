@@ -19,13 +19,15 @@ public interface ConstantValue {
     String ADDRESSADDFRAGMENT = "AddressAddFragment";
     String ADDRESSEDITFRAGMENT = "AddressEditFragment";
 
+    String ORDERPRODUCTSFRAGMENT = "OrderProductsFragment";
+    String ORDERFRAGMENT = "OrderFragment";
+
+
     /* fragment功能项*/
     /*toolbar类型*/
     int HOMETOOLBAR = 0;
-
-
     int SHOPCARTOOLBAR = 1;
-    String BASE_URL = "http://192.168.0.189:8088/api/";
-//    String BASE_URL = "http://192.168.1.101:8088/api/";
 
+//    String BASE_URL = "http://192.168.0.189:8088/api/";
+    String BASE_URL = "http://192.168.1.102:8088/api/";
 }

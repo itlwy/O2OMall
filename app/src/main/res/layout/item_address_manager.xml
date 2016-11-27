@@ -50,13 +50,20 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
 
-        <CheckBox
-            android:id="@+id/manager_default_cb"
+        <itlwy.com.o2omall.view.TextDrawable
+            android:id="@+id/manager_default_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/manager_line_view"
-            android:layout_marginTop="8dp"
-            android:text="默认地址"/>
+            android:clickable="true"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/padding_text"
+            android:text="默认地址"
+            android:textSize="@dimen/size_content_text"
+            app:leftDrawable="@drawable/abc_btn_check_material"
+            app:leftDrawableHeight="24dp"
+            app:leftDrawableWidth="24dp"/>
 
         <itlwy.com.o2omall.view.TextDrawable
             android:id="@+id/manager_delete_tv"
