@@ -49,8 +49,8 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
 
     private void load() {
         pageNum = 1;
-        view.showLoadingView();
-        Subscriber<List<ProductModel>> subscriber = new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
+//        view.showLoadingView();
+        ProgressSubscriber<List<ProductModel>> subscriber = new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
             @Override
             public void onError(Throwable e) {
                 super.onError(e);

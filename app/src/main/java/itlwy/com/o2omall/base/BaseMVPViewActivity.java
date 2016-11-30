@@ -75,10 +75,10 @@ public abstract class BaseMVPViewActivity extends AppCompatActivity {
         commTitleTv.setText(title);
     }
 
-    public void showLoadingView() {
-        loadingPage.setState(LoadingPage.STATE_LOADING);
-        loadingPage.showPage();
-    }
+//    public void showLoadingView() {
+//        loadingPage.setState(LoadingPage.STATE_LOADING);
+//        loadingPage.showPage();
+//    }
 
     public void showEmptyView() {
         loadingPage.setState(LoadingPage.STATE_EMPTY);

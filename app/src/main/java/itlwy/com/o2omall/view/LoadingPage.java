@@ -14,13 +14,13 @@ import itlwy.com.o2omall.R;
  */
 public class LoadingPage extends FrameLayout {
     public static final int STATE_UNKOWN = 0;
-    public static final int STATE_LOADING = 1;
+    //    public static final int STATE_LOADING = 1;
     public static final int STATE_ERROR = 2;
     public static final int STATE_EMPTY = 3;
     public static final int STATE_SUCCESS = 4;
-    public int state = STATE_ERROR;
+    public int state = STATE_UNKOWN;
 
-    private View loadingView;// 加载中的界面
+    //    private View loadingView;// 加载中的界面
     private View errorView;// 错误界面
     private View emptyView;// 空界面
     private View successView;// 加载成功的界面
@@ -48,16 +48,16 @@ public class LoadingPage extends FrameLayout {
         return successView;
     }
 
-    public void setState(int value){
+    public void setState(int value) {
         state = value;
     }
 
     private void init() {
-        loadingView = createLoadingView(); // 创建了加载中的界面
-        if (loadingView != null) {
-            this.addView(loadingView, new LayoutParams(
-                    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        }
+//        loadingView = createLoadingView(); // 创建了加载中的界面
+//        if (loadingView != null) {
+//            this.addView(loadingView, new LayoutParams(
+//                    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+//        }
         errorView = createErrorView(); // 加载错误界面
         if (errorView != null) {
             this.addView(errorView, new LayoutParams(
@@ -73,10 +73,10 @@ public class LoadingPage extends FrameLayout {
 
     // 根据不同的状态显示不同的界面
     public void showPage() {
-        if (loadingView != null) {
-            loadingView.setVisibility(state == STATE_UNKOWN
-                    || state == STATE_LOADING ? View.VISIBLE : View.INVISIBLE);
-        }
+//        if (loadingView != null) {
+//            loadingView.setVisibility(state == STATE_UNKOWN
+//                    || state == STATE_LOADING ? View.VISIBLE : View.INVISIBLE);
+//        }
         if (errorView != null) {
             errorView.setVisibility(state == STATE_ERROR ? View.VISIBLE
                     : View.INVISIBLE);
@@ -120,12 +120,12 @@ public class LoadingPage extends FrameLayout {
         return view;
     }
 
-    /* 创建加载中的界面 */
-    private View createLoadingView() {
-        View view = View.inflate(this.getContext(),
-                R.layout.loadpage_loading, null);
-        return view;
-    }
+//    /* 创建加载中的界面 */
+//    private View createLoadingView() {
+//        View view = View.inflate(this.getContext(),
+//                R.layout.loadpage_loading, null);
+//        return view;
+//    }
 
     public enum LoadResult {
         error(2), empty(3), success(4);
@@ -142,9 +142,10 @@ public class LoadingPage extends FrameLayout {
 
     }
 
-    public interface ReLoadListener{
+    public interface ReLoadListener {
         void reLoad();
     }
+
     private ReLoadListener reLoadListener;
 
     public void setReLoadListener(ReLoadListener reLoadListener) {

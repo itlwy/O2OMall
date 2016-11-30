@@ -5,7 +5,7 @@ package itlwy.com.o2omall.base.api;
  */
 
 public interface IBaseView<T> {
-    void showLoadingView();
+//    void showLoadingView();
 
     void showEmptyView();
 

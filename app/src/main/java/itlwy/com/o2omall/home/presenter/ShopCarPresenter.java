@@ -18,7 +18,7 @@ public class ShopCarPresenter extends BasePresenter implements ShopCarContract.I
 
     @Override
     public void subscribe(Object param) {
-        view.showLoadingView();
+//        view.showLoadingView();
         view.bindViewDatas(BaseApplication.getProductModelShopcar());
         view.showSuccessView();
     }

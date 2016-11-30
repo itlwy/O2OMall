@@ -72,10 +72,10 @@ public abstract class BaseMVPFragment extends Fragment {
         super.onDestroy();
     }
 
-    public void showLoadingView() {
-        loadingPage.setState(LoadingPage.STATE_LOADING);
-        loadingPage.showPage();
-    }
+//    public void showLoadingView() {
+//        loadingPage.setState(LoadingPage.STATE_LOADING);
+//        loadingPage.showPage();
+//    }
 
     public void showEmptyView() {
         loadingPage.setState(LoadingPage.STATE_EMPTY);
