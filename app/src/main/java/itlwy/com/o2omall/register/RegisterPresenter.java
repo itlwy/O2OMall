@@ -3,10 +3,11 @@ package itlwy.com.o2omall.register;
 import android.app.Activity;
 import android.content.Context;
 
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
+
 import itlwy.com.o2omall.GlobalParams;
-import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.data.ClientKernal;
-import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.UserModel;
 

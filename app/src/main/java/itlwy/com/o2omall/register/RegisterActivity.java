@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.lndroid.lndroidlib.base.BaseMVPViewActivity;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,9 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseMVPViewActivity;
 import itlwy.com.o2omall.data.user.UserRepository;
-import itlwy.com.o2omall.view.LoadingPage;
 
 public class RegisterActivity extends BaseMVPViewActivity implements RegisterContract.IRegisterView {
 

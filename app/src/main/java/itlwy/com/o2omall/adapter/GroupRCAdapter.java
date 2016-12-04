@@ -10,6 +10,9 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
+import com.lndroid.lndroidlib.base.BaseRCHolder;
+import com.lndroid.lndroidlib.utils.DensityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.HashMap;
@@ -19,9 +22,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseRCHolder;
 import itlwy.com.o2omall.data.product.model.ProductModel;
-import itlwy.com.o2omall.utils.DensityUtil;
 
 /**
  * Created by Administrator on 2016/1/5.

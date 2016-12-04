@@ -2,10 +2,11 @@ package itlwy.com.o2omall.user.login;
 
 import android.support.v4.app.Fragment;
 
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
+
 import itlwy.com.o2omall.GlobalParams;
-import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.data.ClientKernal;
-import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.UserModel;
 

@@ -13,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.base.BaseRCHolder;
+import com.lndroid.lndroidlib.utils.DensityUtil;
+import com.lndroid.lndroidlib.utils.ImageLoaderUtil;
+import com.lndroid.lndroidlib.utils.ViewUtils;
+import com.lndroid.lndroidlib.view.AutoRecyclerView;
+import com.lndroid.lndroidlib.view.CirclePageIndicator;
+import com.lndroid.lndroidlib.view.LoadingPage;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -24,19 +32,11 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.GroupRCAdapter;
-import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.base.BaseMVPFragment;
-import itlwy.com.o2omall.base.BaseRCHolder;
 import itlwy.com.o2omall.data.model.SectionModel;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.HomeContract;
-import itlwy.com.o2omall.utils.DensityUtil;
-import itlwy.com.o2omall.utils.ViewUtils;
-import itlwy.com.o2omall.view.AutoRecyclerView;
-import itlwy.com.o2omall.view.CirclePageIndicator;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * Created by Administrator on 2015/12/22.
@@ -243,7 +243,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
                     for (AdvertModel item : advertModels) {
                         ImageView iv = new ImageView(getActivity());
                         ImageLoader.getInstance().displayImage(item.getImageUrl(), iv,
-                                ((BaseApplication) getActivity().getApplication()).getOptions());
+                                ImageLoaderUtil.getInstance().getOptions());
                         iv.setScaleType(ImageView.ScaleType.FIT_XY);
                         viewContainer.add(iv);
                     }

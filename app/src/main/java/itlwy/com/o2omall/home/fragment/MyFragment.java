@@ -15,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.utils.ActivityUtils;
+import com.lndroid.lndroidlib.utils.UIManager;
+import com.lndroid.lndroidlib.view.LoadingPage;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
@@ -30,15 +34,11 @@ import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.user.model.UserModel;
 import itlwy.com.o2omall.home.contract.MyContract;
 import itlwy.com.o2omall.user.address.AddressActivity;
 import itlwy.com.o2omall.user.login.LoginActivity;
-import itlwy.com.o2omall.utils.ActivityUtils;
-import itlwy.com.o2omall.utils.UIManager;
-import itlwy.com.o2omall.view.LoadingPage;
 import support.utils.PicUtils;
 
 /**
@@ -212,7 +212,7 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
                     UIManager.getInstance().changeActivity(getActivity(), LoginActivity.class, null);
                     break;
                 case R.id.my_logo_ib:
-                    ActivityUtils.takePicture(MyFragment.this, PHOTO, mLogoImageName);
+                    ActivityUtils.takePicture(MyFragment.this, PHOTO, BaseApplication.sTempImagePath+mLogoImageName);
                     break;
                 case R.id.my_address_tv:
                     Intent intent = new Intent(getActivity(), AddressActivity.class);

@@ -18,17 +18,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.ViewUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.user.UserRepository;
-import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.home.fragment.CategoryFragment;
 import itlwy.com.o2omall.home.fragment.HomeFragment;
 import itlwy.com.o2omall.home.fragment.MyFragment;
@@ -37,9 +39,8 @@ import itlwy.com.o2omall.home.presenter.CategoryPresenter;
 import itlwy.com.o2omall.home.presenter.HomePresenter;
 import itlwy.com.o2omall.home.presenter.MyPresenter;
 import itlwy.com.o2omall.home.presenter.ShopCarPresenter;
-import itlwy.com.o2omall.utils.ViewUtils;
 
-import static itlwy.com.o2omall.factory.FragmentFactory.createFragment;
+import static com.lndroid.lndroidlib.factory.FragmentFactory.createFragment;
 
 /**
  * Created by Administrator on 2015/12/22.

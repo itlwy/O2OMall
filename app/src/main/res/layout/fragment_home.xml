@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <itlwy.com.o2omall.view.AutoRecyclerView
+    <com.lndroid.lndroidlib.view.AutoRecyclerView
         android:id="@+id/home_recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -2,7 +2,7 @@ package itlwy.com.o2omall.data.user;
 
 import java.util.List;
 
-import itlwy.com.o2omall.data.HttpResultModel;
+import com.lndroid.lndroidlib.data.HttpResultModel;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 import itlwy.com.o2omall.data.user.model.UserModel;
 import retrofit2.http.Field;

@@ -1,9 +1,12 @@
 package itlwy.com.o2omall.data;
 
+import com.lndroid.lndroidlib.utils.InterceptorUtil;
+import com.lndroid.lndroidlib.data.HttpResultFunc;
+import com.lndroid.lndroidlib.data.HttpResultModel;
+
 import java.util.concurrent.TimeUnit;
 
 import itlwy.com.o2omall.ConstantValue;
-import itlwy.com.o2omall.base.BaseApplication;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -35,7 +38,7 @@ public class CommonRepository {
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor
-                (((BaseApplication) BaseApplication.getApplication()).getInterceptor()).build();
+                (InterceptorUtil.getInstance().getInterceptor()).build();
         retrofit = new Retrofit.Builder()
                 .client(client)
 //                .client(httpClientBuilder.build())

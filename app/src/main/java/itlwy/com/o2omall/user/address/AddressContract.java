@@ -1,9 +1,10 @@
 package itlwy.com.o2omall.user.address;
 
+import com.lndroid.lndroidlib.base.api.IBasePresenter;
+import com.lndroid.lndroidlib.base.api.IBaseView;
+
 import java.util.List;
 
-import itlwy.com.o2omall.base.api.IBasePresenter;
-import itlwy.com.o2omall.base.api.IBaseView;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 
 public class AddressContract {

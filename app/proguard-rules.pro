@@ -179,5 +179,5 @@
 -keep class itlwy.com.o2omall.data.product.model.** { *;}
 -keep class itlwy.com.o2omall.data.user.model.** { *;}
 -keep class itlwy.com.o2omall.data.ClientKernal{*;}
--keep class itlwy.com.o2omall.data.HttpResultModel{*;}
+-keep class com.lndroid.lndroidlib.data.HttpResultModel{*;}
 -keep class support.** { *;}

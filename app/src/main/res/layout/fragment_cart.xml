@@ -51,13 +51,13 @@
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <itlwy.com.o2omall.view.AutoRecyclerView
+        <com.lndroid.lndroidlib.view.AutoRecyclerView
             android:id="@+id/cart_lv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:scrollbars="none" >
-        </itlwy.com.o2omall.view.AutoRecyclerView>
+        </com.lndroid.lndroidlib.view.AutoRecyclerView>
 
         <RelativeLayout
             android:id="@+id/cart_check_layout"

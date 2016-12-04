@@ -13,6 +13,13 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.lndroid.lndroidlib.base.BaseMVPActivity;
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.DensityUtil;
+import com.lndroid.lndroidlib.utils.ImageLoaderUtil;
+import com.lndroid.lndroidlib.utils.UIManager;
+import com.lndroid.lndroidlib.view.LoadingPage;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -22,22 +29,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseApplication;
-import itlwy.com.o2omall.base.BaseMVPActivity;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.product.model.OrdersModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
-import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.OrderActivity;
 import itlwy.com.o2omall.product.contract.OrderContract;
 import itlwy.com.o2omall.user.address.AddressContract;
 import itlwy.com.o2omall.user.address.AddressManagerPresenter;
-import itlwy.com.o2omall.utils.DensityUtil;
-import itlwy.com.o2omall.utils.UIManager;
-import itlwy.com.o2omall.view.LoadingPage;
 
 public class OrderFragment extends BaseMVPFragment implements OrderContract.IOrderView {
 
@@ -155,7 +155,7 @@ public class OrderFragment extends BaseMVPFragment implements OrderContract.IOrd
                 params.setMargins(getIvMargin(), getIvMargin(), getIvMargin(), getIvMargin());
                 iv.setLayoutParams(params);
                 ImageLoader.getInstance().displayImage(item.getMainImageUrl(), iv,
-                        ((BaseApplication) BaseApplication.getApplication()).getOptions());
+                        ImageLoaderUtil.getInstance().getOptions());
                 mOrderProductLlt.addView(iv);
                 distributionNum += item.getNum();
                 productsMoney += item.getNum() * item.getPrice();

@@ -2,14 +2,15 @@ package itlwy.com.o2omall.product;
 
 import android.os.Bundle;
 
+import com.lndroid.lndroidlib.base.BaseMVPActivity;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.UIManager;
+
 import itlwy.com.o2omall.ConstantValue;
-import itlwy.com.o2omall.base.BaseMVPActivity;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
-import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.fragment.OrderFragment;
 import itlwy.com.o2omall.product.presenter.OrderPresenter;
-import itlwy.com.o2omall.utils.UIManager;
 
 public class OrderActivity extends BaseMVPActivity {
 

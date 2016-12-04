@@ -9,26 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.UIManager;
+import com.lndroid.lndroidlib.view.AutoRecyclerView;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.adapter.BaseRCAdapter;
 import itlwy.com.o2omall.adapter.ProductListAdapter;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.product.model.CategoryTwoModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
-import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.ProductActivity;
 import itlwy.com.o2omall.product.contract.ProductListContract;
 import itlwy.com.o2omall.product.presenter.ProductPresenter;
-import itlwy.com.o2omall.utils.UIManager;
-import itlwy.com.o2omall.view.AutoRecyclerView;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * Created by Administrator on 2016/2/23.

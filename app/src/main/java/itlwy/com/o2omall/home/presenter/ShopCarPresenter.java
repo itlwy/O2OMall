@@ -1,7 +1,8 @@
 package itlwy.com.o2omall.home.presenter;
 
+import com.lndroid.lndroidlib.base.BasePresenter;
+
 import itlwy.com.o2omall.base.BaseApplication;
-import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 
 /**

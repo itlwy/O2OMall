@@ -7,13 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.user.model.AddressModel;
-import itlwy.com.o2omall.view.LoadingPage;
 
 public class AddressEditFragment extends BaseMVPFragment implements AddressContract.IAddressEditView {
 

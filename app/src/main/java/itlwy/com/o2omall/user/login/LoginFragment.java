@@ -9,14 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.register.RegisterActivity;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * Created by mac on 16/10/2.

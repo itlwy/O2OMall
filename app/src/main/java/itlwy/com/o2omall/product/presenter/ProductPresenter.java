@@ -4,17 +4,18 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.HttpException;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
+
 import java.util.List;
 
 import itlwy.com.o2omall.base.BaseApplication;
-import itlwy.com.o2omall.base.BasePresenter;
 import itlwy.com.o2omall.data.ClientKernal;
-import itlwy.com.o2omall.data.HttpException;
-import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.product.model.ProductModel;
-import itlwy.com.o2omall.user.login.LoginActivity;
 import itlwy.com.o2omall.product.contract.ProductContract;
+import itlwy.com.o2omall.user.login.LoginActivity;
 
 /**
  * Created by mac on 16/10/3.

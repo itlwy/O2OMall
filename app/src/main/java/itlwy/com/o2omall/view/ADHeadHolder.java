@@ -12,11 +12,11 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.lndroid.lndroidlib.utils.CPResourceUtil;
+import com.lndroid.lndroidlib.utils.DensityUtil;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import itlwy.com.o2omall.utils.CPResourceUtil;
-import itlwy.com.o2omall.utils.DensityUtil;
 
 
 /**

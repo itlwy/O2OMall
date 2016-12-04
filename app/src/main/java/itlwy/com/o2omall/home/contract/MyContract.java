@@ -1,7 +1,7 @@
 package itlwy.com.o2omall.home.contract;
 
-import itlwy.com.o2omall.base.api.IBasePresenter;
-import itlwy.com.o2omall.base.api.IBaseView;
+import com.lndroid.lndroidlib.base.api.IBasePresenter;
+import com.lndroid.lndroidlib.base.api.IBaseView;
 
 /**
  * Created by mac on 16/10/3.

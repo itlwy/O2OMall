@@ -1,6 +1,7 @@
 package itlwy.com.o2omall.data.user;
 
 import com.google.gson.Gson;
+import com.lndroid.lndroidlib.data.HttpResultFunc;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
@@ -13,7 +14,6 @@ import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.CommonRepository;
-import itlwy.com.o2omall.data.HttpResultFunc;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 import itlwy.com.o2omall.data.user.model.UserModel;
 import okhttp3.Response;

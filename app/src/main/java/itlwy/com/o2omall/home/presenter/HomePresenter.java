@@ -2,11 +2,12 @@ package itlwy.com.o2omall.home.presenter;
 
 import android.support.v4.app.Fragment;
 
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
+
 import java.util.List;
 
 import itlwy.com.o2omall.adapter.GroupRCAdapter;
-import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.product.ProductRepository;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;

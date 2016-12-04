@@ -1,10 +1,10 @@
 package itlwy.com.o2omall.data.product;
 
 import com.google.gson.JsonObject;
+import com.lndroid.lndroidlib.data.HttpResultModel;
 
 import java.util.List;
 
-import itlwy.com.o2omall.data.HttpResultModel;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import retrofit2.http.Field;

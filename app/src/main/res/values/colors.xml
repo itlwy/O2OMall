@@ -3,22 +3,5 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#ffffff</color>
-    <color name="title">#790022ff</color>
-    <color name="black">#ff000000</color>
-    <color name="textColor">#000000</color>
-    <color name="gray_bg">#33969696</color>
-    <color name="window_background5">#790022ff</color>
-    <color name="divider_grey">#28969696</color>
-    <color name="gray">#AAAAAA</color>
-    <color name="gray_qian">#ffAAAAAA</color>
-    <color name="red">#FF0000</color>
-    <color name="bottomBarColor">#AA000000</color>
 
-    <color name="bar_text_color">#ffffffff</color>
-    <color name="title_text_color">#ff000000</color>
-    <color name="content_text_color">#ff000000</color>
-
-    <color name="blue">#3F51B5</color>
-    <color name="transparent">#00000000</color>
 </resources>

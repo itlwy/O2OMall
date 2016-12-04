@@ -2,11 +2,12 @@ package itlwy.com.o2omall.user.address;
 
 import android.os.Bundle;
 
+import com.lndroid.lndroidlib.base.BaseMVPActivity;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.UIManager;
+
 import itlwy.com.o2omall.ConstantValue;
-import itlwy.com.o2omall.base.BaseMVPActivity;
 import itlwy.com.o2omall.data.user.UserRepository;
-import itlwy.com.o2omall.factory.FragmentFactory;
-import itlwy.com.o2omall.utils.UIManager;
 
 public class AddressActivity extends BaseMVPActivity {
 

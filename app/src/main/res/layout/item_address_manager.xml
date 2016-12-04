@@ -50,7 +50,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
 
-        <itlwy.com.o2omall.view.TextDrawable
+        <com.lndroid.lndroidlib.view.TextDrawable
             android:id="@+id/manager_default_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:leftDrawableHeight="24dp"
             app:leftDrawableWidth="24dp"/>
 
-        <itlwy.com.o2omall.view.TextDrawable
+        <com.lndroid.lndroidlib.view.TextDrawable
             android:id="@+id/manager_delete_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             app:leftDrawableWidth="@dimen/size_logo"
             />
 
-        <itlwy.com.o2omall.view.TextDrawable
+        <com.lndroid.lndroidlib.view.TextDrawable
             android:id="@+id/manager_edit_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

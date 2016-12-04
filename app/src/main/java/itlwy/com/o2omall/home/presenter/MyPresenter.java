@@ -2,11 +2,12 @@ package itlwy.com.o2omall.home.presenter;
 
 import android.support.v4.app.Fragment;
 
-import itlwy.com.o2omall.base.BasePresenter;
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.GsonResultFunc;
+import com.lndroid.lndroidlib.data.HttpResultFunc;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
+
 import itlwy.com.o2omall.data.ClientKernal;
-import itlwy.com.o2omall.data.HttpResultFunc;
-import itlwy.com.o2omall.data.GsonResultFunc;
-import itlwy.com.o2omall.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.home.contract.MyContract;
 import rx.android.schedulers.AndroidSchedulers;

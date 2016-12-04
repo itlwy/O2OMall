@@ -1,1 +1,1 @@
-include ':app', ':LSupportLib'
+include ':app', ':LSupportLib', ':lndroidlib'

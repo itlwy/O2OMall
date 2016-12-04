@@ -8,6 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
+import com.lndroid.lndroidlib.base.BaseMVPActivity;
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.factory.FragmentFactory;
+import com.lndroid.lndroidlib.utils.UIManager;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -15,15 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.adapter.BaseRCAdapter;
-import itlwy.com.o2omall.base.BaseMVPActivity;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
-import itlwy.com.o2omall.factory.FragmentFactory;
 import itlwy.com.o2omall.product.OrderActivity;
-import itlwy.com.o2omall.utils.UIManager;
-import itlwy.com.o2omall.view.LoadingPage;
 
 public class AddressManagerFragment extends BaseMVPFragment implements AddressContract.IAddressManagerView {
 

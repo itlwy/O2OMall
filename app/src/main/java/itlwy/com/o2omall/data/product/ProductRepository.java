@@ -2,14 +2,14 @@ package itlwy.com.o2omall.data.product;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.lndroid.lndroidlib.data.HttpException;
+import com.lndroid.lndroidlib.data.HttpResultFunc;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.CommonRepository;
-import itlwy.com.o2omall.data.HttpException;
-import itlwy.com.o2omall.data.HttpResultFunc;
 import itlwy.com.o2omall.data.product.model.AdvertModel;
 import itlwy.com.o2omall.data.product.model.CategoryOneModel;
 import itlwy.com.o2omall.data.product.model.CategoryTwoModel;

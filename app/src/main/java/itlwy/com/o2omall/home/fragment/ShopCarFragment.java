@@ -17,6 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.view.AutoRecyclerView;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,14 +30,11 @@ import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ShopCarAdapter;
 import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.ClientKernal;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.contract.ShopCarContract;
 import itlwy.com.o2omall.product.OrderActivity;
 import itlwy.com.o2omall.user.login.LoginActivity;
-import itlwy.com.o2omall.view.AutoRecyclerView;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * Created by Administrator on 2016/2/18.

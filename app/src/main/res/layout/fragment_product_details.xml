@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-            <itlwy.com.o2omall.view.CirclePageIndicator
+            <com.lndroid.lndroidlib.view.CirclePageIndicator
                 android:id="@+id/product_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

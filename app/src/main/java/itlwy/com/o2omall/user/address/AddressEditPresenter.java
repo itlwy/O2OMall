@@ -2,8 +2,8 @@ package itlwy.com.o2omall.user.address;
 
 import android.support.v4.app.Fragment;
 
-import itlwy.com.o2omall.base.BasePresenter;
-import itlwy.com.o2omall.data.ProgressSubscriber;
+import com.lndroid.lndroidlib.base.BasePresenter;
+import com.lndroid.lndroidlib.data.ProgressSubscriber;
 import itlwy.com.o2omall.data.user.UserRepository;
 import itlwy.com.o2omall.data.user.model.AddressModel;
 

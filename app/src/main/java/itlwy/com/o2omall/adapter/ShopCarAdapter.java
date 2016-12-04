@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
+import com.lndroid.lndroidlib.base.BaseRCHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
@@ -21,7 +23,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseRCHolder;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 
 /**

@@ -10,14 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.view.LoadingPage;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import itlwy.com.o2omall.R;
 import itlwy.com.o2omall.adapter.ProductListAdapter;
 import itlwy.com.o2omall.base.BaseApplication;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.product.OrderActivity;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.lndroid.lndroidlib.base.BaseMVPFragment;
+import com.lndroid.lndroidlib.utils.ImageLoaderUtil;
+import com.lndroid.lndroidlib.view.CirclePageIndicator;
+import com.lndroid.lndroidlib.view.LoadingPage;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -24,14 +28,10 @@ import butterknife.OnClick;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import itlwy.com.o2omall.ConstantValue;
 import itlwy.com.o2omall.R;
-import itlwy.com.o2omall.base.BaseApplication;
 import itlwy.com.o2omall.base.BaseHolder;
-import itlwy.com.o2omall.base.BaseMVPFragment;
 import itlwy.com.o2omall.data.product.model.ProductModel;
 import itlwy.com.o2omall.home.ShopCarActivity;
 import itlwy.com.o2omall.product.contract.ProductContract;
-import itlwy.com.o2omall.view.CirclePageIndicator;
-import itlwy.com.o2omall.view.LoadingPage;
 
 /**
  * Created by Administrator on 2016/2/23.
@@ -136,7 +136,7 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
             for (ProductModel.ProductAtt item : productAtts) {
                 ImageView iv = new ImageView(getActivity());
                 ImageLoader.getInstance().displayImage(item.getAttUrl(), iv,
-                        ((BaseApplication) getActivity().getApplication()).getOptions());
+                        ImageLoaderUtil.getInstance().getOptions());
                 iv.setScaleType(ImageView.ScaleType.FIT_XY);
                 pagerAdapter.getViewContainer().add(iv);
             }
