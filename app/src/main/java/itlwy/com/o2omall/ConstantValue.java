@@ -27,7 +27,7 @@ public interface ConstantValue {
     /*toolbar类型*/
     int HOMETOOLBAR = 0;
     int SHOPCARTOOLBAR = 1;
-//这是测试git分支内容
+
 //    String BASE_URL = "http://192.168.0.189:8088/api/";
     String BASE_URL = "http://192.168.1.101:8088/api/";
 }
