@@ -1,6 +1,6 @@
 package itlwy.com.o2omall.data;
 
-import com.lndroid.lndroidlib.utils.InterceptorUtil;
+import itlwy.com.o2omall.utils.InterceptorUtil;
 import com.lndroid.lndroidlib.data.HttpResultFunc;
 import com.lndroid.lndroidlib.data.HttpResultModel;
 

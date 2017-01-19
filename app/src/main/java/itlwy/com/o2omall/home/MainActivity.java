@@ -1,6 +1,7 @@
 package itlwy.com.o2omall.home;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             System.out.println("当前屏幕为横屏");
         }
+        Intent intent = new Intent();
+        intent.setClassName("bpowe","adsa");
+
     }
 
 

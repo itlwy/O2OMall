@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
-import com.lndroid.lndroidlib.utils.InterceptorUtil;
+import itlwy.com.o2omall.utils.InterceptorUtil;
 import com.lndroid.lndroidlib.utils.CrashHandlerHelper;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;

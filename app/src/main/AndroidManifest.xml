@@ -38,6 +38,8 @@
         <activity
             android:name=".user.login.LoginActivity"
             android:theme="@style/Base.Theme.DesignDemo"/>
+        <activity android:name=".MainActivity1">
+        </activity>
     </application>
 
 </manifest>

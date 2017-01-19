@@ -56,7 +56,8 @@ public class UserRepository implements UserDataSource {
                             .addFile("file1", imageName, imageFile)
                             .url(ConstantValue.BASE_URL + "user/upload_my_logo")
                             .params(params)
-//                            .headers(headers)//
+//                            .headers
+// (headers)//
                             .build()
                             .execute();
                     int code = response.code();

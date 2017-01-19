@@ -25,7 +25,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class ProductRepository {
-// revert 测试111111
+
     private ProductAPI mProductAPI;
 
     public ProductRepository() {
