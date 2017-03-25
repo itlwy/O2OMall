@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
@@ -84,12 +85,17 @@ public class AddressManagerAdapter extends BaseRCAdapter<AddressModel> {
                     mPresenter.deleteAddress(addressModel.getAddressID());
                     break;
                 case R.id.manager_edit_tv:
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("addressModel", addressModel);
-                    BaseMVPFragment fragment = FragmentFactory.createFragment(getContext(), ConstantValue.ADDRESSEDITFRAGMENT, true);
-                    AddressEditPresenter.newInstance((AddressContract.IAddressEditView) fragment, new UserRepository());
-                    UIManager.getInstance().changeFragment((FragmentActivity) getContext(), ((BaseMVPActivity) getContext()).getFragmentContain()
-                            , fragment, true, bundle);
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("addressModel", addressModel);
+                        BaseMVPFragment fragment = FragmentFactory.createFragment(ConstantValue.ADDRESSEDITFRAGMENT, true);
+                        AddressEditPresenter.newInstance((AddressContract.IAddressEditView) fragment, new UserRepository());
+                        UIManager.getInstance().changeFragment((FragmentActivity) getContext(), ((BaseMVPActivity) getContext()).getFragmentContain()
+                                , fragment, true, bundle);
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
+                    }
+
                     break;
                 case R.id.manager_default_tv:
                     if (addressModel.getIsDefault() == 1) {

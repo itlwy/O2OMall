@@ -38,7 +38,7 @@ public class LoginFragment extends BaseMVPFragment implements LoginContract.ILog
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_login, null);
         ButterKnife.bind(this, view);
         return view;
@@ -56,7 +56,7 @@ public class LoginFragment extends BaseMVPFragment implements LoginContract.ILog
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 

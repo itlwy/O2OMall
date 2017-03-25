@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.lndroid.lndroidlib.R;
 
@@ -24,6 +25,7 @@ public class LoadingPage extends FrameLayout {
     private View errorView;// 错误界面
     private View emptyView;// 空界面
     private View successView;// 加载成功的界面
+    private TextView mErrorTip_tv;   // 错误页面的提示文本
 
     public LoadingPage(Context context) {
         super(context);
@@ -85,14 +87,9 @@ public class LoadingPage extends FrameLayout {
             emptyView.setVisibility(state == STATE_EMPTY ? View.VISIBLE
                     : View.INVISIBLE);
         }
-        if (state == STATE_SUCCESS) {
-            if (successView != null) {
-                successView.setVisibility(View.VISIBLE);
-            }
-        } else {
-            if (successView != null) {
-                successView.setVisibility(View.INVISIBLE);
-            }
+        if (successView != null) {
+            successView.setVisibility(state == STATE_UNKOWN
+                    || state == STATE_SUCCESS ? View.VISIBLE : View.INVISIBLE);
         }
     }
 
@@ -107,6 +104,7 @@ public class LoadingPage extends FrameLayout {
     private View createErrorView() {
         View view = View.inflate(this.getContext(), R.layout.loadpage_error,
                 null);
+        mErrorTip_tv = (TextView)view.findViewById(R.id.loadpage_error_tips);
         Button page_bt = (Button) view.findViewById(R.id.page_bt);
         page_bt.setOnClickListener(new OnClickListener() {
 
@@ -118,6 +116,10 @@ public class LoadingPage extends FrameLayout {
             }
         });
         return view;
+    }
+
+    public void setErrorViewTips(String error){
+        mErrorTip_tv.setText(error);
     }
 
 //    /* 创建加载中的界面 */

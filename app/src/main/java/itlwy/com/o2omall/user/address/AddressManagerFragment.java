@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
@@ -47,7 +48,7 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
         Bundle bundle = getArguments();
         if (bundle != null) {
             flag = bundle.getString("flag");
@@ -55,7 +56,7 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_addres_manager, null);
         ButterKnife.bind(this, view);
         mManagerRcvAdapter = new AddressManagerAdapter(getActivity(), null, presenter);
@@ -67,8 +68,8 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
                 @Override
                 public void onItemClick(View view, int position) {
                     AddressModel item = mManagerRcvAdapter.getmDatas().get(position);
-                    ((OrderActivity)getActivity()).setFromAddressBack(true);
-                    ((OrderActivity)getActivity()).setSelectedAddress(item);
+                    ((OrderActivity) getActivity()).setFromAddressBack(true);
+                    ((OrderActivity) getActivity()).setSelectedAddress(item);
                     getFragmentManager().popBackStack();
                 }
             });
@@ -109,10 +110,15 @@ public class AddressManagerFragment extends BaseMVPFragment implements AddressCo
 
     @OnClick(R.id.manager_add_btn)
     public void onClick() {
-        BaseMVPFragment fragment = FragmentFactory.createFragment(getActivity(), ConstantValue.ADDRESSADDFRAGMENT, true);
-        AddressAddPresenter.newInstance((AddressContract.IAddressAddView) fragment, new UserRepository());
-        UIManager.getInstance().changeFragment(getActivity(),
-                ((BaseMVPActivity) getActivity()).getFragmentContain(), fragment, true, null);
+        try {
+            BaseMVPFragment fragment = FragmentFactory.createFragment(ConstantValue.ADDRESSADDFRAGMENT, true);
+            AddressAddPresenter.newInstance((AddressContract.IAddressAddView) fragment, new UserRepository());
+            UIManager.getInstance().changeFragment(getActivity(),
+                    ((BaseMVPActivity) getActivity()).getFragmentContain(), fragment, true, null);
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+        }
+
 //        ((BaseMVPActivity)getActivity()).changeFragment(fragment,true);
     }
 

@@ -62,7 +62,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
 
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeHolder = new HomeHolder(getActivity());
         return homeHolder.getContentView();
     }
@@ -83,7 +83,7 @@ public class HomeFragment extends BaseMVPFragment implements HomeContract.IHomeV
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 

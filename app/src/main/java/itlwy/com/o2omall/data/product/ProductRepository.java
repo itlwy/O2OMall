@@ -151,7 +151,8 @@ public class ProductRepository {
     }
 
     public void getProductList(Subscriber<List<ProductModel>> subscriber, int category2ID) {
-        CommonRepository.processResult(mProductAPI.getProductList(category2ID), new HttpResultFunc<List<ProductModel>>(),
+        CommonRepository.processResult(mProductAPI.getProductList(category2ID),
+                new HttpResultFunc<List<ProductModel>>(),
                 subscriber);
     }
 

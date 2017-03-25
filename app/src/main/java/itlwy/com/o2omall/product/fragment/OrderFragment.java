@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
 import com.lndroid.lndroidlib.base.BaseMVPFragment;
@@ -112,12 +113,12 @@ public class OrderFragment extends BaseMVPFragment implements OrderContract.IOrd
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_main, null);
         ButterKnife.bind(this, view);
         SpinnerAdapter paywayAdapter = new ArrayAdapter<String>(getActivity(),
@@ -177,18 +178,26 @@ public class OrderFragment extends BaseMVPFragment implements OrderContract.IOrd
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.order_address_rlt:
-                Bundle bundle = new Bundle();
-                bundle.putString("flag", ConstantValue.ORDERFRAGMENT);
-                BaseMVPFragment fragment = FragmentFactory.createFragment(getActivity(), ConstantValue.ADDRESSMANAGERFRAGMENT, true);
-                AddressManagerPresenter.newInstance((AddressContract.IAddressManagerView) fragment, new UserRepository());
-                UIManager.getInstance().changeFragment(getActivity(), ((BaseMVPActivity) getActivity()).getFragmentContain()
-                        , fragment, true, bundle);
+                try {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("flag", ConstantValue.ORDERFRAGMENT);
+                    BaseMVPFragment fragment = FragmentFactory.createFragment(ConstantValue.ADDRESSMANAGERFRAGMENT, true);
+                    AddressManagerPresenter.newInstance((AddressContract.IAddressManagerView) fragment, new UserRepository());
+                    UIManager.getInstance().changeFragment(getActivity(), ((BaseMVPActivity) getActivity()).getFragmentContain()
+                            , fragment, true, bundle);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.order_product_llt:
-                BaseMVPFragment fragmentProducts = FragmentFactory.createFragment(getActivity(), ConstantValue.ORDERPRODUCTSFRAGMENT, true);
+                try {
+                    BaseMVPFragment fragmentProducts = FragmentFactory.createFragment( ConstantValue.ORDERPRODUCTSFRAGMENT, true);
 
-                UIManager.getInstance().changeFragment(getActivity(), ((BaseMVPActivity) getActivity()).getFragmentContain()
-                        , fragmentProducts, true, null);
+                    UIManager.getInstance().changeFragment(getActivity(), ((BaseMVPActivity) getActivity()).getFragmentContain()
+                            , fragmentProducts, true, null);
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.order_submit_btn:
                 OrdersModel orderModel = new OrdersModel();

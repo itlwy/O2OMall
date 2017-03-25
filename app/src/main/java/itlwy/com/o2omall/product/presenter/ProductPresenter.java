@@ -2,7 +2,6 @@ package itlwy.com.o2omall.product.presenter;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import com.lndroid.lndroidlib.base.BasePresenter;
 import com.lndroid.lndroidlib.data.HttpException;
@@ -50,9 +49,7 @@ public class ProductPresenter extends BasePresenter implements ProductContract.I
                                 view.showSuccessView();
                             }
                         } else {
-                            Toast.makeText(((Fragment) view).getActivity()
-                                    , "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            view.showErrorView();
+                            view.showErrorView(e.getMessage());
                         }
                         dismissProgressDialog();
                     }

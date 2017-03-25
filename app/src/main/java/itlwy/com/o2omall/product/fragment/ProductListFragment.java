@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.adapter.BaseRCAdapter;
 import com.lndroid.lndroidlib.base.BaseMVPFragment;
@@ -53,12 +54,12 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
         mCategoryTwoModel = (CategoryTwoModel) getArguments().get(CategoryTwoModel.Tag);
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         holder = new ProductListHolder(getActivity());
         return holder.getContentView();
     }
@@ -119,15 +120,20 @@ public class ProductListFragment extends BaseMVPFragment implements ProductListC
                 @Override
                 public void onItemClick(View view, int position) {
 //                    ViewUtils.showSnack(getActivity().getCurrentFocus(),"跳转");
-                    ProductModel productModel = list_datas.get(position);
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(ProductModel.Tag, productModel);
-                    ProductActivity ownActivity = (ProductActivity) getActivity();
-                    ProductFragment productFragment = (ProductFragment) FragmentFactory.
-                            createFragment(getContext(), ConstantValue.PRODUCTFRAGMENT,true);
-                    ProductPresenter.newInstance(productFragment,new ProductRepository());
-                    UIManager.getInstance().changeFragment(ownActivity, ownActivity.getFragmentContain(),
-                            productFragment, true, bundle);
+                    try {
+                        ProductModel productModel = list_datas.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(ProductModel.Tag, productModel);
+                        ProductActivity ownActivity = (ProductActivity) getActivity();
+                        ProductFragment productFragment = (ProductFragment) FragmentFactory.
+                                createFragment(ConstantValue.PRODUCTFRAGMENT, true);
+                        ProductPresenter.newInstance(productFragment, new ProductRepository());
+                        UIManager.getInstance().changeFragment(ownActivity, ownActivity.getFragmentContain(),
+                                productFragment, true, bundle);
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                    }
+
                 }
             });
         }

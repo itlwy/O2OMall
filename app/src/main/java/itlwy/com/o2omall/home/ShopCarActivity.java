@@ -1,6 +1,7 @@
 package itlwy.com.o2omall.home;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
 import com.lndroid.lndroidlib.factory.FragmentFactory;
@@ -19,15 +20,18 @@ public class ShopCarActivity extends BaseMVPActivity {
     protected void init(Bundle savedInstanceState) {
         ShopCarFragment lShopCarFragment =
                 (ShopCarFragment) getSupportFragmentManager().findFragmentById(getFragmentContain());
-        if (lShopCarFragment == null) {
-            // Create the fragment
-            lShopCarFragment = (ShopCarFragment) FragmentFactory.
-                    createFragment(this, ConstantValue.SHOPCARFRAGMENTALONE,true);
+        try {
+            if (lShopCarFragment == null) {
+                // Create the fragment
+                lShopCarFragment = (ShopCarFragment) FragmentFactory.
+                        createFragment(ConstantValue.SHOPCARFRAGMENTALONE, true);
+            }
+            // Create the presenter
+            mShopCarPresenter = ShopCarPresenter.newInstance(lShopCarFragment);
+            UIManager.getInstance().changeFragment(this, getFragmentContain(), lShopCarFragment, false, null);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        // Create the presenter
-        mShopCarPresenter = ShopCarPresenter.newInstance(lShopCarFragment);
-        UIManager.getInstance().changeFragment(this, getFragmentContain(), lShopCarFragment, false, null);
-
     }
 
 }

@@ -42,12 +42,12 @@ public class AddressAddFragment extends BaseMVPFragment implements AddressContra
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_address_add, null);
         ButterKnife.bind(this, view);
         return view;

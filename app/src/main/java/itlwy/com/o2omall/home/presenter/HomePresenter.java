@@ -52,11 +52,6 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
         pageNum = 1;
 //        view.showLoadingView();
         ProgressSubscriber<List<ProductModel>> subscriber = new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-                view.showErrorView();
-            }
 
             @Override
             public void onNext(List<ProductModel> productModels) {
@@ -79,7 +74,6 @@ public class HomePresenter extends BasePresenter implements HomeContract.IHomePr
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                view.showErrorView();
                 view.setLoadMoreFinish(true, null, GroupRCAdapter.STATUS_NOMORE);
             }
 

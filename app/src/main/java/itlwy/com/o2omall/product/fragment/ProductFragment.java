@@ -54,12 +54,12 @@ public class ProductFragment extends BaseMVPFragment implements ProductContract.
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
         mProductModel = getArguments().getParcelable(ProductModel.Tag);
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         holder = new ProductHolder(getActivity());
         return holder.getContentView();
     }

@@ -2,6 +2,7 @@ package itlwy.com.o2omall.product;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
 import com.lndroid.lndroidlib.factory.FragmentFactory;
@@ -30,11 +31,16 @@ public class ProductActivity extends BaseMVPActivity {
         CategoryTwoModel categoryTwoModel = getIntent().getParcelableExtra(CategoryTwoModel.Tag);
         Bundle bundle = new Bundle();
         bundle.putParcelable(CategoryTwoModel.Tag, categoryTwoModel);
-        ProductListFragment productListFragment = (ProductListFragment) FragmentFactory.
-                createFragment(this, ConstantValue.PRODUCTLISTFRAGMENT,true);
-        ProductRepository repository = new ProductRepository();
-        ProductListPresenter.newInstance(productListFragment,repository);
-        UIManager.getInstance().changeFragment(this, getFragmentContain(), productListFragment, false, bundle);
+        ProductListFragment productListFragment = null;
+        try {
+            productListFragment = (ProductListFragment) FragmentFactory.
+                    createFragment(ConstantValue.PRODUCTLISTFRAGMENT, true);
+            ProductRepository repository = new ProductRepository();
+            ProductListPresenter.newInstance(productListFragment, repository);
+            UIManager.getInstance().changeFragment(this, getFragmentContain(), productListFragment, false, bundle);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface IBaseView<T> {
 
     void showEmptyView();
 
-    void showErrorView();
+    void showErrorView(String error);
 
     void showSuccessView();
 

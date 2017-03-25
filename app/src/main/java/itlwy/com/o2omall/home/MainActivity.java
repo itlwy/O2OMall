@@ -79,27 +79,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println("当前屏幕为横屏");
         }
         Intent intent = new Intent();
-        intent.setClassName("bpowe","adsa");
+        intent.setClassName("bpowe", "adsa");
 
     }
 
 
     public void init() {
-        ProductRepository productRepository = new ProductRepository();
-        fragmentList = new ArrayList<>();
-        HomeFragment homeFragment = (HomeFragment) createFragment(this, ConstantValue.HOMEFRAGMENT,true);
-        HomePresenter.newInstance(homeFragment,productRepository);
-        fragmentList.add(homeFragment);
-        CategoryFragment categoryFragment = (CategoryFragment) createFragment(this, ConstantValue.CATEGORYFRAGMENT,true);
-        CategoryPresenter.newInstance(categoryFragment,productRepository);
-        fragmentList.add(categoryFragment);
-        ShopCarFragment shopCarFragment = (ShopCarFragment) FragmentFactory.createFragment(this, ConstantValue.SHOPCARFRAGMENT,true);
-        ShopCarPresenter.newInstance(shopCarFragment);
-        fragmentList.add(shopCarFragment);
-        MyFragment myFragment = (MyFragment) createFragment(this, ConstantValue.MYFRAGMENT,true);
-        MyPresenter.newInstance(myFragment,new UserRepository());
-        fragmentList.add(myFragment);
-
+        try {
+            ProductRepository productRepository = new ProductRepository();
+            fragmentList = new ArrayList<>();
+            HomeFragment homeFragment = (HomeFragment) createFragment(ConstantValue.HOMEFRAGMENT, true);
+            HomePresenter.newInstance(homeFragment, productRepository);
+            fragmentList.add(homeFragment);
+            CategoryFragment categoryFragment = (CategoryFragment) createFragment(ConstantValue.CATEGORYFRAGMENT, true);
+            CategoryPresenter.newInstance(categoryFragment, productRepository);
+            fragmentList.add(categoryFragment);
+            ShopCarFragment shopCarFragment = (ShopCarFragment) FragmentFactory.createFragment(ConstantValue.SHOPCARFRAGMENT, true);
+            ShopCarPresenter.newInstance(shopCarFragment);
+            fragmentList.add(shopCarFragment);
+            MyFragment myFragment = (MyFragment) createFragment(ConstantValue.MYFRAGMENT, true);
+            MyPresenter.newInstance(myFragment, new UserRepository());
+            fragmentList.add(myFragment);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -125,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (id) {
             case R.id.action_search:
-//                UIManager.getInstance().changeFragment(this, FragmentFactory.createFragment
+//                UIManager.getInstance().changeFragment( FragmentFactory.createFragment
 //                        (this,"APPFRAGMENT"),true,null);
                 break;
             case android.R.id.home:
@@ -226,13 +229,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.main_btn_home:
                 // 切换首页选项卡
-//                UIManager.getInstance().changeFragment(this, FragmentFactory.createFragment
+//                UIManager.getInstance().changeFragment(FragmentFactory.createFragment
 //                        (this, ConstantValue.HOMEFRAGMENT), true, null);
                 homeViewPager.setCurrentItem(0);
                 break;
             case R.id.main_btn_category:
                 // 切换商品分类选项卡
-//                UIManager.getInstance().changeFragment(this, FragmentFactory.createFragment
+//                UIManager.getInstance().changeFragment( FragmentFactory.createFragment
 //                        (this, ConstantValue.CATEGORYFRAGMENT), true, null);
                 homeViewPager.setCurrentItem(1);
                 break;
@@ -242,13 +245,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_btn_cart:
                 // 切换购物车选项卡
-//                UIManager.getInstance().changeFragment(this, FragmentFactory.createFragment
+//                UIManager.getInstance().changeFragment( FragmentFactory.createFragment
 //                        (this, ConstantValue.SHOPCARFRAGMENT), true, null);
                 homeViewPager.setCurrentItem(2);
                 break;
             case R.id.main_btn_my:
                 // 切换我的信息选项卡
-//                UIManager.getInstance().changeFragment(this, FragmentFactory.createFragment
+//                UIManager.getInstance().changeFragment( FragmentFactory.createFragment
 //                        (this, ConstantValue.MYFRAGMENT), true, null);
                 homeViewPager.setCurrentItem(3);
                 break;

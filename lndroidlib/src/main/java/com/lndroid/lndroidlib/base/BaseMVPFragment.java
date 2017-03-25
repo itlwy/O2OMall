@@ -32,7 +32,7 @@ public abstract class BaseMVPFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentKey = getFragmentKey();
-        inits();
+        inits(savedInstanceState);
     }
 
 
@@ -42,7 +42,7 @@ public abstract class BaseMVPFragment extends Fragment {
         if (loadingPage == null) {
             loadingPage = new LoadingPage(getActivity());
             if (successView == null) {
-                successView = createSuccessView(inflater, container, savedInstanceState);
+                successView = initView(inflater, container, savedInstanceState);
                 loadingPage.setSuccessView(successView);
 //                if (successView.getParent() != null)
 //                    ViewUtils.removeParent(successView);
@@ -84,8 +84,9 @@ public abstract class BaseMVPFragment extends Fragment {
         loadingPage.showPage();
     }
 
-    public void showErrorView() {
+    public void showErrorView(String error) {
         loadingPage.setState(LoadingPage.STATE_ERROR);
+        loadingPage.setErrorViewTips(error);
         loadingPage.showPage();
     }
 
@@ -103,14 +104,15 @@ public abstract class BaseMVPFragment extends Fragment {
     }
 
 
-    protected abstract void inits();
+    protected abstract void inits(Bundle savedInstanceState);
 
     /**
      * 创建加载成功的View
      *
      * @return
      */
-    protected abstract View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
+    protected abstract View initView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                     @Nullable Bundle savedInstanceState);
 
     /**
      * 标志每个fragment的key

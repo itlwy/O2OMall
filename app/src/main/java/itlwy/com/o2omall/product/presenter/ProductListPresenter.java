@@ -39,11 +39,6 @@ public class ProductListPresenter extends BasePresenter implements ProductListCo
     public void subscribe(CategoryTwoModel categoryTwoModel) {
         ProgressSubscriber<List<ProductModel>> subscriber =
                 new ProgressSubscriber<List<ProductModel>>(((Fragment) view).getActivity()) {
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        view.showErrorView();
-                    }
 
                     @Override
                     public void onNext(List<ProductModel> productModels) {

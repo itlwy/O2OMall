@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/LSupportLib/LSupportLib.iml" filepath="$PROJECT_DIR$/LSupportLib/LSupportLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/O2OMall.iml" filepath="$PROJECT_DIR$/O2OMall.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lndroidlib/lndroidlib.iml" filepath="$PROJECT_DIR$/lndroidlib/lndroidlib.iml" />
     </modules>
   </component>
 </project>

@@ -31,12 +31,12 @@ public class OrderProductsFragment extends BaseMVPFragment {
     private ProductListAdapter adapter;
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_products, null);
         ButterKnife.bind(this, view);
         adapter = new ProductListAdapter(getActivity(), BaseApplication.getProductModelShopcar());

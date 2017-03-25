@@ -60,7 +60,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
 
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         holder = new ShopCarHolder(getActivity());
         return holder.getContentView();
     }
@@ -76,7 +76,7 @@ public class ShopCarFragment extends BaseMVPFragment implements ShopCarContract.
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 

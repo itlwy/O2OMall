@@ -53,7 +53,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
 
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         holder = new CategoryHolder(getActivity());
         return holder.getContentView();
     }
@@ -74,7 +74,7 @@ public class CategoryFragment extends BaseMVPFragment implements CategoryContrac
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 

@@ -62,8 +62,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pro
                     view.showEmptyView();
                 }
             } else {
-                view.showErrorView();
-                Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                view.showErrorView(e.getMessage());
             }
         } else {
             Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();

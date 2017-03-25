@@ -1,6 +1,7 @@
 package itlwy.com.o2omall.product;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.lndroid.lndroidlib.base.BaseMVPActivity;
 import com.lndroid.lndroidlib.factory.FragmentFactory;
@@ -24,23 +25,26 @@ public class OrderActivity extends BaseMVPActivity {
     protected void init(Bundle savedInstanceState) {
         OrderFragment lOrderFragment =
                 (OrderFragment) getSupportFragmentManager().findFragmentById(getFragmentContain());
-        if (lOrderFragment == null) {
-            // Create the fragment
-            lOrderFragment = (OrderFragment) FragmentFactory.
-                    createFragment(this, ConstantValue.ORDERFRAGMENT,true);
+        try {
+            if (lOrderFragment == null) {
+                // Create the fragment
+                lOrderFragment = (OrderFragment) FragmentFactory.
+                        createFragment(ConstantValue.ORDERFRAGMENT, true);
+            }
+            ProductRepository lProductRepository = new ProductRepository();
+            // Create the presenter
+            mOrderPresenter = OrderPresenter.newInstance(lOrderFragment, lProductRepository);
+            UIManager.getInstance().changeFragment(this, getFragmentContain(), lOrderFragment, false, null);
+        } catch (Exception e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        ProductRepository lProductRepository = new ProductRepository();
-        // Create the presenter
-        mOrderPresenter = OrderPresenter.newInstance(lOrderFragment, lProductRepository);
-        UIManager.getInstance().changeFragment(this, getFragmentContain(), lOrderFragment, false, null);
-
     }
 
     public AddressModel getAddressModel() {
         return mAddressModel;
     }
 
-    public void setSelectedAddress(AddressModel addressModel){
+    public void setSelectedAddress(AddressModel addressModel) {
         mAddressModel = addressModel;
     }
 

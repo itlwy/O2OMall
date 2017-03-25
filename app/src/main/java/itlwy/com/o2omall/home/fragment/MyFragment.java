@@ -63,7 +63,7 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
     }
 
     @Override
-    protected View createSuccessView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myHolder = new MyHolder(getActivity());
         return myHolder.getContentView();
     }
@@ -79,7 +79,7 @@ public class MyFragment extends BaseMVPFragment implements MyContract.IMyView {
     }
 
     @Override
-    protected void inits() {
+    protected void inits(Bundle savedInstanceState) {
 
     }
 

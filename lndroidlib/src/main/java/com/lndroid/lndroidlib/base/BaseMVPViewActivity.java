@@ -85,8 +85,9 @@ public abstract class BaseMVPViewActivity extends AppCompatActivity {
         loadingPage.showPage();
     }
 
-    public void showErrorView() {
+    public void showErrorView(String error) {
         loadingPage.setState(LoadingPage.STATE_ERROR);
+        loadingPage.setErrorViewTips(error);
         loadingPage.showPage();
     }
 

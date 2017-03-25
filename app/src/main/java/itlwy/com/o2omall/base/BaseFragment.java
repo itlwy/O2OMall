@@ -117,7 +117,7 @@ public abstract class BaseFragment<T,K> extends Fragment {
 //                        loadingPage.setState(resultCode.getValue());
 //                        if (state == LoadingPage.STATE_SUCCESS){
 //                            if (successView == null) {
-//                                successView = createSuccessView();
+//                                successView = initView();
 //                                if (successView == null){
 //                                    Toast.makeText(getActivity(), "请正确覆写createSuccessView()",
 //                                            Toast.LENGTH_SHORT).show();
@@ -146,7 +146,7 @@ public abstract class BaseFragment<T,K> extends Fragment {
 //     *  创建成功的界面
 //     * @return
 //     */
-//    public abstract View createSuccessView();
+//    public abstract View initView();
 ////    /**
 ////     * 初始化view数据
 ////     * @param tag
